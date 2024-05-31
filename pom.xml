@@ -141,6 +141,35 @@
 	        <artifactId>tiles-extras</artifactId>
 	        <version>3.0.8</version>
 	    </dependency>
+	    <!-- mybatis -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>3.5.16</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.1.2</version>
+		</dependency>
+		<!-- 비밀번호 암호화 -->
+		<dependency>
+	        <groupId>at.favre.lib</groupId>
+	        <artifactId>bcrypt</artifactId>
+	        <version>0.10.2</version>
+	    </dependency>
+	    <!-- 이메일 -->
+	    <dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+		<!-- 암호화 -->
+		<dependency>
+		    <groupId>org.jasypt</groupId>
+		    <artifactId>jasypt-spring31</artifactId>
+		    <version>1.9.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
