@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.www.auth.dto.MemberDto;
 import com.portfolio.www.auth.service.LoginService;
-import com.portfolio.www.message.MessageEnum;
 
 @Controller
 public class LoginController {
@@ -57,7 +56,7 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				//memberId넣어줌
 				session.setAttribute("memberId", memberDto.getMemberId());
-				mv.setViewName("forum/notice/list");
+				mv.setViewName("index");
 			}else {	//비밀번호가 다른경우
 				mv.setViewName("login");
 				mv.addObject("code", "9001");
