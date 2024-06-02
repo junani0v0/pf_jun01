@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.www.auth.dto.MemberDto;
 import com.portfolio.www.auth.service.LoginService;
-import com.portfolio.www.message.MessageEnum;
 
 @Controller
 public class LoginController {
