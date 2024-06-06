@@ -1,4 +1,4 @@
-package com.portfolio.www.forum.notice;
+package com.portfolio.www.forum.notice.controller;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class NoticeController {
 	
-	
+	//리스트 페이지
 	@RequestMapping("/forum//notice/listPage.do")
 	public ModelAndView listPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -21,6 +21,7 @@ public class NoticeController {
 		return mv;
 	}
 	
+	//작성 페이지
 	@RequestMapping("/forum/notice/writePage.do")
 	public ModelAndView writePage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -30,6 +31,7 @@ public class NoticeController {
 		return mv;
 	}
 	
+	//읽기 페이지
 	@RequestMapping("/forum/notice/readPage.do")
 	public ModelAndView readPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
