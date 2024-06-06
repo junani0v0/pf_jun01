@@ -33,4 +33,9 @@
     <select id="getMember" parameterType="String" resultType="MemberDto">
     	SELECT * FROM member WHERE member_id = #{memberId}
     </select>
+    
+    <delete id="deleteMember" parameterType="String">
+    	DELETE FROM forum.`member`
+		WHERE member_id = #{memberId};
+    </delete>
 </mapper>

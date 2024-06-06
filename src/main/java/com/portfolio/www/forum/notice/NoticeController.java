@@ -18,6 +18,7 @@ public class NoticeController {
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
 		mv.setViewName("forum/notice/list");
 		
+		
 		return mv;
 	}
 	

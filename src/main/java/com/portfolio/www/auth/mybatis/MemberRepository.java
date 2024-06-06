@@ -16,5 +16,6 @@ public interface MemberRepository {
 	public int getMemberSeq(String memberId);
 	
 	public MemberDto getMember(String memberId);
+	public int deleteMember(String memberId);
 }
 

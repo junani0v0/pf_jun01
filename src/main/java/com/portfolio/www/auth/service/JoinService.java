@@ -41,7 +41,9 @@ public class JoinService {
 		
 		try {
 			//회원ID 중복 체크
-			String idCheck = memberRepository.getMemberId(inputId);
+//			String idCheck = memberRepository.getMemberId(inputId);
+			//아래 기능 호출해 사용
+			String idCheck = getMemberId(inputId);
 			
 			//회원추가
 			cnt = memberRepository.addJoin(params);
@@ -101,4 +103,25 @@ public class JoinService {
 		}
 		return result;
 	}
+	
+	//
+	public int deleteMember(String memberId) {
+		int result = memberRepository.deleteMember(memberId);
+		return result;
+	}
+	
+	//
+	public int getMemberSeq(String memberId) {
+		int result = memberRepository.getMemberSeq(memberId);
+		return result;
+	}
+	
+	//아이디 중복 테스트용
+	public String getMemberId(String memberId) {
+		String result = memberRepository.getMemberId(memberId);
+		return result;
+	}
+	//이메일 발송
+	
+	
 }
