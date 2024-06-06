@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.www.forum.notice.mybatis.BoardRepository">
+
+    <select id="getRead" parameterType="String" resultType="BoardDto">
+    	SELECT b.board_seq , 
+    		   b.board_type_seq , 
+    		   b.title , 
+    		   b.content ,
+    		   b.hit , 
+    		   b.del_yn ,
+    		   b.reg_dtm ,
+    		   b.reg_member_seq , 
+    		   m.member_id, 
+    		   b.update_dtm , 
+    		   b.update_member_seq , 
+    		   bt.board_type_nm
+    	  FROM board b 
+    	  JOIN board_type bt ON bt.board_type_seq  = b.board_type_seq 
+    	  JOIN member m ON m.member_seq  = b.reg_member_seq 
+   	     WHERE 1 = 1
+     	   AND b.board_seq = #{boardSeq}
+    </select>
+    
+    <!-- java.util.HashMap이나 hashMap이라 작성해야됨 -->
+    <select id="getList" parameterType="hashMap" resultType="BoardDto">
+    	SELECT b.board_seq , 
+    		   b.board_type_seq , 
+    		   b.title , 
+    		   b.content , 
+    		   b.hit , 
+    		   b.del_yn ,
+    		   b.reg_dtm ,
+    		   b.reg_member_seq , 
+    		   m.member_id, 
+    		   b.update_dtm , 
+    		   b.update_member_seq , 
+    		   bt.board_type_nm, 
+    		(SELECT COUNT(*) 
+    		   FROM board_comment c 
+    		   WHERE c.board_seq = b.board_seq) 
+    		   AS comment_cnt, 
+    		(SELECT COUNT(*) 
+    			FROM board_attach a 
+    			WHERE a.board_seq = b.board_seq) 
+    			AS attach_cnt 
+    	  FROM board b 
+    	  JOIN board_type bt ON bt.board_type_seq  = b.board_type_seq 
+    	  JOIN member m ON m.member_seq  = b.reg_member_seq 
+    	  WHERE 1 = 1 
+    	  ORDER BY b.board_seq DESC 
+    	  LIMIT ${start}, ${size}
+    	
+    </select>
+    <!-- insert 타입 int라 뭘 넣어줄수 없어 selectKey사용 -->
+    <insert id="addBoard" parameterType="hashMap">
+    	<selectKey resultType="String" keyProperty="boardSeq" keyColumn="board_seq" order="AFTER" >
+    	SELECT LAST_INSERT_ID()
+    	</selectKey>
+    	
+    	INSERT INTO forum.board 
+    	(board_type_seq, title, content, reg_dtm, reg_member_seq ) 
+    	VALUES( '1', #{title}, #{trumbowyg-demo}, DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'), '73')
+    </insert>
+    
+    <!-- 게시글 총 개수 -->
+    <select id="getTotalCount" resultType="int">
+    	SELECT count(*) 
+    	  FROM board
+    </select>
+    
+</mapper>
