@@ -1,7 +1,9 @@
 package com.portfolio.www.forum.notice.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("BoardDto")
 public class BoardDto {
-	
 	private int boardSeq;
 	private int boardTypeSeq;
 	private String title;
@@ -10,9 +12,20 @@ public class BoardDto {
 	private String delYn;
 	private String regDtm;
 	private int regMemberSeq;
+	private String memberId;
 	private String updateDtm;
 	private int updateMemberSeq;
+	private String boardTypeNm;
 	
+	private int commentCnt;	//댓글 개수
+    private int attachCnt;	//첨부파일 개수
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	public int getBoardSeq() {
 		return boardSeq;
 	}
@@ -72,6 +85,24 @@ public class BoardDto {
 	}
 	public void setUpdateMemberSeq(int updateMemberSeq) {
 		this.updateMemberSeq = updateMemberSeq;
+	}
+	public String getBoardTypeNm() {
+		return boardTypeNm;
+	}
+	public void setBoardTypeNm(String boardTypeNm) {
+		this.boardTypeNm = boardTypeNm;
+	}
+	public int getCommentCnt() {
+		return commentCnt;
+	}
+	public void setCommentCnt(int commentCnt) {
+		this.commentCnt = commentCnt;
+	}
+	public int getAttachCnt() {
+		return attachCnt;
+	}
+	public void setAttachCnt(int attachCnt) {
+		this.attachCnt = attachCnt;
 	}
 
 }

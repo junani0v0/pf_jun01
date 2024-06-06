@@ -19,46 +19,30 @@ String ctx = request.getContextPath();
                                             <tr>
                                             	<th>No</th>
                                                 <th>제목</th>
+                                                <th>댓글</th>
                                                 <th>Date</th>
                                                 <th>작성자</th>
                                             </tr>
                                         </thead>
-
                                         <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>
-                                                	<a href="<c:url value='/forum/notice/readPage.do'/>">
-                                                		Payoneer
-                                                	</a>
-                                                </td>
-                                                <td>2024.03.23 21:57:13</td>
-                                                <td>홍길동</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Payoneer</td>
-                                                <td>2024.03.23 21:57:13</td>
-                                                <td>홍길동</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Payoneer</td>
-                                                <td>2024.03.23 21:57:13</td>
-                                                <td>홍길동</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Payoneer</td>
-                                                <td>2024.03.23 21:57:13</td>
-                                                <td>홍길동</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Payoneer</td>
-                                                <td>2024.03.23 21:57:13</td>
-                                                <td>홍길동</td>
-                                            </tr>
+                                        <!-- 리스트 시작 -->
+                                            <c:forEach items="${list}" var="i" begin="0" step="1" varStatus="status">
+	                                        	<tr>
+	                                        		<td>${i.boardSeq}</td>
+	                                        		<td>
+	                                        			<a href="<c:url value='/forum/notice/readPage.do?boardSeq=${i.boardSeq}&boardTypeSeq=${i.boardTypeSeq}'/>">
+	                                                		${i.title}
+	                                                	</a>
+	                                                	<c:if test="${i.attachCnt > 0}">
+	                                                		<span class="lnr lnr-paperclip"></span>
+	                                                	</c:if>
+	                                       			</td>
+	                                       			<td>${i.commentCnt}</td>
+	                                        		<td>${i.regDtm}</td>
+	                                        		<td>${i.memberId}</td>
+	                                        	</tr>
+	                                        </c:forEach>
+                                       	<!-- 리스트 끝 -->
                                         </tbody>
                                     </table>
                                     <div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
@@ -66,21 +50,39 @@ String ctx = request.getContextPath();
 		                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">작성</button>
 		                                </a>
 		                            </div>
-                                    <div class="pagination-area" style="padding-top: 45px;">
-				                        <nav class="navigation pagination" role="navigation">
-				                            <div class="nav-links">
-				                                <a class="prev page-numbers" href="#">
-				                                    <span class="lnr lnr-arrow-left"></span>
-				                                </a>
-				                                <a class="page-numbers current" href="#">1</a>
-				                                <a class="page-numbers" href="#">2</a>
-				                                <a class="page-numbers" href="#">3</a>
-				                                <a class="next page-numbers" href="#">
-				                                    <span class="lnr lnr-arrow-right"></span>
-				                                </a>
-				                            </div>
-				                        </nav>
-				                    </div>
+                                    <!-- 페이징 시작 -->
+									<div class="pagination-area" style="padding-top: 45px;">
+									    <nav class="navigation pagination" role="navigation">
+									        <div class="nav-links">
+									        	<!-- 이전 페이지 -->
+									            <c:if test="${hasPrev}">
+									                <a class="prev page-numbers" href="<c:url value='/forum/notice/listPage.do?page=${startPage - countPage}&size=10'/>">
+									                    <span class="lnr lnr-arrow-left"></span>
+									                </a>
+									            </c:if>
+												 <!-- 페이지 링크 -->
+									            <c:forEach begin="${startPage}" end="${endPage}" var="pageNum">
+									                <c:if test="${pageNum eq currentPage}">
+									                    <a class="page-numbers current" href="#">
+									                        ${pageNum}
+									                    </a>
+									                </c:if>
+									                <c:if test="${pageNum ne currentPage}">
+									                    <a class="page-numbers" href="<c:url value='/forum/notice/listPage.do?page=${pageNum}&size=10'/>">
+									                        ${pageNum}
+									                    </a>
+									                </c:if>
+									            </c:forEach>
+												 <!-- 다음 페이지 -->
+									            <c:if test="${hasNext}">
+									                <a class="next page-numbers" href="<c:url value='/forum/notice/listPage.do?page=${startPage + countPage}&size=10'/>">
+									                    <span class="lnr lnr-arrow-right"></span>
+									                </a>
+									            </c:if>
+									        </div>
+									    </nav>
+									</div>
+								 	<!-- 페이징 끝 -->
                                 </div>
                             </div>
                         </div>

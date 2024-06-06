@@ -46,9 +46,10 @@
     </bean>
 
     <!-- DAO 위치를 basePackage로.. -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.portfolio.www.auth.mybatis" />
-    </bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> 
+		<property name="basePackage" value="com.portfolio.www.**.mybatis" />
+	</bean>
+
 
     <!-- 트랜잭션 관리를 위한 bean -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
