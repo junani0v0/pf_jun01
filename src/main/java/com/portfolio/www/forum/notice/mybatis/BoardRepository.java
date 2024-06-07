@@ -25,4 +25,7 @@ public interface BoardRepository {
 	
 	//게시글 읽기 페이지 정보 가져오기
 	public BoardDto getRead(String boardSeq);
+	
+	//게시글 작성
+	public int addBoard(HashMap<String, String> params);
 }

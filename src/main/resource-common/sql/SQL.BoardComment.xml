@@ -33,5 +33,23 @@
     	  FROM board_comment 
     	 WHERE board_seq = #{boardSeq} 
     </select>
+    
+    <!-- 댓글 작성 -->
+	<insert id="addComment" parameterType="BoardCommentDto">
+    	<selectKey resultType="int" keyProperty="boardSeq" keyColumn="board_seq" order="AFTER" >
+    		SELECT LAST_INSERT_ID()
+    	</selectKey>
+    	
+    	INSERT INTO forum.board_comment
+    	(lvl, content, board_seq, board_type_seq, member_seq, parent_comment_seq, reg_dtm)
+    	VALUES(#{lvl}, #{content}, #{boardSeq}, #{boardTypeSeq}, #{memberSeq}, 
+    	<if test="parentCommentSeq == 0">
+	        null
+	    </if>
+	    <if test="parentCommentSeq != 0">
+	        #{parentCommentSeq}
+	    </if>
+	    , DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'))
+    </insert>
 
 </mapper>

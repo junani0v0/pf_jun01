@@ -23,5 +23,9 @@ public class BoardCommentService {
 	public int getCommentCnt(int boardSeq) {
 		return boardCommentRepository.getCommentCnt(boardSeq);
 	}
-
+	
+	//댓글 추가
+	public int addComment(BoardCommentDto dto) {
+		return boardCommentRepository.addComment(dto);
+	}
 }
