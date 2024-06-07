@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.www.forum.notice.mybatis.BoardCommentRepository">
+
+	<!-- 댓글 불러오기 -->
+	<select id="CommentList" resultType="BoardCommentDto">
+    	SELECT a.*, m.member_nm 
+    	  FROM (
+    	  	   SELECT p.comment_seq,
+    	  	   		  p.lvl,
+    	  	   		  p.content,
+    	  	   		  p.board_seq,
+    	  	   		  p.board_type_seq,
+    	  	   		  p.member_seq,
+    	  	   		  IFNULL(p.parent_comment_seq, s.parent_comment_seq) as parent_seq,
+    	  	   		  p.reg_dtm,
+    	  	   		  p.update_dtm,
+    	  	   		  p.delete_dtm
+ 	  	   		 FROM board_comment p
+   	  	    left join board_comment s on s.parent_comment_seq = p.comment_seq
+   	  	    	) a
+    	  JOIN member m on a.member_seq = m.member_seq
+    	 WHERE a.board_seq = #{boardSeq} AND a.board_type_seq = #{boardTypeSeq}
+    	 ORDER BY IFNULL(parent_seq, 999999999), a.reg_dtm, a.comment_seq
+    </select>
+    
+    <!-- 댓글 총 개수 -->
+    <select id="getCommentCnt" parameterType="int" resultType="int">
+    	SELECT count(*) 
+    	  FROM board_comment 
+    	 WHERE board_seq = #{boardSeq} 
+    </select>
+
+</mapper>

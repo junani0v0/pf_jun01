@@ -5,6 +5,7 @@
 
 <mapper namespace="com.portfolio.www.forum.notice.mybatis.BoardRepository">
 
+	<!-- 읽기 페이지 정보 가져오기 -->
     <select id="getRead" parameterType="String" resultType="BoardDto">
     	SELECT b.board_seq , 
     		   b.board_type_seq , 
@@ -25,7 +26,7 @@
      	   AND b.board_seq = #{boardSeq}
     </select>
     
-    <!-- java.util.HashMap이나 hashMap이라 작성해야됨 -->
+    <!-- 리스트 페이지 정보 가져오기 -->
     <select id="getList" parameterType="hashMap" resultType="BoardDto">
     	SELECT b.board_seq , 
     		   b.board_type_seq , 
@@ -55,7 +56,8 @@
     	  LIMIT ${start}, ${size}
     	
     </select>
-    <!-- insert 타입 int라 뭘 넣어줄수 없어 selectKey사용 -->
+    
+    <!-- 작성하기 -->
     <insert id="addBoard" parameterType="hashMap">
     	<selectKey resultType="String" keyProperty="boardSeq" keyColumn="board_seq" order="AFTER" >
     	SELECT LAST_INSERT_ID()
@@ -71,5 +73,25 @@
     	SELECT count(*) 
     	  FROM board
     </select>
+    
+    <!-- 좋아요 조회-->
+    <select id="existsLike" resultType="int">
+    	SELECT COUNT(1) 
+    	  FROM forum.board_like 
+    	 WHERE board_seq = #{boardSeq}
+    	   AND board_type_seq = #{boardTypeSeq}
+           AND member_seq = #{memberSeq} 
+    </select>
+    
+    <!-- 싫어요 조회-->
+    <select id="existsDisLike" resultType="int">
+    	SELECT COUNT(1) 
+    	  FROM forum.board_dislike 
+    	 WHERE board_seq = #{boardSeq}
+    	   AND board_type_seq = #{boardTypeSeq}
+           AND member_seq = #{memberSeq} 
+    </select>
+    
+    
     
 </mapper>

@@ -1,4 +1,4 @@
-package com.portfolio.www.forum.notice;
+package com.portfolio.www.forum.notice.controller;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.www.forum.notice.dto.BoardDto;
+import com.portfolio.www.forum.notice.service.BoardCommentService;
 import com.portfolio.www.forum.notice.service.BoardService;
 
 @Controller
@@ -19,6 +20,10 @@ public class NoticeController {
 	@Autowired
 	private BoardService service;
 	
+	@Autowired
+	private BoardCommentService boardCommentService;
+	
+	//리스트
 	@RequestMapping("/forum//notice/listPage.do")
 	public ModelAndView listPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -73,6 +78,7 @@ public class NoticeController {
 				return mv;
 	}
 	
+	//쓰기
 	@RequestMapping("/forum/notice/writePage.do")
 	public ModelAndView writePage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -82,12 +88,36 @@ public class NoticeController {
 		return mv;
 	}
 	
+	//읽기
 	@RequestMapping("/forum/notice/readPage.do")
 	public ModelAndView readPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
 		mv.setViewName("forum/notice/read");
 		
+		//boardSeq없으면?
+		if(!params.containsKey("boardSeq") || !params.containsKey("boardTypeSeq")) {
+			throw new IllegalArgumentException("boardSeq와 boardTypeSeq가 필요합니다.");
+		}
+		
+		mv.addObject("board", service.getRead(params.get("boardSeq")));
+		// 첨부파일
+		mv.addObject("attFile", service.getAttFile(
+				Integer.parseInt(params.get("boardSeq")),
+				Integer.parseInt(params.get("boardTypeSeq")))
+				);
+		// 댓글
+		mv.addObject("comments", boardCommentService.list(
+				Integer.parseInt(params.get("boardSeq")),
+				Integer.parseInt(params.get("boardTypeSeq"))));
+		mv.addObject("commentCnt", boardCommentService.getCommentCnt(
+				Integer.parseInt(params.get("boardSeq"))));
+		// 좋아요
+		mv.addObject("liked", service.getLike(
+				Integer.parseInt(params.get("boardSeq")),
+				Integer.parseInt(params.get("boardTypeSeq")),
+				-1)); //memberSeq
+				
 		return mv;
 	}
 	
