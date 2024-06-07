@@ -17,10 +17,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="question-form cardify p-4">
-                        <form action="#">
+                        <form action="<%=ctx%>/forum/notice/write.do" method ="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <label>제목</label>
-                                <input type="text" placeholder="Enter title here" required>
+                                <input type="text" placeholder="Enter title here"  name="title" required>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
@@ -32,7 +32,23 @@
                                     <label>
                                         <span class="lnr lnr-paperclip"></span> Add File
                                         <span>or Drop Files Here</span>
-                                        <input type="file" style="display:none;">
+                                        <input type="file" name ="attFile" style="display:inline-block;">
+                                    </label>
+                                </div>
+                                <div class="attachments">
+                                    <label>Attachments</label>
+                                    <label>
+                                        <span class="lnr lnr-paperclip"></span> Add File
+                                        <span>or Drop Files Here</span>
+                                        <input type="file" name ="attFile" style="display:none;">
+                                    </label>
+                                </div>
+                                <div class="attachments">
+                                    <label>Attachments</label>
+                                    <label>
+                                        <span class="lnr lnr-paperclip"></span> Add File
+                                        <span>or Drop Files Here</span>
+                                        <input type="file" name ="attFile" style="display:none;">
                                     </label>
                                 </div>
                             </div>

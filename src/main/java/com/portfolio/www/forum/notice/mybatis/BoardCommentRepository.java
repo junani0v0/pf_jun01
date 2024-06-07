@@ -16,5 +16,6 @@ public interface BoardCommentRepository {
 	//댓글 총개수
 	public int getCommentCnt(@Param("boardSeq") int boardSeq);
 	
-
+	//댓글 작성
+	public int addComment(BoardCommentDto boardCommentDto);
 }
