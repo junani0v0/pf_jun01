@@ -1,16 +1,31 @@
 package com.portfolio.www.forum.notice.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.portfolio.www.forum.notice.dto.BoardAttachDto;
 import com.portfolio.www.forum.notice.dto.BoardDto;
 import com.portfolio.www.forum.notice.service.BoardCommentService;
 import com.portfolio.www.forum.notice.service.BoardService;
@@ -147,4 +162,110 @@ public class NoticeController {
 		return mv;
 	}
 	
+	//수정페이지
+	@RequestMapping("/forum/notice/editPage.do")
+	public ModelAndView editPage(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
+		mv.setViewName("forum/notice/edit");
+		if(!params.containsKey("boardSeq")) {
+			System.out.println("boardSeq가 없습니다");
+		}
+		mv.addObject("board", service.getRead(params.get("boardSeq")));
+		// 첨부파일
+		mv.addObject("attFile", service.getAttFile(
+				Integer.parseInt(params.get("boardSeq")),
+				Integer.parseInt(params.get("boardTypeSeq")))
+				);
+		
+		return mv;
+	}
+	
+	//글 수정 기능
+	@RequestMapping("/forum/notice/edit.do")
+	public ModelAndView edit(
+			@RequestParam HashMap<String, String> params,
+			@RequestParam(value = "attFile", required =false) MultipartFile[] attFiles
+			) {
+
+		service.edit(params, attFiles);
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("redirect:/forum/notice/readPage.do?boardSeq="+params.get("boardSeq")+"&boardTypeSeq="+params.get("boardTypeSeq"));	
+		return mv;
+	}
+	
+	//첨부파일 삭제
+	@RequestMapping("/forum/deleteAttachInfo.do")
+	@ResponseBody
+	public ModelAndView deleteAttachInfo(@RequestParam("attachSeq") int attachSeq) {
+		int result = service.deleteAttachInfo(attachSeq);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("result", result);
+
+		mv.setViewName("forum/notice/read");	
+		return mv;
+	}
+	
+	//첨부파일 다운로드 기능
+	@GetMapping("/forum/download.do")
+	public String download2(Model model, @RequestParam("attachSeq") int attachSeq) {
+		BoardAttachDto dto = service.getDownloadFileInfo(attachSeq);
+		File file = new File(dto.getSavePath());
+		
+		Map<String, Object> fileInfo = new HashMap<>();
+		fileInfo.put("downloadFile", file);
+		fileInfo.put("orgFileNm", dto.getOrgFileNm());
+		model.addAttribute("fileInfo", fileInfo);
+		
+		return "fileDownloadView"; // pf-servlet에 등록한 View
+	}
+	
+	//첨부파일 일괄 다운로드
+	@RequestMapping("/forum/downloadAllZip.do")
+	public ResponseEntity<byte[]> downloadAllZip(Model model, @RequestParam("boardSeq") int boardSeq, @RequestParam("boardTypeSeq") int boardTypeSeq) {
+	    // 서비스를 통해 첨부 파일 정보를 가져옴
+	    List<BoardAttachDto> attachList = service.getDownloadZipFileInfo(boardSeq, boardTypeSeq);
+	    //ByteArrayOutputStream : 바이트 배열에 데이터를 쓰는 데 사용되는 출력 스트림(압축된 데이터 임시 저장)
+	    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	    //ZipOutputStream : 압축 파일을 생성하는 데 사용되는 출력 스트림
+	    try (ZipOutputStream zos = new ZipOutputStream(baos)) {
+	    	//attachList의 각 요소를 순회하면서 반복하여 dto에 할당
+	        for (BoardAttachDto dto : attachList) {
+	            File file = new File(dto.getSavePath());
+	            //file이 존재하면
+	            if (file.exists()) {
+	            	//파일을 읽어와 ZipEntry에 추가
+	            	//FileInputStream : 파일로부터 바이트 단위로 데이터를 읽어오는데 사용되는 입력 스트림 클래스
+	                FileInputStream fis = new FileInputStream(file);
+	                ZipEntry zipEntry = new ZipEntry(dto.getOrgFileNm());
+	                //putNextEntry() : ZipOutputStream에 새로운 압축 엔트리(압축 파일 내의 파일 또는 디렉토리)를 추가해줌
+	                zos.putNextEntry(zipEntry);
+	                //파일을 읽어들일 때 사용되는 버퍼-데이터를 일시적으로 저장한 뒤에 한 번에 처리하는 것이 효율적
+	                byte[] bytes = new byte[1024];
+	                int length;
+	                //bytes.length 만큼의 데이터를 읽어서 bytes 배열에 저장하고 실제 읽어들인 바이트수를 length에 저장
+	                while ((length = fis.read(bytes)) >= 0) {
+	                	//zos로 압축파일에 데이터 쓸 수 있음
+	                	//bytes : 데이터를 담고 있는 바이트 배열
+	                	//0 : 데이터를 쓰기 시작할 bytes 배열의 인덱스
+	                	//length : 쓸 데이터의 길이-이 길이만큼의 데이터가 bytes 배열에서 zos에 쓰여짐
+	                    zos.write(bytes, 0, length);
+	                }
+	                //모든 데이터 읽은후 close메서드로 해당파일 스트림 닫음
+	                fis.close();
+	            }
+	        }
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+
+	    HttpHeaders headers = new HttpHeaders();
+	    headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+	    headers.setContentDispositionFormData("attachment", "attachments.zip");
+
+	    ResponseEntity<byte[]> responseEntity = new ResponseEntity<>(baos.toByteArray(), headers, HttpStatus.OK);
+
+	    return responseEntity;
+	}
 }

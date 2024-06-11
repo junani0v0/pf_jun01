@@ -6,14 +6,14 @@
 <mapper namespace="com.portfolio.www.forum.notice.mybatis.BoardAttachRepository">
     
     <!-- 다중 업로드파일 가져오기 -->
-    <select id="getAttachInfo" resultType="BoardAttachDto">
+    <select id="getAttachInfoAll" resultType="BoardAttachDto">
     	SELECT * 
     	  FROM board_attach ba
     	 WHERE ba.board_seq = #{boardSeq} 
     	   AND ba.board_type_seq = #{boardTypeSeq} 
     </select>
 
-	<!-- 파일 업로드 -->
+	<!-- 첨부파일 업로드 -->
 	<insert id="addFile" parameterType="BoardAttachDto">
     	<selectKey resultType="int" keyProperty="boardSeq" keyColumn="board_seq" order="AFTER" >
     		SELECT LAST_INSERT_ID()
@@ -24,5 +24,15 @@
     	VALUES( #{boardSeq}, 1, #{orgFileNm}, #{savePath}, #{chngFileNm}, #{fileSize}, #{fileType}, #{accessUri}, DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'))
     </insert>
 	
+	<!-- 첨부파일 삭제 -->
+	<delete id="deleteAttachInfo">
+		DELETE FROM forum.board_attach
+		 WHERE attach_seq= #{attachSeq}
+	</delete>
 	
+	<!-- 단일 업로드 가져오기(단일 다운로드) -->
+    <select id="getAttachInfo" resultType="BoardAttachDto">
+    	SELECT * FROM board_attach ba
+    	 WHERE ba.attach_seq = #{attachSeq}  
+    </select>
 </mapper>
