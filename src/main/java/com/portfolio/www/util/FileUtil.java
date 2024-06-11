@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +14,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUtil {
 
 	// 저장 경로
-	private String SAVE_PATH = "C:/dev/tmp/";
+//	private String SAVE_PATH = "C:/dev/tmp/";
+	
+	@Value("#{config['file.save.path']}")
+	private String SAVE_PATH;
 
 	public File saveFile(MultipartFile mf) {
 		

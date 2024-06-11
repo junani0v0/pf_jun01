@@ -250,6 +250,20 @@
 				</configuration>
 			</plugin>
 			<!-- /resource 구분 플러그인 -->
+			
+			<!-- 배포 -->
+			<plugin>
+			    <groupId>org.apache.tomcat.maven</groupId>
+			    <artifactId>tomcat7-maven-plugin</artifactId>
+			    <version>2.2</version>
+			    <configuration>
+			        <url>http://ec2-13-209-14-66.ap-northeast-2.compute.amazonaws.com:8080/manager/text</url>
+			        <server>TomcatServer</server>
+			        <path>/${project.build.finalName}</path>
+			        <username>admin</username>
+			        <password>admin</password>
+			    </configuration>
+			</plugin>
 		</plugins>
 		<!-- 환경설정에 관한 태그 -->
 		<resources>
