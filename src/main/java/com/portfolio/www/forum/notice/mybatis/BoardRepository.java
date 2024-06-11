@@ -28,4 +28,7 @@ public interface BoardRepository {
 	
 	//게시글 작성
 	public int addBoard(HashMap<String, String> params);
+	
+	//게시글 수정
+	public int updateBoard(HashMap<String, String> params);
 }
