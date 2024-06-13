@@ -11,8 +11,8 @@ String ctx = request.getContextPath();
 	        lang: 'kr'
 	    });
 	    
-	 // 댓글 작성 기능
-    function addComment(boardSeq, boardTypeSeq) {
+	// 댓글 작성 기능
+<%--     function addComment(boardSeq, boardTypeSeq) {
     	var url = '<%=ctx%>/forum/notice/reply.do';
     	$.ajax({        
     		type : 'POST',
@@ -28,8 +28,7 @@ String ctx = request.getContextPath();
     		}),
     		success : function(result) {
     			if(result) {
-    				window.location.reload();
-    				<%-- window.location.href = '<%=ctx%>/forum/notice/readPage.do?boardSeq=' + boardSeq + '&boardTypeSeq=' + boardTypeSeq; --%>
+    				location.href='<%=ctx%>/forum/notice/readPage.do?boardSeq='+boardSeq+'&boardTypeSeq='+boardTypeSeq
     			}
     			else {
       			alert('실패!');
@@ -39,6 +38,111 @@ String ctx = request.getContextPath();
     			console.log(error)
     		}
     	});
+    } --%>
+	
+    function addComment() {
+        var boardSeq = ${board.boardSeq};
+        var boardTypeSeq = ${board.boardTypeSeq};
+        var url = '<%=ctx%>/forum/notice/reply.do';
+        $.ajax({        
+            type : 'POST',
+            url : url,
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            dataType : 'JSON',
+            data : JSON.stringify ({
+                boardSeq : boardSeq,
+                boardTypeSeq : boardTypeSeq,
+                content: $('#trumbowyg-demo').trumbowyg('html') 
+            }),
+            success : function(result) {
+                if(result) {
+                    location.href='<%=ctx%>/forum/notice/readPage.do?boardSeq='+boardSeq+'&boardTypeSeq='+boardTypeSeq
+                }
+                else {
+                    alert('실패!');
+                }
+            },
+            error : function(request, status, error) {
+                console.log(error)
+            }
+        });
+    }
+
+ 	// 댓글 삭제
+    function deleteComment(commentSeq) {
+    	var url = '<%=ctx%>/forum/notice/deleteComment.do';
+    	url += '?commentSeq=' + commentSeq;
+    	
+    	$.ajax({        
+    		type : 'GET',
+    		url : url,
+    		headers : {
+    			"Content-Type" : "application/json"
+    		},
+    		dataType : 'text',
+    		success : function(result) {
+    			if(result) {
+    				alert('성공!');
+    				window.location.reload();
+    			}
+    			else {
+      			alert('실패!');
+    			}
+    		},
+    		error : function(request, status, error) {
+    			console.log(error)
+    		}
+    	});
+    }
+ 	
+ 	// 댓글 수정
+    function editComment(commentSeq, content) {
+        // 해당 댓글의 내용을 가져와서 수정 폼으로 변경
+        var commentContentElement = document.getElementById('content-' + commentSeq);
+        var commentContent = commentContentElement.innerHTML;
+        
+
+        // 수정 폼으로 변경
+        var editForm = document.createElement('div');
+        editForm.innerHTML = `
+        	<textarea class="edit-comment-textarea" id="edit-comment-textarea"></textarea>
+            <button class="btn btn--sm btn--round" onClick="updateComment(` + commentSeq + `)">Update</button>
+        `;
+
+        // 기존 내용을 수정 폼으로 교체
+        commentContentElement.innerHTML = '';
+        commentContentElement.appendChild(editForm);
+
+        // 기존 댓글 내용을 textarea에 설정
+        var textarea = editForm.querySelector('.edit-comment-textarea');
+        textarea.value = content;
+    }
+    
+ 	// 댓글 업데이트
+    function updateComment(commentSeq) {
+        var url = '<%=ctx%>/forum/notice/updateComment.do';
+
+        $.ajax({        
+            type : 'POST',
+            url : url,
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            data : JSON.stringify ({
+                commentSeq : commentSeq,
+                content: $('#edit-comment-textarea').val() 
+            }),
+            success : function(response) {
+            	alert('수정 완료');
+				window.location.reload();
+            },
+            error : function(request, status, error) {
+            	alert('수정 실패');
+                console.log(error)
+            }
+        });
     }
 	</script>
     <!--================================

@@ -51,5 +51,18 @@
 	    </if>
 	    , DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'))
     </insert>
+    
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment">
+    	DELETE FROM forum.board_comment
+    	WHERE comment_seq= #{commentSeq} 
+    </delete>
 
+	<!-- 댓글 수정 -->
+	<update id="editComment" parameterType="hashMap">
+		UPDATE forum.board_comment
+		SET content = #{content}, update_dtm = DATE_FORMAT(NOW(), '%Y%m%d%H%i%s')
+		WHERE comment_seq = #{commentSeq} 
+	</update>
+	
 </mapper>
