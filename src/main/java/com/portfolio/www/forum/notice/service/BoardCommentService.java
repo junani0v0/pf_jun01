@@ -1,5 +1,6 @@
 package com.portfolio.www.forum.notice.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,19 @@ public class BoardCommentService {
 	//댓글 추가
 	public int addComment(BoardCommentDto dto) {
 		return boardCommentRepository.addComment(dto);
+	}
+	
+	//댓글 삭제
+	public int deleteComment(HashMap<String, String> params) {
+		int cnt = boardCommentRepository.deleteComment(params);
+		
+		return cnt;
+	}
+	
+	//댓글 수정
+	public int editComment(HashMap<String, String> params) {
+		int cnt = boardCommentRepository.editComment(params);
+		
+		return cnt;
 	}
 }

@@ -1,5 +1,6 @@
 package com.portfolio.www.forum.notice.mybatis;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -18,4 +19,10 @@ public interface BoardCommentRepository {
 	
 	//댓글 작성
 	public int addComment(BoardCommentDto boardCommentDto);
+	
+	//댓글 삭제
+	public int deleteComment(HashMap<String, String> params);
+	
+	//댓글 수정
+	public int editComment(HashMap<String, String> params);
 }
