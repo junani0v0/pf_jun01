@@ -39,7 +39,7 @@ public class NoticeController {
 	@Autowired
 	private BoardCommentService boardCommentService;
 	
-	//리스트
+	//리스트 페이지
 	@RequestMapping("/forum//notice/listPage.do")
 	public ModelAndView listPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -92,7 +92,7 @@ public class NoticeController {
 		return mv;
 	}
 	
-	//쓰기
+	//쓰기 페이지
 	@RequestMapping("/forum/notice/writePage.do")
 	public ModelAndView writePage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -102,35 +102,30 @@ public class NoticeController {
 		return mv;
 	}
 	
-	//읽기
+	//읽기 페이지
 	@RequestMapping("/forum/notice/readPage.do")
 	public ModelAndView readPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
 		mv.setViewName("forum/notice/read");
 		
+		int boardSeq = Integer.parseInt(params.get("boardSeq"));
+		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
+		
+		
 		//boardSeq없으면?
 		if(!params.containsKey("boardSeq") || !params.containsKey("boardTypeSeq")) {
 			throw new IllegalArgumentException("boardSeq와 boardTypeSeq가 필요합니다.");
 		}
 		
-		mv.addObject("board", service.getRead(params.get("boardSeq")));
+		mv.addObject("board", service.getRead(boardSeq));
 		// 첨부파일
-		mv.addObject("attFile", service.getAttFile(
-				Integer.parseInt(params.get("boardSeq")),
-				Integer.parseInt(params.get("boardTypeSeq")))
-				);
+		mv.addObject("attFile", service.getAttFile(boardSeq, boardTypeSeq));
 		// 댓글
-		mv.addObject("comments", boardCommentService.list(
-				Integer.parseInt(params.get("boardSeq")),
-				Integer.parseInt(params.get("boardTypeSeq"))));
-		mv.addObject("commentCnt", boardCommentService.getCommentCnt(
-				Integer.parseInt(params.get("boardSeq"))));
+		mv.addObject("comments", boardCommentService.list(boardSeq, boardTypeSeq));
+		mv.addObject("commentCnt", boardCommentService.getCommentCnt(boardSeq));
 		// 좋아요
-		mv.addObject("liked", service.getLike(
-				Integer.parseInt(params.get("boardSeq")),
-				Integer.parseInt(params.get("boardTypeSeq")),
-				-1)); //memberSeq
+		mv.addObject("liked", service.getLike(boardSeq, boardTypeSeq, -1));
 				
 		return mv;
 	}
@@ -168,15 +163,16 @@ public class NoticeController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
 		mv.setViewName("forum/notice/edit");
+		
+		int boardSeq = Integer.parseInt(params.get("boardSeq"));
+		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
+		
 		if(!params.containsKey("boardSeq")) {
 			System.out.println("boardSeq가 없습니다");
 		}
-		mv.addObject("board", service.getRead(params.get("boardSeq")));
+		mv.addObject("board", service.getRead(boardSeq));
 		// 첨부파일
-		mv.addObject("attFile", service.getAttFile(
-				Integer.parseInt(params.get("boardSeq")),
-				Integer.parseInt(params.get("boardTypeSeq")))
-				);
+		mv.addObject("attFile", service.getAttFile(boardSeq, boardTypeSeq));
 		
 		return mv;
 	}
