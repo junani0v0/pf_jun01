@@ -48,8 +48,8 @@ public class BoardService {
 	}
 	
 	// 읽기페이지 가져오기
-	public BoardDto getRead(String string) {
-		return boardRepository.getRead(string);
+	public BoardDto getRead(int boardSeq) {
+		return boardRepository.getRead(boardSeq);
 	}
 	
 	// 첨부파일 가져오기(다중)

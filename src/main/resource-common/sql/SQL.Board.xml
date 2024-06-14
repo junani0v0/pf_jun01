@@ -6,7 +6,7 @@
 <mapper namespace="com.portfolio.www.forum.notice.mybatis.BoardRepository">
 
 	<!-- 읽기 페이지 정보 가져오기 -->
-    <select id="getRead" parameterType="String" resultType="BoardDto">
+    <select id="getRead" parameterType="int" resultType="BoardDto">
     	SELECT b.board_seq , 
     		   b.board_type_seq , 
     		   b.title , 

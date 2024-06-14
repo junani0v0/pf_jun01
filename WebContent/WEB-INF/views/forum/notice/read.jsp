@@ -40,34 +40,34 @@ String ctx = request.getContextPath();
     	});
     } --%>
 	
-    function addComment() {
-        var boardSeq = ${board.boardSeq};
-        var boardTypeSeq = ${board.boardTypeSeq};
-        var url = '<%=ctx%>/forum/notice/reply.do';
-        $.ajax({        
-            type : 'POST',
-            url : url,
-            headers : {
-                "Content-Type" : "application/json"
-            },
-            dataType : 'JSON',
-            data : JSON.stringify ({
-                boardSeq : boardSeq,
-                boardTypeSeq : boardTypeSeq,
-                content: $('#trumbowyg-demo').trumbowyg('html') 
-            }),
-            success : function(result) {
-                if(result) {
-                    location.href='<%=ctx%>/forum/notice/readPage.do?boardSeq='+boardSeq+'&boardTypeSeq='+boardTypeSeq
-                }
-                else {
-                    alert('실패!');
-                }
-            },
-            error : function(request, status, error) {
-                console.log(error)
-            }
-        });
+	// 댓글 작성 기능
+    function addComment(boardSeq, boardTypeSeq) {
+    	var url = '<%=ctx%>/forum/notice/reply.do';
+    	$.ajax({        
+    		type : 'POST',
+    		url : url,
+    		headers : {
+    			"Content-Type" : "application/json"
+    		},
+    		dataType : 'json',
+    		data : JSON.stringify ({
+    			boardSeq : boardSeq,
+    			boardTypeSeq : boardTypeSeq,
+    			content: $('#trumbowyg-demo').trumbowyg('html') 
+    		}),
+    		success : function(result) {
+    			if(result) {
+    				alert('작성 완료');
+    				window.location.reload();
+    			}
+    			else {
+      			alert('작성 실패!');
+    			}
+    		},
+    		error : function(request, status, error) {
+    			console.log(error)
+    		}
+    	});
     }
 
  	// 댓글 삭제
@@ -84,11 +84,11 @@ String ctx = request.getContextPath();
     		dataType : 'text',
     		success : function(result) {
     			if(result) {
-    				alert('성공!');
+    				alert('삭제 성공!');
     				window.location.reload();
     			}
     			else {
-      			alert('실패!');
+      			alert('삭제 실패!');
     			}
     		},
     		error : function(request, status, error) {
@@ -159,10 +159,10 @@ String ctx = request.getContextPath();
                                 <h3>${board.title}</h3>
 
                                 <div class="vote">
-                                    <a href="#" id='cThumbUpAnchor' onClick="javascript:thumbUp(${board.boardSeq}, ${board.boardTypeSeq});" <c:if test ='${liked ==1 }'>class = "active"</c:if>>
+                                    <a href="#" id='cThumbUpAnchor' onClick="javascript:thumbUp(${board.boardSeq}, ${board.boardTypeSeq});" <c:if test ='${liked ==1}'>class = "active"</c:if>>
                                         <span class="lnr lnr-thumbs-up"></span>
                                     </a>
-                                    <a href="#" id='cThumbDownAnchor' onClick="javascript:thumbDown(${board.boardSeq}, ${board.boardTypeSeq});">
+                                    <a href="#" id='cThumbDownAnchor' onClick="javascript:thumbDown(${board.boardSeq}, ${board.boardTypeSeq});"<c:if test ='${disliked ==1}'>class = "active"</c:if>>
                                         <span class="lnr lnr-thumbs-down"></span>
                                     </a>
                                 </div>
@@ -252,11 +252,9 @@ String ctx = request.getContextPath();
                                             <img class="media-object" src="<%=ctx%>/assest/template/images/m7.png" alt="Commentator Avatar">
                                         </a>
                                     </div>
-                                    <div class="media-body">
-                                        <form action="#" class="comment-reply-form">
-                                            <div id="trumbowyg-demo"></div>
-                                            <button class="btn btn--sm btn--round" onClick='addComment(${board.boardSeq}, ${board.boardTypeSeq});'>Post Comment</button>
-                                        </form>
+                                    <div class="media-body comment-reply-form">
+	                                    <div id="trumbowyg-demo"></div>
+	                                    <button class="btn btn--sm btn--round" onClick='addComment(${board.boardSeq}, ${board.boardTypeSeq});'>Post Comment</button>
                                     </div>
                                 </div>
                                 <!-- comment reply -->

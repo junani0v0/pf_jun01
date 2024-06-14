@@ -83,5 +83,6 @@ public class BoardCommentDto {
 	public void setMemberNm(String memberNm) {
 		this.memberNm = memberNm;
 	}
+	
 
 }

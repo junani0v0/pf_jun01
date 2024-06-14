@@ -23,6 +23,7 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 	
+	//로그인 페이지
 	@RequestMapping("/auth/loginPage.do")
 	public ModelAndView loginPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -32,6 +33,7 @@ public class LoginController {
 		return mv;
 	}
 	
+	//비밀번호 찾기 페이지
 	@RequestMapping("/auth/recoverPassPage.do")
 	public ModelAndView recoverPassPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -41,6 +43,7 @@ public class LoginController {
 		return mv;
 	}
 	
+	//로그인 기능
 	@RequestMapping("/auth/login.do")
 	public ModelAndView login(
 			HttpServletRequest request,
