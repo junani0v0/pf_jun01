@@ -192,15 +192,18 @@ String ctx = request.getContextPath();
                             <br/>
                             <!-- 첨부파일 일괄다운로드-->
                             <a href="<c:url value='/forum/downloadAllZip.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>">
+                            
                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">일괄 다운로드</button>
                             </a>
                             <br/>
                             <!-- 첨부파일 -->
                             <c:forEach items="${attFile}" var="attFile" varStatus="status">
 	                            <c:if test="${attFile != null}">
-									<a href='<%=ctx%>/forum/download.do?attachSeq=${attFile.attachSeq}'>
-										${attFile.orgFileNm} (${attFile.fileSize} byte)<br/>
-									</a>
+		                            <i class="fa-regular fa-circle-down">
+										<a href='<%=ctx%>/forum/download.do?attachSeq=${attFile.attachSeq}' style="font-size: 16px; color:#555555;">
+											${attFile.orgFileNm} (${attFile.fileSize} byte)
+										</a>
+		                            </i><br/>
 								</c:if>
 							</c:forEach>
                         </div>
