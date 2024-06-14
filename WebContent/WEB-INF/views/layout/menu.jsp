@@ -15,7 +15,7 @@
                     <div class="col-lg-3 col-md-3 col-6 v_middle">
                         <div class="logo">                        
                             <a href="<c:url value='/index.do'/>">                            	
-                                <img src="<c:url value='/assest/template/images/logo.png'/>" alt="logo image" class="img-fluid" />
+                                <img src="<c:url value='/assest/template/images/junani0v0_logo.png'/>" alt="logo image" class="img-fluid" />
                             </a>
                         </div>
                     </div>
@@ -25,7 +25,7 @@
                     <div class="col-lg-8 offset-lg-1 col-6 col-md-9 v_middle">
                         <!-- start .author-area -->
                         <div class="author-area not_logged_in">
-                            <div class="author__notification_area">
+                            <%-- <div class="author__notification_area">
                                 <ul>
                                     <li class="has_dropdown">
                                         <div class="icon_wrap">
@@ -95,7 +95,7 @@
                                         </div>
                                     </li>
                                 </ul>
-                            </div>
+                            </div> --%>
                             <div class="pull-right join desktop-size d-md-block d-none">
                                 <a href="<c:url value='/auth/joinPage.do'/>" class="btn btn--round btn-secondary  btn--xs">Join Now</a>
                                 <a href="<c:url value='/auth/loginPage.do'/>" class="btn btn--round btn--xs">Login</a>
@@ -116,7 +116,7 @@
         <!-- end  -->
 
         <!-- start .mainmenu_area -->
-        <div class="mainmenu">
+        <div class="mainmenu" style ="box-shadow: 0 -2px 5px -5px #333;">
             <!-- start .container -->
             <div class="container">
                 <!-- start .row-->
@@ -132,8 +132,8 @@
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="has_dropdown">
-                                        <a href="index.html">HOME</a>
-                                        <div class="dropdowns dropdown--menu">
+                                        <a href="<c:url value='/index.do'/>">HOME</a>
+                                        <!-- <div class="dropdowns dropdown--menu">
                                             <ul>
                                                 <li>
                                                     <a href="index.html">Home Multi Vendor</a>
@@ -145,9 +145,9 @@
                                                     <a href="index3.html">Home Three Product</a>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> -->
                                     </li>
-                                    <li class="has_dropdown">
+                                    <!-- <li class="has_dropdown">
                                         <a href="all-products-list.html">all product</a>
                                         <div class="dropdowns dropdown--menu">
                                             <ul>
@@ -294,21 +294,21 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> -->
                                     
                                     <li class="has_dropdown">
-                                        <a href="all-products-list.html">게시판</a>
+                                        <a href="#">게시판</a>
                                         <div class="dropdowns dropdown--menu">
                                             <ul>
                                                 <li>
                                                     <a href="<c:url value='/forum//notice/listPage.do'/>">공지사항</a>
                                                 </li>
-                                                <li>
+                                                <!-- <li>
                                                     <a href="all-products.html">Popular Items</a>
                                                 </li>
                                                 <li>
                                                     <a href="index3.html">Free Templates</a>
-                                                </li>
+                                                </li> -->
                                                 <li>
                                                     <a href="#">Follow Feed</a>
                                                 </li>
@@ -320,7 +320,7 @@
                                     </li>
                                     
                                     <li>
-                                        <a href="contact.html">contact</a>
+                                        <a href="<c:url value='/auth/contactPage.do'/>">contact</a>
                                     </li>
                                 </ul>
                             </div>

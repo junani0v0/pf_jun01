@@ -61,7 +61,7 @@
                                 <span class="tiles__icon lnr lnr-map-marker"></span>
                                 <h4 class="tiles__title">Office Address</h4>
                                 <div class="tiles__content">
-                                    <p>202 New Hampshire Avenue , Northwest #100, New York-2573</p>
+                                    <p>Giheung-gu, Yongin-si, Gyeonggi-do, Republic of Korea</p>
                                 </div>
                             </div>
                         </div>
@@ -72,8 +72,8 @@
                                 <span class="tiles__icon lnr lnr-phone"></span>
                                 <h4 class="tiles__title">Phone Number</h4>
                                 <div class="tiles__content">
-                                    <p>1-800-643-4500</p>
-                                    <p>1-800-643-4500</p>
+                                    <p>+82) 010-9752-7447</p>
+                                    <p>+82) 010-9752-7447</p>
                                 </div>
                             </div>
                             <!-- end /.contact_tile -->
@@ -85,8 +85,8 @@
                                 <span class="tiles__icon lnr lnr-inbox"></span>
                                 <h4 class="tiles__title">Phone Number</h4>
                                 <div class="tiles__content">
-                                    <p>support@aazztech.com</p>
-                                    <p>support@aazztech.com</p>
+                                    <p>quf2235@naver.com</p>
+                                    <p>junani0v0@naver.com</p>
                                 </div>
                             </div>
                             <!-- end /.contact_tile -->
@@ -159,4 +159,3 @@
         END BREADCRUMB AREA
     =================================-->
    
-</html>

@@ -29,6 +29,9 @@ String ctx = request.getContextPath();
     <link rel="stylesheet" href="<%=ctx%>/assest/template/css/trumbowyg.min.css">
     <link rel="stylesheet" href="<%=ctx%>/assest/template/css/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="<%=ctx%>/assest/template/css/style.css">
+    
+    <!-- 아이콘용 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <!-- endinject -->
 
     <!-- Favicon -->
@@ -37,6 +40,7 @@ String ctx = request.getContextPath();
 		var ctx = '<%= request.getContextPath() %>';
 	</script>	
 	<script src="<%=ctx%>/assest/js/page.js"></script>
+	
 </head>
 
 <body class="preload home1 mutlti-vendor">

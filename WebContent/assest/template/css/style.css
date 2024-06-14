@@ -7324,7 +7324,8 @@ ul.nav-tabs.nav--tabs2 li a::before {
 	START MENU AREA
 *****************************/
 .top-menu-area {
-  background: #eef1f3;
+  /* background: #eef1f3; */
+  
 }
 
 .top-menu-area .top__menu ul li {
@@ -8675,6 +8676,7 @@ span.counter {
 
 .info-contact {
   margin-top: 21px;
+  padding-left: 48px;
 }
 
 .info-contact li {
@@ -8697,6 +8699,7 @@ span.counter {
 }
 
 .info__logo {
+  margin-top: 50px;
   margin-bottom: 25px;
 }
 
@@ -13188,6 +13191,7 @@ span.counter {
  ****************************************/
 .contact-area {
   background: #eff1f5;
+  padding: 100px 0;
 }
 
 .contact_tile {
@@ -16092,6 +16096,7 @@ span.counter {
   }
   .info-contact {
     margin-bottom: 30px;
+    
   }
   .prod_slide_prev, .prod_slide_next {
     position: static;
