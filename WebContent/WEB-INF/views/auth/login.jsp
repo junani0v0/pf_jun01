@@ -32,12 +32,12 @@
                             <div class="login--form">
                                 <div class="form-group">
                                     <label for="user_name">Id</label>
-                                    <input id="user_name" name="memberId" type="text" class="text_field" placeholder="Enter your userId...">
+                                    <input id="user_name" name="memberId" type="text" class="text_field" value="test_account">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="pass">Password</label>
-                                    <input id="pass" type="text" name="passwd" class="text_field" placeholder="Enter your password...">
+                                    <input id="pass" type="text" name="passwd" class="text_field" value="quf2235">
                                 </div>
 
                                 <div class="form-group">

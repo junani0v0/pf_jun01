@@ -21,7 +21,7 @@ public class LoginService {
 		//사용자 찾기
 		MemberDto memberDto = memberRepository.getMember(params.get("memberId"));
 		String passwd = params.get("passwd"); 
-		 //사용자가 입력한 비밀번호
+		//사용자가 입력한 비밀번호
 		String dbpasswd = memberDto.getPasswd(); 
 		
 		BCrypt.Result result = BCrypt.verifyer().verify(passwd.toCharArray(), dbpasswd);
