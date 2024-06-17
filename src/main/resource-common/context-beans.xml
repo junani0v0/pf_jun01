@@ -79,8 +79,8 @@
     <bean id="encryptorConfig" class="org.jasypt.encryption.pbe.config.EnvironmentPBEConfig">
     	<!-- 사용할 암호화 알고리즘 -->
         <property name="algorithm" value="PBEWithMD5AndDES" />
-        <!-- PBE (패스워드 기반 암호화) 암호 설정 -->
-        <property name="password" value="jun" />
+        <!-- 환경 변수를 사용하여 ASOG_ENCRYPTION_KEY 설정 -->
+	    <property name="passwordEnvName" value="ASOG_ENCRYPTION_KEY" />
     </bean>
 
     <bean id="encryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">
