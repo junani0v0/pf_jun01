@@ -24,11 +24,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.portfolio.www.forum.notice.dto.BoardAttachDto;
 import com.portfolio.www.forum.notice.dto.BoardDto;
 import com.portfolio.www.forum.notice.service.BoardCommentService;
 import com.portfolio.www.forum.notice.service.BoardService;
+import com.portfolio.www.message.MessageEnum;
 
 @Controller
 public class NoticeController {
@@ -40,7 +42,7 @@ public class NoticeController {
 	private BoardCommentService boardCommentService;
 	
 	//리스트 페이지
-	@RequestMapping("/forum//notice/listPage.do")
+	@RequestMapping("/forum/notice/listPage.do")
 	public ModelAndView listPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
@@ -107,7 +109,6 @@ public class NoticeController {
 	public ModelAndView readPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
-		mv.setViewName("forum/notice/read");
 		
 		int boardSeq = Integer.parseInt(params.get("boardSeq"));
 		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
@@ -115,7 +116,9 @@ public class NoticeController {
 		
 		//boardSeq없으면?
 		if(!params.containsKey("boardSeq") || !params.containsKey("boardTypeSeq")) {
-			throw new IllegalArgumentException("boardSeq와 boardTypeSeq가 필요합니다.");
+			mv.addObject("code",MessageEnum.WRONG_APPROACH.getCode());
+			mv.addObject("msg", MessageEnum.WRONG_APPROACH.getDescription());
+			mv.setViewName("forum/notice/list");
 		}
 		
 		mv.addObject("board", service.getRead(boardSeq));
@@ -126,6 +129,7 @@ public class NoticeController {
 		mv.addObject("commentCnt", boardCommentService.getCommentCnt(boardSeq));
 		// 좋아요
 		mv.addObject("liked", service.getLike(boardSeq, boardTypeSeq, -1));
+		mv.setViewName("forum/notice/read");
 				
 		return mv;
 	}
@@ -134,15 +138,16 @@ public class NoticeController {
 	@RequestMapping("/forum/notice/write.do")
 	public ModelAndView write(
 			@RequestParam HashMap<String, String> params,
-			@RequestParam(value = "attFile", required =false) MultipartFile[] attFiles
+			@RequestParam(value = "attFile", required =false) MultipartFile[] attFiles,
+			RedirectAttributes redirectAttrs
 			) {
 		
 		boolean result = service.write(params, attFiles);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result", result);
 		if (result) {
-			mv.addObject("code","0000");
-			mv.addObject("msg", "작성 완료");
+			redirectAttrs.addFlashAttribute("code", MessageEnum.WRITE_SUCCESS.getCode());
+	        redirectAttrs.addFlashAttribute("msg", MessageEnum.WRITE_SUCCESS.getDescription());
 			String boardSeq = params.get("boardSeq");
 	        String boardTypeSeq = "1";
 	        String redirectUrl = String.format("redirect:/forum/notice/readPage.do?boardSeq=%s&boardTypeSeq=%s", boardSeq, boardTypeSeq);
@@ -150,8 +155,9 @@ public class NoticeController {
 	        mv.setViewName(redirectUrl);
 	        
 		}else {
-			mv.addObject("code","9000");
-			mv.addObject("msg", "작성 실패");
+			redirectAttrs.addFlashAttribute("code", MessageEnum.WRITE_FAIL.getCode());
+			redirectAttrs.addFlashAttribute("msg", MessageEnum.WRITE_FAIL.getDescription());
+			
 			mv.setViewName(String.format("redirect:/forum//notice/listPage.do"));
 		}
 		return mv;
@@ -168,7 +174,8 @@ public class NoticeController {
 		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
 		
 		if(!params.containsKey("boardSeq")) {
-			System.out.println("boardSeq가 없습니다");
+			mv.addObject("code",MessageEnum.WRONG_APPROACH.getCode());
+			mv.addObject("msg", MessageEnum.WRONG_APPROACH.getDescription());
 		}
 		mv.addObject("board", service.getRead(boardSeq));
 		// 첨부파일
@@ -181,14 +188,23 @@ public class NoticeController {
 	@RequestMapping("/forum/notice/edit.do")
 	public ModelAndView edit(
 			@RequestParam HashMap<String, String> params,
-			@RequestParam(value = "attFile", required =false) MultipartFile[] attFiles
+			@RequestParam(value = "attFile", required =false) MultipartFile[] attFiles, 
+			RedirectAttributes redirectAttrs
 			) {
 
-		service.edit(params, attFiles);
 		ModelAndView mv = new ModelAndView();
-
-		mv.setViewName("redirect:/forum/notice/readPage.do?boardSeq="+params.get("boardSeq")+"&boardTypeSeq="+params.get("boardTypeSeq"));	
-		return mv;
+		int result = service.edit(params, attFiles);
+		
+		if(result == 1) {
+			redirectAttrs.addFlashAttribute("code", MessageEnum.EDIT_SUCCESS.getCode());
+	        redirectAttrs.addFlashAttribute("msg", MessageEnum.EDIT_SUCCESS.getDescription());
+		}else {
+			redirectAttrs.addFlashAttribute("code", MessageEnum.EDIT_FAIL.getCode());
+	        redirectAttrs.addFlashAttribute("msg", MessageEnum.EDIT_FAIL.getDescription());
+		}
+//		mv.setViewName("redirect:/forum/notice/readPage.do?boardSeq="+params.get("boardSeq")+"&boardTypeSeq="+params.get("boardTypeSeq"));	
+		 return new ModelAndView("redirect:/forum/notice/readPage.do?boardSeq=" + params.get("boardSeq") + "&boardTypeSeq=" + params.get("boardTypeSeq"));
+//		return mv;
 	}
 	
 	//첨부파일 삭제
@@ -197,6 +213,7 @@ public class NoticeController {
 	public ModelAndView deleteAttachInfo(@RequestParam("attachSeq") int attachSeq) {
 		int result = service.deleteAttachInfo(attachSeq);
 		ModelAndView mv = new ModelAndView();
+		
 		mv.addObject("result", result);
 
 		mv.setViewName("forum/notice/read");	

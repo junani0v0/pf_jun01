@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page import = "com.portfolio.www.message.MessageEnum" %>
 <%@ include file="/common/scripts.jsp" %>
 	<link rel="stylesheet" href="<%=ctx%>/assest/template/css/trumbowyg.min.css">
     <script src="<%=ctx%>/assest/template/js/vendor/trumbowyg.min.js"></script>
@@ -10,36 +11,7 @@
 	        lang: 'kr'
 	    });
 	</script>
-	<script type="text/javascript">
-    
-    //첨부파일 삭제
-    function deleteAtt(attachSeq){
-        if (attachSeq == null || attachSeq === "") {
-            console.log("Invalid attachSeq");
-            return;
-        }
 
-        let url = '<%=ctx%>/forum/deleteAttachInfo.do';
-        url += '?attachSeq=' + attachSeq;
-
-        $.ajax({    
-            type : 'GET',           
-            url : url,
-            headers : {
-                "Content-Type" : "application/json"
-            },
-            dataType : 'text',
-            success : function(result) {
-                console.log("Ajax 요청 성공: ", result);
-                window.location.reload();
-            },
-            error : function(request, status, error) {
-                console.log("Ajax 요청 실패: ", error);
-            }
-        }); 
-    }
-    
-    </script>
     <!--================================
             START DASHBOARD AREA
     =================================-->
@@ -106,3 +78,34 @@
             END DASHBOARD AREA
     =================================-->
    	<!--//////////////////// JS GOES HERE ////////////////-->
+
+	<script type="text/javascript">
+	
+    //첨부파일 삭제
+    function deleteAtt(attachSeq){
+        if (attachSeq == null || attachSeq === "") {
+            console.log("Invalid attachSeq");
+            return;
+        }
+
+        let url = '<%=ctx%>/forum/deleteAttachInfo.do';
+        url += '?attachSeq=' + attachSeq;
+
+        $.ajax({    
+            type : 'GET',           
+            url : url,
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            dataType : 'text',
+            success : function(result) {
+                console.log("Ajax 요청 성공: ", result);
+                window.location.reload();
+            },
+            error : function(request, status, error) {
+                console.log("Ajax 요청 실패: ", error);
+            }
+        }); 
+    }
+    
+    </script>

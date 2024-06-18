@@ -1,45 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import = "com.portfolio.www.message.MessageEnum" %>
 <%
 String ctx = request.getContextPath();
 %>
-	<link rel="stylesheet" href="<%=ctx%>/assest/template/css/trumbowyg.min.css">
-    <script src="<%=ctx%>/assest/template/js/vendor/trumbowyg.min.js"></script>
-    <script src="<%=ctx%>/assest/template/js/vendor/trumbowyg/ko.js"></script>
-    <script type="text/javascript">
-	    $('#trumbowyg-demo').trumbowyg({
-	        lang: 'kr'
-	    });
-	    
-	// 댓글 작성 기능
-<%--     function addComment(boardSeq, boardTypeSeq) {
-    	var url = '<%=ctx%>/forum/notice/reply.do';
-    	$.ajax({        
-    		type : 'POST',
-    		url : url,
-    		headers : {
-    			"Content-Type" : "application/json"
-    		},
-    		dataType : 'JSON',
-    		data : JSON.stringify ({
-    			boardSeq : boardSeq,
-    			boardTypeSeq : boardTypeSeq,
-    			content: $('#trumbowyg-demo').trumbowyg('html') 
-    		}),
-    		success : function(result) {
-    			if(result) {
-    				location.href='<%=ctx%>/forum/notice/readPage.do?boardSeq='+boardSeq+'&boardTypeSeq='+boardTypeSeq
-    			}
-    			else {
-      			alert('실패!');
-    			}
-    		},
-    		error : function(request, status, error) {
-    			console.log(error)
-    		}
-    	});
-    } --%>
-	
+<link rel="stylesheet" href="<%=ctx%>/assest/template/css/trumbowyg.min.css">
+<script src="<%=ctx%>/assest/template/js/vendor/trumbowyg.min.js"></script>
+<script src="<%=ctx%>/assest/template/js/vendor/trumbowyg/ko.js"></script>
+
+<script type="text/javascript">
+   $('#trumbowyg-demo').trumbowyg({
+       lang: 'kr'
+   });
+   
+  
 	// 댓글 작성 기능
     function addComment(boardSeq, boardTypeSeq) {
     	var url = '<%=ctx%>/forum/notice/reply.do';

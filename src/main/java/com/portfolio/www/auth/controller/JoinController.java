@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.www.auth.service.JoinService;
+import com.portfolio.www.message.MessageEnum;
 
 @Controller
 public class JoinController {
@@ -28,20 +29,18 @@ public class JoinController {
 	
 	@RequestMapping("/auth/join.do")
 	public ModelAndView join(@RequestParam HashMap<String, String> params) {
-		
-		int result = joinService.join(params);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("result", result);
+		int result = joinService.join(params);
 		
-		String msg;
 		if (result == 1) {
-			msg = "회원가입이 되었습니다";
+			mv.addObject("code",MessageEnum.EMAIL_SEND_SUCCESS.getCode());
+			mv.addObject("msg", MessageEnum.EMAIL_SEND_SUCCESS.getDescription());
+			mv.setViewName("auth/login");
 		}else {
-			msg = "중복 아이디 입니다. 회원가입 실패하였습니다";
+			mv.addObject("code",MessageEnum.USER_ID_DUPLICATION.getCode());
+			mv.addObject("msg", MessageEnum.USER_ID_DUPLICATION.getDescription());
+			mv.setViewName("auth/join");
 		}
-		
-		mv.addObject("msg", msg);
-		mv.setViewName("auth/login");
 		return mv;
 	}
 	
@@ -49,12 +48,19 @@ public class JoinController {
 	public ModelAndView emailAuth(@RequestParam("uri") String uri) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("auth/login");	//login.jsp로 연결
-//		joinService.emailAuth(uri);	//uri로 검색하여 auth_uri 맞는지와 auth_yn=n인지 확인
 		
 		boolean result = joinService.emailAuth(uri);	//uri로 검색하여 auth_uri 맞는지와 auth_yn=n인지 확인
-		mv.addObject("result", result);
-		String msg = result ? "인증 성공하였습니다." : "인증 만료되었습니다.";
-		mv.addObject("msg", msg); 
+		
+		if (result) {
+			mv.addObject("code",MessageEnum.JOIN_SUCCESS.getCode());
+			mv.addObject("msg", MessageEnum.JOIN_SUCCESS.getDescription());
+			mv.setViewName("auth/login");
+		}else {
+			mv.addObject("code",MessageEnum.EMAIL_VALIDATED_FAIL.getCode());
+			mv.addObject("msg", MessageEnum.EMAIL_VALIDATED_FAIL.getDescription());
+			mv.setViewName("auth/join");
+		}
+		
 		return mv;
 	}
 
