@@ -99,14 +99,15 @@ public class BoardService {
 	}
 	
 	// 수정 기능
-	public boolean edit(HashMap<String, String> params,
+	public int edit(HashMap<String, String> params,
 			MultipartFile[] mfs) {
 		// 첨부파일 DB에 저장
 		File destFile = null;
+		int cnt = -1;
 		
 		try {
 			// 게시글 입력
-			int pk = boardRepository.updateBoard(params);
+			cnt = boardRepository.updateBoard(params);
 			
 			//DTO만든다 값을 매핑 -> 테이블에 입력
 			for(MultipartFile mf : mfs) {
@@ -128,15 +129,14 @@ public class BoardService {
 				
 				}
 			}
-			return true;
+			return cnt;
 			
 		} catch (Exception e) {
 			if(ObjectUtils.isEmpty(destFile)) {
 				destFile.delete();	//저장 안될경우 파일 삭제 안할경우 나중에 쌓이면 터짐
 			}
-			return false;
+			return cnt;
 		}
-		// 첨부파일 물리적 저장
 	}
 	
 	//첨부파일 삭제

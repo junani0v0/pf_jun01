@@ -301,7 +301,7 @@
                                         <div class="dropdowns dropdown--menu">
                                             <ul>
                                                 <li>
-                                                    <a href="<c:url value='/forum//notice/listPage.do'/>">공지사항</a>
+                                                    <a href="<c:url value='/forum/notice/listPage.do'/>">공지사항</a>
                                                 </li>
                                                 <!-- <li>
                                                     <a href="all-products.html">Popular Items</a>

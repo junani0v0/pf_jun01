@@ -8,6 +8,7 @@
 	    $('#trumbowyg-demo').trumbowyg({
 	        lang: 'kr'
 	    });
+	    
 	</script>
     <!--================================
             START DASHBOARD AREA

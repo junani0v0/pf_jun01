@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ page import = "com.portfolio.www.message.MessageEnum" %>
 <%
 String ctx = request.getContextPath();
 %>
@@ -75,7 +76,22 @@ String ctx = request.getContextPath();
     <script src="<%=ctx%>/assest/template/js/dashboard.js"></script>
     <script src="<%=ctx%>/assest/template/js/main.js"></script>
     <script src="<%=ctx%>/assest/template/js/map.js"></script>
+    
     <!-- endinject -->
+    
+    <script type="text/javascript">
+	    
+  	//Enum 에러코드 & 메시지 출력용
+	window.onload = function() {
+		const code = '${code}';
+	    const msg = '${msg}';
+	    
+	    if (code !== '' && code != 'null') {
+	        alert(msg);
+	    }
+	}
+	    
+	</script>
 </body>
 
 </html>

@@ -4,19 +4,6 @@
     <!--================================
             START LOGIN AREA
     =================================-->
-    <script type="text/javascript">
-    	window.onload = function(){
-    		var result = '${result}';
-    		var msg = '${msg}';
-    		
-    		
-    		if(result != ''){ //0000은 정상
-    		<!--	alert(msg); -->
-    			alert(msg);
-    			window.location.href = '/pf/auth/loginPage.do';//성공하든 실패하든 무조건 리다이랙트되야됨
-    		}
-    	}
-    </script>
     <section class="login_area section--padding2">
         <div class="container">
             <div class="row">

@@ -73,10 +73,6 @@ public class JoinService {
 				emailDto.setText(html);//본문 내용
 				
 				emailUtil.sendMail(emailDto, true);	//EmailUtil에 값 넘겨주기
-//				String html = String.format("<a href='http://localhost:8080/pf/emailAuth.do?uri=%s'>회원 가입 인증 하기</>",
-//						memberAuthDto.getAuthUri()
-//						);
-//				emailDto.setText(html);
 			}
 		} catch (DuplicateKeyException e) {
 			cnt = 0;
