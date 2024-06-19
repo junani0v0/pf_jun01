@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!--================================
             START SIGNUP AREA
@@ -36,14 +37,16 @@
                                     <input id="email_ad" name="email" type="text" class="text_field" placeholder="Enter your email address">
                                 </div>
                                
-                                <div class="form-group">
+                                <div class="form-group input_password">
                                     <label for="password">Password</label>
-                                    <input id="password" name="passwd" type="text" class="text_field" placeholder="Enter your password...">
+                                    <input id="password" name="passwd" type="password" class="text_field" placeholder="Enter your password...">
+                                    <i class="fa fa-eye-slash fa-lg toggle-password"></i>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group input_password">
                                     <label for="con_pass">Confirm Password</label>
-                                    <input id="con_pass" type="text" class="text_field" placeholder="Confirm password">
+                                    <input id="con_pass" type="password" class="text_field" placeholder="Confirm password">
+                                    <i class="fa fa-eye-slash fa-lg toggle-con_pass"></i>
                                 </div>
 
                                 <button class="btn btn--md btn--round register_btn" type="submit">Register Now</button>
@@ -68,3 +71,36 @@
     <!--================================
             END SIGNUP AREA
     =================================-->
+    <script>
+	//비밀번호 숨기기&보여주기 기능
+    $(document).ready(function(){
+        $('.toggle-password').click(function(){
+            var input = $(this).prev('input');
+            var type = input.attr('type');
+            
+            if(type === 'password') {
+                input.attr('type', 'text');
+                $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                input.attr('type', 'password');
+                $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            }
+        });
+    });
+	
+    $(document).ready(function(){
+        $('.toggle-con_pass').click(function(){
+            var input = $(this).prev('input');
+            var type = input.attr('type');
+            
+            if(type === 'password') {
+                input.attr('type', 'text');
+                $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                input.attr('type', 'password');
+                $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            }
+        });
+    });
+	
+	</script>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!--================================
             START LOGIN AREA
     =================================-->
@@ -19,13 +21,14 @@
                             <div class="login--form">
                                 <div class="form-group">
                                     <label for="user_name">Id</label>
-                                    <input id="user_name" name="memberId" type="text" class="text_field" value="test_account">
+                                    <input id="user_name" name="memberId" type="text" class="text_field" value="test_account" placeholder="아이디를 입력하세요">
                                 </div>
 
-                                <div class="form-group">
-                                    <label for="pass">Password</label>
-                                    <input id="pass" type="text" name="passwd" class="text_field" value="quf2235">
-                                </div>
+                                <div class="form-group input_password">
+	                                <label for="pass">Password</label>
+	                                <input id="pass" type="password" name="passwd" class="text_field" value="quf2235" placeholder="비밀번호를 입력하세요">
+	                                <i class="fa fa-eye-slash fa-lg toggle-password"></i><!-- 비밀번호 숨기기/보이기 -->
+	                            </div>
 
                                 <div class="form-group">
                                     <div class="custom_checkbox">
@@ -61,3 +64,20 @@
     <!--================================
             END LOGIN AREA
     =================================-->
+    <script>
+	//비밀번호 숨기기&보여주기 기능
+    $(document).ready(function(){
+        $('.toggle-password').click(function(){
+            var input = $(this).prev('input');
+            var type = input.attr('type');
+            
+            if(type === 'password') {
+                input.attr('type', 'text');
+                $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                input.attr('type', 'password');
+                $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+            }
+        });
+    });
+	</script>

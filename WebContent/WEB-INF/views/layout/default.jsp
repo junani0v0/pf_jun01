@@ -33,6 +33,8 @@ String ctx = request.getContextPath();
     
     <!-- 아이콘용 -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+	<!-- 비밀번호 숨기기 보여주기 눈 아이콘용 -->
+	<link rel="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <!-- endinject -->
 
     <!-- Favicon -->

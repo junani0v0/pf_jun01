@@ -16117,3 +16117,21 @@ span.counter {
 }
 
 /*# sourceMappingURL=src/map/style.css.map */
+
+/* 비밀번호 숨기기,보이기 기능  */
+.form-group {
+    margin-bottom: 20px;
+}
+.input_password {
+    position: relative;
+}
+.input_password input {
+    padding-right: 30px; /* 여백을 추가하여 아이콘이 겹치지 않도록 합니다. */
+}
+.input_password i {
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}

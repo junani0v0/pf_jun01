@@ -80,7 +80,7 @@
     	<!-- 사용할 암호화 알고리즘 -->
         <property name="algorithm" value="PBEWithMD5AndDES" />
         <!-- 환경 변수를 사용하여 ASOG_ENCRYPTION_KEY 설정 -->
-	    <property name="passwordEnvName" value="ASOG_ENCRYPTION_KEY" />
+	    <property name="passwordEnvName" value="APP_ENCRYPTION_PASSWORD" />
     </bean>
 
     <bean id="encryptor" class="org.jasypt.encryption.pbe.StandardPBEStringEncryptor">

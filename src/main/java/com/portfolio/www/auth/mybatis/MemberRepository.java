@@ -14,7 +14,7 @@ public interface MemberRepository {
 	public String getMemberId(String memberId);
 	//회원 번호 조회
 	public int getMemberSeq(String memberId);
-	
+	//회원 조회
 	public MemberDto getMember(String memberId);
 	public int deleteMember(String memberId);
 }
