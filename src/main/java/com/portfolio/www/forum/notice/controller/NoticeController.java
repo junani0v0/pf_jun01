@@ -202,9 +202,7 @@ public class NoticeController {
 			redirectAttrs.addFlashAttribute("code", MessageEnum.EDIT_FAIL.getCode());
 	        redirectAttrs.addFlashAttribute("msg", MessageEnum.EDIT_FAIL.getDescription());
 		}
-//		mv.setViewName("redirect:/forum/notice/readPage.do?boardSeq="+params.get("boardSeq")+"&boardTypeSeq="+params.get("boardTypeSeq"));	
 		 return new ModelAndView("redirect:/forum/notice/readPage.do?boardSeq=" + params.get("boardSeq") + "&boardTypeSeq=" + params.get("boardTypeSeq"));
-//		return mv;
 	}
 	
 	//첨부파일 삭제

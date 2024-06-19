@@ -43,6 +43,18 @@
 	    <url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	<!-- 로그인 필터 끝 -->
+	
+	<!-- 세션 필터 시작 -->
+	<filter>
+	    <filter-name>sessionFilter</filter-name>
+	    <filter-class>com.portfolio.www.filter.SessionFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>sessionFilter</filter-name>
+	    <servlet-name>pf</servlet-name>
+	    <url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<!-- 세션 필터 끝 -->
 
 	<!-- Spring servlet start -->
 	<servlet>

@@ -23,89 +23,88 @@
 
                     <!-- start .col-md-5 -->
                     <div class="col-lg-8 offset-lg-1 col-6 col-md-9 v_middle">
-                        <!-- start .author-area -->
-                        <div class="author-area not_logged_in">
-                            <%-- <div class="author__notification_area">
-                                <ul>
-                                    <li class="has_dropdown">
-                                        <div class="icon_wrap">
-                                            <span class="lnr lnr-cart"></span>
-                                            <span class="notification_count purch">2</span>
-                                        </div>
-
-                                        <div class="dropdowns dropdown--cart">
-                                            <div class="cart_area">
-                                                <div class="cart_product">
-                                                    <div class="product__info">
-                                                        <div class="thumbn">
-                                                            <img src="<c:url value='/assest/template/images/capro1.jpg'/>" alt="cart product thumbnail" />
-                                                        </div>
-
-                                                        <div class="info">
-                                                            <a class="title" href="single-product.html">Finance and
-                                                                Consulting Business Theme</a>
-                                                            <div class="cat">
-                                                                <a href="#">
-                                                                    <img src="<c:url value='/assest/template/images/catword.png'/>" alt="" />Wordpress
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="product__action">
-                                                        <a href="#">
-                                                            <span class="lnr lnr-trash"></span>
-                                                        </a>
-                                                        <p>$60</p>
-                                                    </div>
-                                                </div>
-                                                <div class="cart_product">
-                                                    <div class="product__info">
-                                                        <div class="thumbn">
-                                                            <img src="<c:url value='/assest/template/images/capro2.jpg'/>" alt="cart product thumbnail" />
-                                                        </div>
-
-                                                        <div class="info">
-                                                            <a class="title" href="single-product.html">Flounce -
-                                                                Multipurpose OpenCart Theme</a>
-                                                            <div class="cat">
-                                                                <a href="#">
-                                                                    <img src="<c:url value='/assest/template/images/catword.png'/>" alt="" />Wordpress
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="product__action">
-                                                        <a href="#">
-                                                            <span class="lnr lnr-trash"></span>
-                                                        </a>
-                                                        <p>$60</p>
-                                                    </div>
-                                                </div>
-                                                <div class="total">
-                                                    <p>
-                                                        <span>Total :</span>$80</p>
-                                                </div>
-                                                <div class="cart_action">
-                                                    <a class="go_cart" href="cart.html">View Cart</a>
-                                                    <a class="go_checkout" href="checkout.html">Checkout</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div> --%>
-                            <div class="pull-right join desktop-size d-md-block d-none">
-                                <a href="<c:url value='/auth/joinPage.do'/>" class="btn btn--round btn-secondary  btn--xs">Join Now</a>
-                                <a href="<c:url value='/auth/loginPage.do'/>" class="btn btn--round btn--xs">Login</a>
-                            </div>
-                            <div class="pull-right join mobile-size d-md-none d-flex">
-                                <a href="#" class="btn btn--round btn-secondary "><span class="lnr lnr-user"></span></a>
-                                <a href="#" class="btn btn--round"><span class="lnr lnr-enter"></span></a>
-                            </div>
-                        </div>
-                        <!-- end .author-area -->
+                    	<!-- start .author-area -->
+	                    <div class="menu">
+						    <c:choose>
+						        <c:when test="${loggedIn}">
+						            <!-- 로그인 상태일 때 표시할 메뉴 -->
+						            <div class="author-author__info inline has_dropdown">
+			                            <div class="author__avatar">
+			                                <img src="<c:url value='/assest/template/images/usr_avatar.png'/>" alt="user avatar">
+			                            </div>
+			                            <div class="autor__info">
+			                                <p class="name">
+			                                    안녕하세요.
+			                                    <h7 class="pcolor">${sessionScope.memberNm}</h7> 님.
+			                                </p>
+			                            </div>
+			
+			                            <div class="dropdowns dropdown--author">
+			                                <ul>
+			                                    <li>
+			                                        <a href="author.html">
+			                                            <span class="lnr lnr-user"></span>Profile</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard.html">
+			                                            <span class="lnr lnr-home"></span> Dashboard</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard-setting.html">
+			                                            <span class="lnr lnr-cog"></span> Setting</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="cart.html">
+			                                            <span class="lnr lnr-cart"></span>Purchases</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="favourites.html">
+			                                            <span class="lnr lnr-heart"></span> Favourite</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard-add-credit.html">
+			                                            <span class="lnr lnr-dice"></span>Add Credits</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard-statement.html">
+			                                            <span class="lnr lnr-chart-bars"></span>Sale Statement</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard-upload.html">
+			                                            <span class="lnr lnr-upload"></span>Upload Item</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard-manage-item.html">
+			                                            <span class="lnr lnr-book"></span>Manage Item</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="dashboard-withdrawal.html">
+			                                            <span class="lnr lnr-briefcase"></span>Withdrawals</a>
+			                                    </li>
+			                                    <li>
+			                                        <a href="<c:url value='/auth/logout.do'/>">
+			                                            <span class="lnr lnr-exit"></span>Logout</a>
+			                                    </li>
+			                                </ul>
+			                            </div>
+			                        </div>
+						        </c:when>
+						        <c:otherwise>
+						            <!-- 로그인되지 않은 상태일 때 표시할 메뉴 -->
+						            <div class="author-area not_logged_in">
+						                <div class="pull-right join desktop-size d-md-block d-none">
+						                    <a href="<c:url value='/auth/joinPage.do'/>" class="btn btn--round btn-secondary btn--xs">Join Now</a>
+						                    <a href="<c:url value='/auth/loginPage.do'/>" class="btn btn--round btn--xs">Login</a>
+						                </div>
+						                <div class="pull-right join mobile-size d-md-none d-flex">
+						                    <a href="#" class="btn btn--round btn-secondary"><span class="lnr lnr-user"></span></a>
+						                    <a href="#" class="btn btn--round"><span class="lnr lnr-enter"></span></a>
+						                </div>
+						            </div>
+						        </c:otherwise>
+						    </c:choose>
+						</div>
+                      	<!-- end .author-area -->
                     </div>
                     <!-- end /.col-md-5 -->
                 </div>
@@ -303,12 +302,6 @@
                                                 <li>
                                                     <a href="<c:url value='/forum/notice/listPage.do'/>">공지사항</a>
                                                 </li>
-                                                <!-- <li>
-                                                    <a href="all-products.html">Popular Items</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index3.html">Free Templates</a>
-                                                </li> -->
                                                 <li>
                                                     <a href="#">Follow Feed</a>
                                                 </li>
@@ -339,4 +332,4 @@
     <!--================================
 	    END MENU AREA
 	=================================-->
-
+	

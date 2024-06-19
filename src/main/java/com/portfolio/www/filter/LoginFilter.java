@@ -38,12 +38,13 @@ public class LoginFilter extends HttpFilter implements Filter {
     public LoginFilter() {
         super();
     }
-
+    
     public void destroy() {
 
     }
 
     // 필터 동작
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;

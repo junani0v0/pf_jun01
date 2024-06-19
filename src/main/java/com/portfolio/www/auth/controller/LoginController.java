@@ -59,9 +59,12 @@ public class LoginController {
 	            HttpSession session = request.getSession();
 	            // memberId 넣어줌
 	            session.setAttribute("memberId", memberDto.getMemberId());
+	            // memberNm을 추가로 세션에 저장
+	            session.setAttribute("memberNm", memberDto.getMemberNm());
 
 	            // 리디렉션할 URI가 세션에 있는지 확인
 	            String redirectUri = (String) session.getAttribute("redirectAfterLogin");
+	            
 	            if (redirectUri != null) {
 	                mv.setViewName("redirect:" + redirectUri);
 	            } else {
@@ -80,5 +83,16 @@ public class LoginController {
 	    return mv;
 	}
 
+	//로그아웃
+	@RequestMapping("/auth/logout.do")
+	public ModelAndView logout(HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
+		HttpSession session = request.getSession();
+		
+		session.invalidate();
+		mv.setViewName("redirect:/index.do");
+		return mv;
+	}
 
 }
