@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.portfolio.www.forum.notice.mybatis.BoardDislikeRepository">
+
+	<!-- 싫어요 조회-->
+    <select id="existsDisLike" parameterType="int" resultType="int">
+    	SELECT COUNT(1) 
+    	  FROM forum.board_dislike 
+    	 WHERE board_seq = #{boardSeq}
+    	   AND board_type_seq = #{boardTypeSeq}
+           AND member_seq = #{memberSeq} 
+    </select>
+    
+    <!-- 싫어요 추가 -->
+    <insert id="addDisLike" parameterType="BoardDisLikeDto">
+    	INSERT INTO forum.board_dislike
+    	       (board_seq, board_type_seq, member_seq, ip, reg_dtm)
+    	VALUES ( #{boardSeq}, #{boardTypeSeq}, #{memberSeq}, #{ip} , DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'))
+    </insert>
+    
+    <!-- 싫어요 삭제 -->
+    <delete id="deleteDisLike" parameterType="int">
+    	DELETE FROM forum.board_dislike
+    	 WHERE board_seq= #{boardSeq} 
+    	   AND board_type_seq= #{boardTypeSeq}
+    	   AND member_seq= #{memberSeq}
+    </delete>
+
+</mapper>

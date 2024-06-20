@@ -65,31 +65,13 @@
     	
     	INSERT INTO forum.board 
     	(board_type_seq, title, content, reg_dtm, reg_member_seq ) 
-    	VALUES( '1', #{title}, #{trumbowyg-demo}, DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'), '73')
+    	VALUES( '1', #{title}, #{trumbowyg-demo}, DATE_FORMAT(NOW()  ,'%Y%m%d%H%i%s'), #{regMemberSeq})
     </insert>
     
     <!-- 게시글 총 개수 -->
     <select id="getTotalCount" resultType="int">
     	SELECT count(*) 
     	  FROM board
-    </select>
-    
-    <!-- 좋아요 조회-->
-    <select id="existsLike" resultType="int">
-    	SELECT COUNT(1) 
-    	  FROM forum.board_like 
-    	 WHERE board_seq = #{boardSeq}
-    	   AND board_type_seq = #{boardTypeSeq}
-           AND member_seq = #{memberSeq} 
-    </select>
-    
-    <!-- 싫어요 조회-->
-    <select id="existsDisLike" resultType="int">
-    	SELECT COUNT(1) 
-    	  FROM forum.board_dislike 
-    	 WHERE board_seq = #{boardSeq}
-    	   AND board_type_seq = #{boardTypeSeq}
-           AND member_seq = #{memberSeq} 
     </select>
     
     <!-- 게시글 수정-->

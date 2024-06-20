@@ -16,6 +16,7 @@ public interface MemberRepository {
 	public int getMemberSeq(String memberId);
 	//회원 조회
 	public MemberDto getMember(String memberId);
+	//회원 삭제
 	public int deleteMember(String memberId);
 }
 

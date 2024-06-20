@@ -11,6 +11,8 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -106,13 +108,13 @@ public class NoticeController {
 	
 	//읽기 페이지
 	@RequestMapping("/forum/notice/readPage.do")
-	public ModelAndView readPage(@RequestParam HashMap<String, String> params) {
+	public ModelAndView readPage(@RequestParam HashMap<String, String> params, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
 		
 		int boardSeq = Integer.parseInt(params.get("boardSeq"));
 		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
-		
+		int memberSeq = (int) request.getSession().getAttribute("memberSeq");
 		
 		//boardSeq없으면?
 		if(!params.containsKey("boardSeq") || !params.containsKey("boardTypeSeq")) {
@@ -128,7 +130,9 @@ public class NoticeController {
 		mv.addObject("comments", boardCommentService.list(boardSeq, boardTypeSeq));
 		mv.addObject("commentCnt", boardCommentService.getCommentCnt(boardSeq));
 		// 좋아요
-		mv.addObject("liked", service.getLike(boardSeq, boardTypeSeq, -1));
+		mv.addObject("liked", service.getLike(boardSeq, boardTypeSeq, memberSeq));
+		// 좋아요
+		mv.addObject("disliked", service.getDisLike(boardSeq, boardTypeSeq, memberSeq));
 		mv.setViewName("forum/notice/read");
 				
 		return mv;
@@ -139,11 +143,12 @@ public class NoticeController {
 	public ModelAndView write(
 			@RequestParam HashMap<String, String> params,
 			@RequestParam(value = "attFile", required =false) MultipartFile[] attFiles,
-			RedirectAttributes redirectAttrs
+			RedirectAttributes redirectAttrs, HttpServletRequest request
 			) {
 		
-		boolean result = service.write(params, attFiles);
 		ModelAndView mv = new ModelAndView();
+		params.put("regMemberSeq", String.valueOf(request.getSession().getAttribute("memberSeq")));
+		boolean result = service.write(params, attFiles);
 		mv.addObject("result", result);
 		if (result) {
 			redirectAttrs.addFlashAttribute("code", MessageEnum.WRITE_SUCCESS.getCode());

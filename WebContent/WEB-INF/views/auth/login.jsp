@@ -26,7 +26,7 @@
 
                                 <div class="form-group input_password">
 	                                <label for="pass">Password</label>
-	                                <input id="pass" type="password" name="passwd" class="text_field" value="quf2235" placeholder="비밀번호를 입력하세요">
+	                                <input id="pass" type="password" name="passwd" class="text_field" value="Test_Account_Password" placeholder="비밀번호를 입력하세요">
 	                                <i class="fa fa-eye-slash fa-lg toggle-password"></i><!-- 비밀번호 숨기기/보이기 -->
 	                            </div>
 
