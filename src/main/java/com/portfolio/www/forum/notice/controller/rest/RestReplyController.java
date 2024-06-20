@@ -2,6 +2,8 @@ package com.portfolio.www.forum.notice.controller.rest;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +27,9 @@ public class RestReplyController {
 	//댓글 작성
 	@PostMapping("/forum/notice/reply.do")
 	@ResponseBody
-	public int addComment(@RequestBody BoardCommentDto dto) {
-		dto.setMemberSeq(73);  //맵버 seq 넣어줘야됨 수정예정
+	public int addComment(@RequestBody BoardCommentDto dto, HttpServletRequest request) {
+		int memberSeq = (int) request.getSession().getAttribute("memberSeq");
+	    dto.setMemberSeq(memberSeq);
 
 		return service.addComment(dto);
 	}

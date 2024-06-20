@@ -16,6 +16,7 @@ public enum MessageEnum {
 	PASSWORD_ERROR("9001","비밀번호가 틀렸습니다"),
 	USER_ID_DUPLICATION("9002","비밀번호가 틀렸습니다"),
 	EMAIL_VALIDATED_FAIL("9003","인증이 실패하였습니다"),
+	NO_EMAIL_AUTHENTICATION("9004","이메일 인증이 필요합니다"),
 	
 	
 	WRITE_FAIL("9911", "게시글 작성이 실패하였습니다"),

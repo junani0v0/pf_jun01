@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,12 @@ public class JoinService {
 	
 	@Autowired
 	private EmailUtil emailUtil;
+	
+	@Value("#{config['email.certification']}")
+	private String HOME_URI;
+	
+	@Value("#{config['email.username']}")
+	private String EMAIL_ADDRESS;
 	
 	//회원가입
 	public int join(HashMap<String, String> params) {
@@ -69,7 +76,7 @@ public class JoinService {
 				emailDto.setFrom("junani0v0@naver.com"); //보내는 사람
 				emailDto.setReceiver(params.get("email")); //받는 사람(logind.jsp에 입력한 email 값 )
 				emailDto.setSubject("회원가입 인증 메일");	//메일 제목
-				String html = "<a href='http://localhost:8080/pf/auth/emailAuth.do?uri="+ memberAuthDto.getAuthUri() +"'>인증하기</a>";
+				String html = "<a href='"+ HOME_URI +"/pf/auth/emailAuth.do?uri="+ memberAuthDto.getAuthUri() +"'>인증하기</a>";
 				emailDto.setText(html);//본문 내용
 				
 				emailUtil.sendMail(emailDto, true);	//EmailUtil에 값 넘겨주기
@@ -90,6 +97,7 @@ public class JoinService {
 			
 			result = now < memberAuthDto.getExpireDtm();
 			if(result) {
+				
 				// member_auth -> auth_yn : Y 로 바꾸기
 				memberAuthRepository.updateAuthInfo(memberAuthDto);
 			}

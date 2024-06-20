@@ -10,8 +10,12 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.portfolio.www.forum.notice.dto.BoardAttachDto;
+import com.portfolio.www.forum.notice.dto.BoardDisLikeDto;
 import com.portfolio.www.forum.notice.dto.BoardDto;
+import com.portfolio.www.forum.notice.dto.BoardLikeDto;
 import com.portfolio.www.forum.notice.mybatis.BoardAttachRepository;
+import com.portfolio.www.forum.notice.mybatis.BoardDislikeRepository;
+import com.portfolio.www.forum.notice.mybatis.BoardLikeRepository;
 import com.portfolio.www.forum.notice.mybatis.BoardRepository;
 import com.portfolio.www.util.FileUtil;
 
@@ -27,6 +31,12 @@ public class BoardService {
 	@Autowired
 	private FileUtil fileUtil;
 	
+	@Autowired
+	private BoardLikeRepository boardLikeRepository;
+	
+	@Autowired
+	private BoardDislikeRepository boardDislikeRepository;
+	
 	// 게시글리스트 가져오기
 	public List<BoardDto> getList(HashMap<String, String> params){
 		return boardRepository.getList(params);
@@ -35,16 +45,6 @@ public class BoardService {
 	// 페이징용 전체 게시글 개수 가져오기
 	public int getTotalCount(){
 		return boardRepository.getTotalCount();
-	}
-	
-	// 좋아요여부
-	public int getLike(int boardSeq, int boardTypeSeq, int memberSeq){
-		return boardRepository.existsLike(boardSeq, boardTypeSeq, memberSeq);
-	}
-	
-	// 싫어요여부
-	public int getDisLike(int boardSeq, int boardTypeSeq, int memberSeq){
-		return boardRepository.existsDisLike(boardSeq, boardTypeSeq, memberSeq);
 	}
 	
 	// 읽기페이지 가져오기
@@ -154,5 +154,75 @@ public class BoardService {
 	public List<BoardAttachDto> getDownloadZipFileInfo(int boarSeq, int boarTypeSeq) {
 		return boardAttachRepository.getAttachInfoAll(boarSeq, boarTypeSeq);
 	}
+	
+	// 좋아요 여부
+	public int getLike(int boardSeq, int boardTypeSeq, int memberSeq){
+		return boardLikeRepository.existsLike(boardSeq, boardTypeSeq, memberSeq);
+	}
+	
+	// 싫어요 여부
+	public int getDisLike(int boardSeq, int boardTypeSeq, int memberSeq){
+		return boardDislikeRepository.existsDisLike(boardSeq, boardTypeSeq, memberSeq);
+	}
+	
+	//좋아요 기능
+	public int thumbUp(int boardSeq, int boardTypeSeq, int memberSeq, String ip) {
+
+		int cnt = boardLikeRepository.existsLike(boardSeq, boardTypeSeq, memberSeq);
+		int result = -1;
+
+		// 좋아요 있으면 삭제
+		if (cnt == 1) {
+			boardLikeRepository.deleteLike(boardSeq, boardTypeSeq, memberSeq);
+			boardDislikeRepository.deleteDisLike(boardSeq, boardTypeSeq, memberSeq);
+
+			result = 0;
+		} else {
+			boardDislikeRepository.deleteDisLike(boardSeq, boardTypeSeq, memberSeq);
+			BoardLikeDto boardLikeDto = new BoardLikeDto();
+			boardLikeDto.setBoardSeq(boardSeq);
+			boardLikeDto.setBoardTypeSeq(boardTypeSeq);
+			boardLikeDto.setMemberSeq(memberSeq);
+			boardLikeDto.setIp(ip);
+
+			// insert
+			result = boardLikeRepository.addLike(boardLikeDto);
+
+		}
+
+		return result;
+
+	}
+	
+	//싫어요 기능
+	public int thumbDown(int boardSeq, int boardTypeSeq, int memberSeq, String ip) {
+
+		int cnt = boardDislikeRepository.existsDisLike(boardSeq, boardTypeSeq, memberSeq);
+		int result = -1;
+
+		// 싫어요 있으면 삭제
+		if (cnt == 1) {
+			boardLikeRepository.deleteLike(boardSeq, boardTypeSeq, memberSeq);
+			boardDislikeRepository.deleteDisLike(boardSeq, boardTypeSeq, memberSeq);
+			
+			result = 0;
+		} else {
+			// 좋아요와 싫어요는 중복될 수 없다!
+			boardLikeRepository.deleteLike(boardSeq, boardTypeSeq, memberSeq);
+			BoardDisLikeDto boardDisLikeDto = new BoardDisLikeDto();
+			boardDisLikeDto.setBoardSeq(boardSeq);
+			boardDisLikeDto.setBoardTypeSeq(boardTypeSeq);
+			boardDisLikeDto.setMemberSeq(memberSeq);
+			boardDisLikeDto.setIp(ip);
+
+			// insert
+			result = boardDislikeRepository.addDisLike(boardDisLikeDto);
+
+		}
+
+		return result;
+
+	}
+	
 
 }

@@ -18,6 +18,7 @@ public class JoinController {
 	@Autowired
 	private JoinService joinService;
 	
+	//회원가입 페이지
 	@RequestMapping("/auth/joinPage.do")
 	public ModelAndView joinPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -27,6 +28,7 @@ public class JoinController {
 		return mv;
 	}
 	
+	//회원가입
 	@RequestMapping("/auth/join.do")
 	public ModelAndView join(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -44,6 +46,7 @@ public class JoinController {
 		return mv;
 	}
 	
+	//이메일 인증 
 	@RequestMapping("/auth/emailAuth.do")	//회원 인증메일 링크
 	public ModelAndView emailAuth(@RequestParam("uri") String uri) {
 		ModelAndView mv = new ModelAndView();

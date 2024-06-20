@@ -16,7 +16,8 @@ public class LoginService {
 	
 	@Autowired
 	private MemberRepository memberRepository;
-
+	
+	//로그인 사용자 검색
 	public MemberDto login(HashMap<String, String> params) throws EmptyResultDataAccessException {
 		//사용자 찾기
 		MemberDto memberDto = memberRepository.getMember(params.get("memberId"));
@@ -28,5 +29,6 @@ public class LoginService {
 
 		return result.verified ? memberDto : null ;
 	}
+	
 	
 }
