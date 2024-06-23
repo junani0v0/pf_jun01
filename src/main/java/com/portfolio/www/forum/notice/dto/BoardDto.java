@@ -19,6 +19,9 @@ public class BoardDto {
 	
 	private int commentCnt;	//댓글 개수
     private int attachCnt;	//첨부파일 개수
+    private int likeCnt;	//좋아요 개수
+    private int disLikeCnt;	//싫어요 개수
+    
 	
 	public String getMemberId() {
 		return memberId;
@@ -103,6 +106,18 @@ public class BoardDto {
 	}
 	public void setAttachCnt(int attachCnt) {
 		this.attachCnt = attachCnt;
+	}
+	public int getLikeCnt() {
+		return likeCnt;
+	}
+	public void setLikeCnt(int likeCnt) {
+		this.likeCnt = likeCnt;
+	}
+	public int getDisLikeCnt() {
+		return disLikeCnt;
+	}
+	public void setDisLikeCnt(int disLikeCnt) {
+		this.disLikeCnt = disLikeCnt;
 	}
 
 }

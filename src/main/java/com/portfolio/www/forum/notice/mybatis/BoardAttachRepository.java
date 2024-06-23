@@ -19,6 +19,9 @@ public interface BoardAttachRepository {
 	//첨부파일 삭제
 	public int deleteAttachInfo(int attachSeq);
 	
+	//첨부파일 전체 삭제
+	public int deleteAllAttachInfo(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq);
+	
 	//단일 업로드 가져오기
 	public BoardAttachDto getAttachInfo(int attachSeq);
 }

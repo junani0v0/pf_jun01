@@ -139,9 +139,27 @@ public class BoardService {
 		}
 	}
 	
+	// 게시글 삭제 기능
+	public int delete(HashMap<String, String> params,
+			MultipartFile[] mfs) {
+		
+		int boardSeq = Integer.parseInt(params.get("boardSeq"));
+		int boardTypeSeq = Integer.parseInt(params.get("boarTypeSeq"));
+				
+		int cnt = boardRepository.deleteBoard(boardSeq, boardTypeSeq);
+				
+		return cnt ;
+	}
+	
 	//첨부파일 삭제
 	public int deleteAttachInfo(int attachSeq) {
 		int cnt = boardAttachRepository.deleteAttachInfo(attachSeq);
+		return cnt;
+	}
+	
+	//첨부파일 삭제
+	public int deleteAllAttachInfo(int boardSeq, int boarTypeSeq) {
+		int cnt = boardAttachRepository.deleteAllAttachInfo(boardSeq, boarTypeSeq);
 		return cnt;
 	}
 	
@@ -151,8 +169,8 @@ public class BoardService {
 	}
 	
 	//전체 압축 다운로드
-	public List<BoardAttachDto> getDownloadZipFileInfo(int boarSeq, int boarTypeSeq) {
-		return boardAttachRepository.getAttachInfoAll(boarSeq, boarTypeSeq);
+	public List<BoardAttachDto> getDownloadZipFileInfo(int boardSeq, int boardTypeSeq) {
+		return boardAttachRepository.getAttachInfoAll(boardSeq, boardTypeSeq);
 	}
 	
 	// 좋아요 여부
