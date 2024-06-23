@@ -55,5 +55,5 @@
 	<mvc:resources mapping="/assest/**" location="/assest/" />
 
 	<mvc:annotation-driven />
-
+	
 </beans>
