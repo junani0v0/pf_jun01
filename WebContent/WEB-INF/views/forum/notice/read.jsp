@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import = "com.portfolio.www.message.MessageEnum" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 String ctx = request.getContextPath();
 %>
@@ -41,7 +42,9 @@ String ctx = request.getContextPath();
                             <!-- 제목 끝 -->
                             <div class="suppot_query_tag">
                                 <img class="poster_avatar" src="<%=ctx%>/assest/template/images/support_avat1.png" alt="Support Avatar">${board.memberId}
-                                <span>${board.regDtm}</span>
+                                <!-- 날짜 포맷팅 -->
+						        <fmt:parseDate value="${board.regDtm}" var="regDate" pattern="yyyyMMddHHmmss" />
+                                <span><fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
                             </div>
                             <p style="margin-bottom: 0; margin-top: 19px;">${board.content}</p>
                             
@@ -92,7 +95,8 @@ String ctx = request.getContextPath();
 							                  <h4>${comment.memberNm}
 							                      <!-- <span>staff</span> -->
 							                  </h4>
-							                  <p>${comment.regDtm}</p>
+							                  <fmt:parseDate value="${comment.regDtm}" var="regDate" pattern="yyyyMMddHHmmss" />
+							                  <p><fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm:ss" /></p>
 							              </div>
 							              <!-- end .pull-left -->
 							            <div class="button-container" style="text-align: right;">

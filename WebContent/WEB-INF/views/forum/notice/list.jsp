@@ -1,9 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import = "com.portfolio.www.message.MessageEnum" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
 String ctx = request.getContextPath();
 %>
+
+<style>
+
+.empty-space {
+    display: inline-block;
+    width: 40px; /* 적절한 너비 설정 */
+}
+.empty-space2 {
+    display: inline-block;
+    width: 50px; /* 적절한 너비 설정 */
+}
+a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: black; /* 텍스트 색상을 검정으로 지정 */
+}
+</style>
 	<!--================================
             START LOGIN AREA
     =================================-->
@@ -23,7 +40,7 @@ String ctx = request.getContextPath();
                                             <tr>
                                             	<th>No</th>
                                                 <th>제목</th>
-                                                <th>댓글</th>
+                                                <th></th>
                                                 <th>Date</th>
                                                 <th>작성자</th>
                                             </tr>
@@ -34,15 +51,55 @@ String ctx = request.getContextPath();
 	                                        	<tr>
 	                                        		<td>${i.boardSeq}</td>
 	                                        		<td>
-	                                        			<a href="<c:url value='/forum/notice/readPage.do?boardSeq=${i.boardSeq}&boardTypeSeq=${i.boardTypeSeq}'/>">
+	                                        			<a href="<c:url value='/forum/notice/readPage.do?boardSeq=${i.boardSeq}&boardTypeSeq=${i.boardTypeSeq}'/>" >
 	                                                		${i.title}
 	                                                	</a>
-	                                                	<c:if test="${i.attachCnt > 0}">
-	                                                		<span class="lnr lnr-paperclip"></span>
-	                                                	</c:if>
 	                                       			</td>
-	                                       			<td>${i.commentCnt}</td>
-	                                        		<td>${i.regDtm}</td>
+	                                       			<td>
+	                                       				<!-- 첨부파일 여부 표시 -->
+	                                                	<c:if test="${i.attachCnt > 0}">
+	                                                		<span class="lnr lnr-paperclip" style="color:#000000"></span>&nbsp${i.attachCnt}
+	                                                		<!-- 댓글이 있는 경우 구분자 표시 -->
+		                                                	<c:if test="${i.commentCnt > 0}">
+		                                                		&nbsp;&nbsp;
+		                                                	</c:if>
+	                                                	</c:if>
+	                                                	<!-- 첨부 파일이 없는 경우 공백-->
+													    <c:if test="${i.attachCnt <= 0}">
+													        <span class="empty-space">&nbsp;</span>
+													    </c:if>
+	                                                	<!-- 댓글 표시 -->
+	                                       				<c:if test="${i.commentCnt > 0}" > 
+	                                       					<span class="lnr lnr-bubble" style="color:#7347c1"></span>&nbsp${i.commentCnt}
+	                                       					<!-- 댓글이 있는 경우 구분자 표시 -->
+		                                                	<c:if test="${i.likeCnt > 0}">
+		                                                		&nbsp;&nbsp;
+		                                                	</c:if>
+														</c:if>
+														<!-- 댓글 없는 경우 공백 -->
+													    <c:if test="${i.commentCnt <= 0}">
+													        <span class="empty-space">&nbsp;</span>
+													    </c:if>
+	                                       				<!-- 종아요 표시 -->
+	                                                	<c:if test="${i.likeCnt > 0}">
+	                                                		<span class="fa-regular fa-thumbs-up" style="color:#EEDD55"></span>&nbsp${i.likeCnt}
+	                                                		<!-- 댓글이 있는 경우 구분자 표시 -->
+		                                                	<c:if test="${i.disLikeCnt > 0}">
+		                                                		&nbsp;&nbsp;
+		                                                	</c:if>
+	                                                	</c:if>
+	                                                	<!-- 좋아요 없는 경우 공백 -->
+													    <c:if test="${i.likeCnt <= 0}">
+													        <span class="empty-space2">&nbsp;</span>
+													    </c:if>
+	                                                	<!-- 싫어요 표시 -->
+	                                       				<c:if test="${i.disLikeCnt > 0}" > 
+	                                       					<span class="fa-regular fa-thumbs-down" style="color:#91191a"></span>&nbsp${i.disLikeCnt}
+														</c:if>
+													</td>
+													<!-- 날짜 포맷팅 -->
+											        <fmt:parseDate value="${i.regDtm}" var="regDate" pattern="yyyyMMddHHmmss" />
+											        <td><fmt:formatDate value="${regDate}" pattern="yyyy/MM/dd HH:mm:ss" /></td>
 	                                        		<td>${i.memberId}</td>
 	                                        	</tr>
 	                                        </c:forEach>

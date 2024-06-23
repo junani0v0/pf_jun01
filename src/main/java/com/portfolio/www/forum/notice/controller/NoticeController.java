@@ -86,6 +86,7 @@ public class NoticeController {
 	    boolean hasNext = endPage < totalPages;
 	    
 	    mv.addObject("list", list);
+	    mv.addObject("totalCount", totalCount);
 	    mv.addObject("currentPage", page);
 	    mv.addObject("countPage", countPage);
 	    mv.addObject("hasPrev", hasPrev);
@@ -284,4 +285,41 @@ public class NoticeController {
 
 	    return responseEntity;
 	}
+	
+	
+	/*
+	 * //글 삭제 기능
+	 * 
+	 * @RequestMapping("/forum/notice/delete.do") public ModelAndView delete(
+	 * 
+	 * @RequestParam HashMap<String, String> params,
+	 * 
+	 * @RequestParam(value = "attFile", required =false) MultipartFile[] attFiles,
+	 * RedirectAttributes redirectAttrs, HttpServletRequest request ) {
+	 * 
+	 * ModelAndView mv = new ModelAndView();
+	 * 
+	 * params.put("regMemberSeq",
+	 * String.valueOf(request.getSession().getAttribute("memberSeq")));
+	 * 
+	 * 
+	 * 
+	 * int result = service.delete(params, attFiles); mv.addObject("result",
+	 * result); if (result == 1) { redirectAttrs.addFlashAttribute("code",
+	 * MessageEnum.WRITE_SUCCESS.getCode()); redirectAttrs.addFlashAttribute("msg",
+	 * MessageEnum.WRITE_SUCCESS.getDescription()); String boardSeq =
+	 * params.get("boardSeq"); String boardTypeSeq = "1"; String redirectUrl =
+	 * String.format(
+	 * "redirect:/forum/notice/readPage.do?boardSeq=%s&boardTypeSeq=%s", boardSeq,
+	 * boardTypeSeq);
+	 * 
+	 * mv.setViewName(redirectUrl);
+	 * 
+	 * }else { redirectAttrs.addFlashAttribute("code",
+	 * MessageEnum.WRITE_FAIL.getCode()); redirectAttrs.addFlashAttribute("msg",
+	 * MessageEnum.WRITE_FAIL.getDescription());
+	 * 
+	 * mv.setViewName(String.format("redirect:/forum//notice/listPage.do")); }
+	 * return mv; }
+	 */
 }

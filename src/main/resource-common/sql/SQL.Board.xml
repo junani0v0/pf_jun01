@@ -47,7 +47,15 @@
     		(SELECT COUNT(*) 
     			FROM board_attach a 
     			WHERE a.board_seq = b.board_seq) 
-    			AS attach_cnt 
+    			AS attach_cnt,
+   			(SELECT COUNT(*) 
+    			FROM board_like l
+    			WHERE l.board_seq = b.board_seq) 
+    			AS like_cnt ,
+    		(SELECT COUNT(*) 
+    			FROM board_dislike d 
+    			WHERE d.board_seq = b.board_seq) 
+    			AS dis_like_cnt 
     	  FROM board b 
     	  JOIN board_type bt ON bt.board_type_seq  = b.board_type_seq 
     	  JOIN member m ON m.member_seq  = b.reg_member_seq 
@@ -78,7 +86,15 @@
     <update id="updateBoard" parameterType="hashMap">
     	UPDATE forum.board
     	   SET title= #{title}, content= #{trumbowyg-demo}, reg_member_seq=73, update_dtm= DATE_FORMAT(NOW(), '%Y%m%d%H%i%s')
-     	 WHERE board_seq= #{boardSeq} AND board_type_seq= #{boardTypeSeq}
+     	 WHERE board_seq= #{boardSeq} 
+     	   AND board_type_seq= #{boardTypeSeq}
     </update>
+    
+    <!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="hashMap">
+		DELETE FROM forum.board
+		 WHERE board_seq=#{boardSeq} 
+		   AND board_type_seq=#{boardTypeSeq}
+	</delete>
     
 </mapper>

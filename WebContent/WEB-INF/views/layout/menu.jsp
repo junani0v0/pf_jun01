@@ -45,15 +45,15 @@
 			                                        <a href="author.html">
 			                                            <span class="lnr lnr-user"></span>Profile</a>
 			                                    </li>
-			                                    <li>
+			                                    <!-- <li>
 			                                        <a href="dashboard.html">
 			                                            <span class="lnr lnr-home"></span> Dashboard</a>
-			                                    </li>
+			                                    </li> -->
 			                                    <li>
 			                                        <a href="dashboard-setting.html">
 			                                            <span class="lnr lnr-cog"></span> Setting</a>
 			                                    </li>
-			                                    <li>
+			                                    <!-- <li>
 			                                        <a href="cart.html">
 			                                            <span class="lnr lnr-cart"></span>Purchases</a>
 			                                    </li>
@@ -80,7 +80,7 @@
 			                                    <li>
 			                                        <a href="dashboard-withdrawal.html">
 			                                            <span class="lnr lnr-briefcase"></span>Withdrawals</a>
-			                                    </li>
+			                                    </li> -->
 			                                    <li>
 			                                        <a href="<c:url value='/auth/logout.do'/>">
 			                                            <span class="lnr lnr-exit"></span>Logout</a>
