@@ -1,7 +1,5 @@
 package com.portfolio.www.forum.notice.controller.rest;
 
-import java.util.HashMap;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 

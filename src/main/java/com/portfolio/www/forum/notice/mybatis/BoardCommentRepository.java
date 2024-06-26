@@ -25,4 +25,7 @@ public interface BoardCommentRepository {
 	
 	//댓글 수정
 	public int editComment(HashMap<String, String> params);
+	
+	//댓글 전체 삭제
+	public int deleteAllComment(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq);
 }

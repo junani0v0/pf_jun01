@@ -26,6 +26,7 @@ public interface BoardRepository {
 	//게시글 수정
 	public int updateBoard(HashMap<String, String> params);
 	
-	//게시글 수정
+	//게시글 삭제
 	public int deleteBoard(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq);
+
 }

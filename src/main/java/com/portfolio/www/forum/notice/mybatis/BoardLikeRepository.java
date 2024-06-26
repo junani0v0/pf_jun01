@@ -16,4 +16,7 @@ public interface BoardLikeRepository {
 	
 	//좋아요 삭제
 	public int deleteLike(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq, @Param("memberSeq") int memberSeq);
+	
+	//좋아요 전체 삭제
+	public int deleteAllLike(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq);
 }

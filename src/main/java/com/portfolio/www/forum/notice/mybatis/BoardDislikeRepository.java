@@ -16,4 +16,7 @@ public interface BoardDislikeRepository {
 	
 	//싫어요 삭제
 	public int deleteDisLike(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq, @Param("memberSeq") int memberSeq);
+	
+	//싫어요 삭제
+	public int deleteAllDisLike(@Param("boardSeq") int boardSeq, @Param("boardTypeSeq") int boardTypeSeq);
 }
