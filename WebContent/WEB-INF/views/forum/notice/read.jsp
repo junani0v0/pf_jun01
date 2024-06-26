@@ -49,7 +49,7 @@ String ctx = request.getContextPath();
                             <p style="margin-bottom: 0; margin-top: 19px;">${board.content}</p>
                             
                             <br/><br/><br/><br/>
-                            <!-- 메뉴가기 -->
+                            <!-- 기능 버튼 -->
                             <c:if test="${board.regMemberSeq eq memberSeq}">
 	                           <!--  수정하기 -->
 								<div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
@@ -58,6 +58,13 @@ String ctx = request.getContextPath();
 	                                </a>
                             	</div>
                             	<!-- 수정하기 끝-->
+                            	<!--  삭제하기 -->
+								<div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
+	                                <a href="<c:url value='/forum/notice/delete.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>">
+	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">삭제</button>
+	                                </a>
+                            	</div>
+                            	<!-- 삭제하기 끝-->
                             </c:if>
                             <br/>
                             <!-- 첨부파일 일괄다운로드-->

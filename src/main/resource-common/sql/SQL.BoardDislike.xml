@@ -28,5 +28,12 @@
     	   AND board_type_seq= #{boardTypeSeq}
     	   AND member_seq= #{memberSeq}
     </delete>
+    
+    <!-- 싫어요 전체 삭제 -->
+    <delete id="deleteAllDisLike" parameterType="int">
+    	DELETE FROM forum.board_dislike
+    	 WHERE board_seq= #{boardSeq} 
+    	   AND board_type_seq= #{boardTypeSeq}
+    </delete>
 
 </mapper>

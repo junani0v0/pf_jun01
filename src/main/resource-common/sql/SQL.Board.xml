@@ -85,7 +85,7 @@
     <!-- 게시글 수정-->
     <update id="updateBoard" parameterType="hashMap">
     	UPDATE forum.board
-    	   SET title= #{title}, content= #{trumbowyg-demo}, reg_member_seq=73, update_dtm= DATE_FORMAT(NOW(), '%Y%m%d%H%i%s')
+    	   SET title= #{title}, content= #{trumbowyg-demo}, reg_member_seq= #{regMemberSeq}, update_dtm= DATE_FORMAT(NOW(), '%Y%m%d%H%i%s')
      	 WHERE board_seq= #{boardSeq} 
      	   AND board_type_seq= #{boardTypeSeq}
     </update>

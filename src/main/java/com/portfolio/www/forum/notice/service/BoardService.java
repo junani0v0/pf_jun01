@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
@@ -14,6 +16,7 @@ import com.portfolio.www.forum.notice.dto.BoardDisLikeDto;
 import com.portfolio.www.forum.notice.dto.BoardDto;
 import com.portfolio.www.forum.notice.dto.BoardLikeDto;
 import com.portfolio.www.forum.notice.mybatis.BoardAttachRepository;
+import com.portfolio.www.forum.notice.mybatis.BoardCommentRepository;
 import com.portfolio.www.forum.notice.mybatis.BoardDislikeRepository;
 import com.portfolio.www.forum.notice.mybatis.BoardLikeRepository;
 import com.portfolio.www.forum.notice.mybatis.BoardRepository;
@@ -36,6 +39,9 @@ public class BoardService {
 	
 	@Autowired
 	private BoardDislikeRepository boardDislikeRepository;
+	
+	@Autowired
+	private BoardCommentRepository boardCommentRepository;
 	
 	// 게시글리스트 가져오기
 	public List<BoardDto> getList(HashMap<String, String> params){
@@ -140,12 +146,19 @@ public class BoardService {
 	}
 	
 	// 게시글 삭제 기능
-	public int delete(HashMap<String, String> params,
-			MultipartFile[] mfs) {
+	public int delete(HashMap<String, String> params) {
 		
 		int boardSeq = Integer.parseInt(params.get("boardSeq"));
-		int boardTypeSeq = Integer.parseInt(params.get("boarTypeSeq"));
-				
+		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
+		
+		//첨부파일 전체 삭제
+		boardAttachRepository.deleteAllAttachInfo(boardSeq, boardTypeSeq);
+		//댓글 전체 삭제
+		boardCommentRepository.deleteAllComment(boardSeq, boardTypeSeq);
+		//좋아요 싫어요 전체 삭제
+		boardLikeRepository.deleteAllLike(boardSeq, boardTypeSeq);
+		boardDislikeRepository.deleteAllDisLike(boardSeq, boardTypeSeq);
+		//게시글 삭제
 		int cnt = boardRepository.deleteBoard(boardSeq, boardTypeSeq);
 				
 		return cnt ;
@@ -241,6 +254,7 @@ public class BoardService {
 		return result;
 
 	}
+
 	
 
 }
