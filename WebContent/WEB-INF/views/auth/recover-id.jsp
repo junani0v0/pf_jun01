@@ -49,12 +49,12 @@
 
                         <div class="login--form">
                             <div class="form-group">
-                                <label for="user_id">UserID</label>
-                                <input id="user_id" name="memberId" type="text" class="text_field" placeholder="Enter your username...">
+                                <label for="urname">Your Name</label>
+                                <input id="urname" name="memberNm" type="text" class="text_field" placeholder="Enter your Name">
                             </div>
                             <div class="form-group">
                                 <label for="email_ad">Email Address</label>
-                                <input id="email_ad"  name="email" type="text" class="text_field" placeholder="Enter your email address">
+                                <input id="email_ad" name="email" type="text" class="text_field" placeholder="Enter your email address">
                             </div>
 
                             <button class="btn btn--md btn--round register_btn" type="submit">Register Now</button>

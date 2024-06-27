@@ -35,6 +35,16 @@ public class LoginController {
 		return mv;
 	}
 	
+	//아이디 찾기 페이지
+	@RequestMapping("/auth/recoverIdPage.do")
+	public ModelAndView recoverIdPage(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
+		mv.setViewName("auth/recover-pass");
+		
+		return mv;
+	}
+	
 	//비밀번호 찾기 페이지
 	@RequestMapping("/auth/recoverPassPage.do")
 	public ModelAndView recoverPassPage(@RequestParam HashMap<String, String> params) {
@@ -107,6 +117,28 @@ public class LoginController {
 		
 		session.invalidate();
 		mv.setViewName("redirect:/index.do");
+		return mv;
+	}
+	
+	//아이디 찾기 기능
+	@RequestMapping("/auth/recoverId.do")
+	public ModelAndView recoverId(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
+		
+		
+		mv.setViewName("auth/recover-id");
+		
+		return mv;
+	}
+	
+	//비밀번호 찾기 기능
+	@RequestMapping("/auth/recoverPass.do")
+	public ModelAndView recoverPass(@RequestParam HashMap<String, String> params) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
+		mv.setViewName("auth/recover-pass");
+		
 		return mv;
 	}
 

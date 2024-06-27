@@ -16,8 +16,8 @@
     </insert>
     
     <!-- 회원ID 조회 -->
-    <select id="getMemberId" parameterType="String" resultType="String">
-    	SELECT member_id 
+    <select id="getMemberId" parameterType="String" resultType="boolean">
+    	SELECT COUNT(*)
     	  FROM forum.member
     	 WHERE member_id= #{memberId}
     </select>
@@ -41,4 +41,13 @@
     	DELETE FROM forum.`member`
 		WHERE member_id = #{memberId};
     </delete>
+    
+    <!-- ID 찾기 -->
+    <select id="recoverId" parameterType="String" resultType="String">
+    	SELECT member_id 
+    	  FROM forum.member
+    	 WHERE member_nm= #{memberNm}
+    	 AND email= #{email}
+    </select>
+    
 </mapper>

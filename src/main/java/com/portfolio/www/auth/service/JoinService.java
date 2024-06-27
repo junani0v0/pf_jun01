@@ -50,7 +50,7 @@ public class JoinService {
 			//회원ID 중복 체크
 //			String idCheck = memberRepository.getMemberId(inputId);
 			//아래 기능 호출해 사용
-			String idCheck = getMemberId(inputId);
+			boolean idCheck = getMemberId(inputId);
 			
 			//회원추가
 			cnt = memberRepository.addJoin(params);
@@ -108,7 +108,7 @@ public class JoinService {
 		return result;
 	}
 	
-	//
+	//회원 삭제
 	public int deleteMember(String memberId) {
 		int result = memberRepository.deleteMember(memberId);
 		return result;
@@ -121,11 +121,9 @@ public class JoinService {
 	}
 	
 	//아이디 중복 테스트용
-	public String getMemberId(String memberId) {
-		String result = memberRepository.getMemberId(memberId);
-		return result;
+	public boolean getMemberId(String memberId) {
+		return memberRepository.getMemberId(memberId);
 	}
-	//이메일 발송
 	
 	
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.portfolio.www.forum.notice.dto.BoardCommentDto;
 import com.portfolio.www.forum.notice.service.BoardCommentService;
+import com.portfolio.www.message.MessageEnum;
 
 @RestController
 public class RestReplyController {
@@ -42,11 +43,11 @@ public class RestReplyController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("result", result);
 		if (result==1) {
-			mv.addObject("code","0000");
-			mv.addObject("msg", "작성 완료");
+			mv.addObject("code",MessageEnum.REPLY_SUCCESS.getCode());
+			mv.addObject("msg", MessageEnum.REPLY_SUCCESS.getDescription());
 		}else {
-			mv.addObject("code","9000");
-			mv.addObject("msg", "작성 실패");
+			mv.addObject("code",MessageEnum.REPLY_FAIL.getCode());
+			mv.addObject("msg", MessageEnum.REPLY_FAIL.getDescription());
 		}
 		mv.setViewName("forum/notice/read");
 		return mv;
