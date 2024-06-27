@@ -164,7 +164,7 @@ public class NoticeController {
 			redirectAttrs.addFlashAttribute("code", MessageEnum.WRITE_FAIL.getCode());
 			redirectAttrs.addFlashAttribute("msg", MessageEnum.WRITE_FAIL.getDescription());
 			
-			mv.setViewName(String.format("redirect:/forum//notice/listPage.do"));
+			mv.setViewName(String.format("redirect:/forum/notice/listPage.do"));
 		}
 		return mv;
 	}
@@ -301,13 +301,13 @@ public class NoticeController {
 			 redirectAttrs.addFlashAttribute("code", MessageEnum.DELETE_SUCCESS.getCode()); 
 			 redirectAttrs.addFlashAttribute("msg", MessageEnum.DELETE_SUCCESS.getDescription()); 
 			 
-			 mv.setViewName(String.format("redirect:/forum//notice/listPage.do")); 
+			 mv.setViewName(String.format("redirect:/forum/notice/listPage.do")); 
 			  
 		  }else { 
 			  redirectAttrs.addFlashAttribute("code", MessageEnum.DELETE_FAIL.getCode()); 
 			  redirectAttrs.addFlashAttribute("msg", MessageEnum.DELETE_FAIL.getDescription());
 		  
-			  mv.setViewName(String.format("redirect:/forum//notice/listPage.do")); 
+			  mv.setViewName(String.format("redirect:/forum/notice/listPage.do")); 
 			  }
 	  return mv; 
 	  }

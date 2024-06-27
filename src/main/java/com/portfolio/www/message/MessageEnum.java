@@ -6,10 +6,12 @@ public enum MessageEnum {
 	SUCCESS("0000","성공"),
 	JOIN_SUCCESS("0001","회원가입이 성공하였습니다"),
 	EMAIL_SEND_SUCCESS("0002","인증 이메일 발송이 완료되었습니다"),
+	ID_CHECK_SUCCESS("0003","사용가능한 아이디입니다"),
 	
 	WRITE_SUCCESS("0011", "게시글 작성이 완료 되었습니다"),
 	EDIT_SUCCESS("0012", "게시글 수정이 완료 되었습니다"),
 	DELETE_SUCCESS("0013", "게시글 삭제가 완료 되었습니다"),
+	REPLY_SUCCESS("0014", "게시글 삭제가 완료 되었습니다"),
 	
 	
 	USER_NOT_FOUND("9000","사용자가 없습니다"),
@@ -17,11 +19,13 @@ public enum MessageEnum {
 	USER_ID_DUPLICATION("9002","비밀번호가 틀렸습니다"),
 	EMAIL_VALIDATED_FAIL("9003","인증이 실패하였습니다"),
 	NO_EMAIL_AUTHENTICATION("9004","이메일 인증이 필요합니다"),
+	ID_CHECK_FAIL("9005","이미 사용중인 아이디입니다"),
 	
 	
 	WRITE_FAIL("9911", "게시글 작성이 실패하였습니다"),
 	EDIT_FAIL("9912", "게시글 수정이 실패하였습니다"),
 	DELETE_FAIL("9913", "게시글 삭제가 실패하였습니다"),
+	REPLY_FAIL("9914", "게시글 삭제가 실패하였습니다"),
 	WRONG_APPROACH("9999", "잘못된 접근입니다")
 	;
 	

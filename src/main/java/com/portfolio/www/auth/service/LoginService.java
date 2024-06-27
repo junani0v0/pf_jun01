@@ -30,5 +30,27 @@ public class LoginService {
 		return result.verified ? memberDto : null ;
 	}
 	
+	//사용자 검색(아이디 찾기)
+	public String recoverId(HashMap<String, String> params) throws EmptyResultDataAccessException {
+	    String memberNm = params.get("memberNm");
+	    String email = params.get("email");
+
+	    // memberNm을 이용하여 멤버 조회
+	    MemberDto memberByNm = memberRepository.getMember(memberNm);
+
+	    // email을 이용하여 멤버 조회
+	    MemberDto memberByEmail = memberRepository.getMember(email);
+
+	    // id와 email이 일치하는지 확인
+	    if (memberNm.equals(memberByEmail.getMemberNm()) && email.equals(memberByEmail.getEmail())) {
+	        return memberRepository.recoverId(memberNm, email); // 둘 다 조건을 만족할 경우 memberByNm을 반환
+	    } else {
+	        return null; // 조건을 만족하지 않을 경우 null을 반환
+	    }
+	}
+
+
+	
+	
 	
 }
