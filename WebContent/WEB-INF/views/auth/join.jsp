@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
 String ctx = request.getContextPath();
 %>
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -25,9 +25,11 @@ String ctx = request.getContextPath();
                     <form action="/pf/auth/join.do" method = "post">
                         <div class="cardify signup_form">
                             <div class="login--header">
-                                <h3>Create Your Account</h3>
-                                <p>Please fill the following fields with appropriate information to register a new MartPlace
-                                    account.
+                                <h3>
+                                	<spring:message code="join.header"/>
+                               	</h3>
+                                <p>
+                                	<spring:message code="join.con"/>
                                 </p>
                             </div>
                             <!-- end .login_header -->
@@ -35,63 +37,69 @@ String ctx = request.getContextPath();
                             <div class="login--form">
 								<fieldset>
 	 								<div class="form-group">
-	                                    <label for="user_id">UserID</label>
+	                                    <label for="user_id"><spring:message code="userid"/></label>
 	                                    <input id="user_id" name="memberId" type="text" class="text_field" placeholder="Enter your username...">
 	                                </div>
                                 </fieldset>
                                 
-                                <div class="success-message hide" style="color: #8fce00">사용할 수 있는 아이디입니다</div>
-							    <div class="failure-message hide" style="color: #f44336">아이디는 4~20글자이어야 합니다</div>
-							    <div class="failure-message2 hide" style="color: #f44336">영어 소문자와 숫자 혼합만 사용가능합니다</div>
-                                <div class="failure-message3 hide" style="color: #f44336">사용할 수 없는 중복 아이디입니다</div>
+                                <div class="success-message hide" style="color: #8fce00"><spring:message code="userid.success"/></div>
+							    <div class="failure-message hide" style="color: #f44336"><spring:message code="userid.error1"/></div>
+							    <div class="failure-message2 hide" style="color: #f44336"><spring:message code="userid.error2"/></div>
+                                <div class="failure-message3 hide" style="color: #f44336"><spring:message code="userid.error3"/></div>
 
 								<fieldset>
 	                                <div class="form-group">
-	                                    <label for="urname">Your Name</label>
+	                                    <label for="urname"><spring:message code="username"/></label>
 	                                    <input id="urname" name="memberNm" type="text" class="text_field" placeholder="Enter your Name">
 	                                </div>
                                 </fieldset>
                                 
-                                <div class="name-fail-message hide" style="color: #f44336">이름은 공백 또는 빈칸일 수 없습니다</div>
-                                <div class="name-fail-message2 hide" style="color: #f44336">영어 대/소문자와 한글만 가능합니다</div>
-                                <div class="name-fail-message3 hide" style="color: #f44336">최대 20글자까지 가능합니다</div>
+                                <div class="name-fail-message hide" style="color: #f44336"><spring:message code="username.error1"/></div>
+                                <div class="name-fail-message2 hide" style="color: #f44336"><spring:message code="username.error2"/></div>
+                                <div class="name-fail-message3 hide" style="color: #f44336"><spring:message code="username.error3"/></div>
 
 								<fieldset>
 	                                <div class="form-group">
-	                                    <label for="email_ad">Email Address</label>
+	                                    <label for="email_ad"><spring:message code="email"/></label>
 	                                    <input id="email_ad" name="email" type="text" class="text_field" placeholder="Enter your email address">
 	                                </div>
                                 </fieldset>
                                
-							   <div class="email-fail-message hide" style="color: #f44336">이메일은 공백 또는 빈칸일 수 없습니다</div>
-							   <div class="email-fail-message2 hide" style="color: #f44336">이메일 형식을 준수해야 합니다</div>
-							   <div class="email-fail-message3 hide" style="color: #f44336">최대 20글자까지 가능합니다</div>
+							   <div class="email-fail-message hide" style="color: #f44336"><spring:message code="email.error1"/></div>
+							   <div class="email-fail-message2 hide" style="color: #f44336"><spring:message code="email.error2"/></div>
+							   <div class="email-fail-message3 hide" style="color: #f44336"><spring:message code="email.error3"/></div>
                                
                                <fieldset>
 	                                <div class="form-group input_password">
-	                                    <label for="password">Password</label>
+	                                    <label for="password"><spring:message code="pass"/></label>
 	                                    <input id="password" name="passwd" type="password" class="text_field" placeholder="Enter your password...">
 	                                    <i class="fa fa-eye-slash fa-lg toggle-password"></i>
 	                                </div>
                                 </fieldset>
                                 
-                                <div class="strongPassword-message hide" style="color: #f44336">8~16자의 영문(대/소문자), 숫자, 특수문자(@$!%*#?&) 1개 이상을 포함해야합니다</div>
+                                <div class="strongPassword-message hide" style="color: #f44336">
+                                	<spring:message code="pass.error"/>
+                                </div>
                                 
                                 <fieldset>
 	                                <div class="form-group input_password">
-	                                    <label for="con_pass">Confirm Password</label>
+	                                    <label for="con_pass"><spring:message code="con_pass"/></label>
 	                                    <input id="con_pass" type="password" class="text_field" placeholder="Confirm password">
 	                                    <i class="fa fa-eye-slash fa-lg toggle-con_pass"></i>
 	                                </div>
                                 </fieldset>
                                 
-                                <div class="mismatch-message hide" style="color: #f44336">비밀번호가 일치하지 않습니다</div>
+                                <div class="mismatch-message hide" style="color: #f44336">
+                                	<spring:message code="con_pass.error"/>
+                               	</div>
 
-                                <button class="btn btn--md btn--round register_btn" type="submit">Register Now</button>
+                                <button class="btn btn--md btn--round register_btn" type="submit">
+                                	<spring:message code="join"/>
+                                </button>
 
                                 <div class="login_assist">
-                                    <p>Already have an account?
-                                        <a href="<c:url value='/auth/loginPage.do'/>">Login</a>
+                                    <p><spring:message code="login_assist"/>
+                                        <a href="<c:url value='/auth/loginPage.do'/>"><spring:message code="login"/></a>
                                     </p>
                                 </div>
                             </div>

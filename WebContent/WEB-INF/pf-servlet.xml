@@ -57,4 +57,22 @@
 
 	<mvc:annotation-driven />
 	
+	<!-- 다국어 처리 Start-->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+	    <property name="basenames">
+	       <list>
+	          <value>message.messageSource</value>
+	       </list>
+	    </property>
+	</bean>
+	<!-- 다국어 처리 현재 Locale정보를 가져와 Resolver -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<!-- 다국어 처리 Locale 정보를 변경해주는 클래스 lang 파라미터를 보내주면 자동으로 처리 -->
+	<mvc:interceptors>
+      <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+         <property name="paramName" value="lang" />
+      </bean>
+    </mvc:interceptors>
+	<!-- 다국어 처리 End-->
+	
 </beans>
