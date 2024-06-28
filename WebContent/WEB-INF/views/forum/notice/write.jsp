@@ -1,15 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ include file="/common/scripts.jsp" %>
-	<link rel="stylesheet" href="<%=ctx%>/assest/template/css/trumbowyg.min.css">
-    <script src="<%=ctx%>/assest/template/js/vendor/trumbowyg.min.js"></script>
-    <script src="<%=ctx%>/assest/template/js/vendor/trumbowyg/ko.js"></script>
-    <script type="text/javascript">
-	    $('#trumbowyg-demo').trumbowyg({
-	        lang: 'kr'
-	    });
-	    
-	</script>
+<link rel="stylesheet" href="<%=ctx%>/assest/template/css/trumbowyg.min.css">
+<script src="<%=ctx%>/assest/template/js/vendor/trumbowyg.min.js"></script>
+<script src="<%=ctx%>/assest/template/js/vendor/trumbowyg/ko.js"></script>
+<script type="text/javascript">
+ $('#trumbowyg-demo').trumbowyg({
+     lang: 'kr'
+ });
+    
+</script>
     <!--================================
             START DASHBOARD AREA
     =================================-->
@@ -20,42 +21,42 @@
                     <div class="question-form cardify p-4">
                         <form action="<%=ctx%>/forum/notice/write.do" method ="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label>제목</label>
+                                <label><spring:message code="write.title"/></label>
                                 <input type="text" placeholder="Enter title here"  name="title" required>
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label><spring:message code="write.co"/></label>
                                 <div id="trumbowyg-demo"></div>
                             </div>
                             <div class="form-group">
                                 <div class="attachments">
-                                    <label>Attachments</label>
+                                    <label><spring:message code="write.attach"/></label>
                                     <label>
-                                        <span class="lnr lnr-paperclip"></span> Add File
-                                        <span>or Drop Files Here</span>
+                                        <span class="lnr lnr-paperclip"></span> <spring:message code="write.file"/>
+                                        <span><spring:message code="write.drop"/></span>
                                         <input type="file" name ="attFile" style="display:inline-block;">
                                     </label>
                                 </div>
                                 <div class="attachments">
-                                    <label>Attachments</label>
+                                    <label><spring:message code="write.attach"/></label>
                                     <label>
-                                        <span class="lnr lnr-paperclip"></span> Add File
-                                        <span>or Drop Files Here</span>
+                                        <span class="lnr lnr-paperclip"></span> <spring:message code="write.file"/>
+                                        <span><spring:message code="write.drop"/></span>
                                         <input type="file" name ="attFile" style="display:none;">
                                     </label>
                                 </div>
                                 <div class="attachments">
-                                    <label>Attachments</label>
+                                    <label><spring:message code="write.attach"/></label>
                                     <label>
-                                        <span class="lnr lnr-paperclip"></span> Add File
-                                        <span>or Drop Files Here</span>
+                                        <span class="lnr lnr-paperclip"></span> <spring:message code="write.file"/>
+                                        <span><spring:message code="write.drop"/></span>
                                         <input type="file" name ="attFile" style="display:none;">
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn--md btn-primary">Submit Request</button>
-                            	<a href="<c:url value='/forum/notice/listPage.do'/>" class="btn btn--md btn-light">Cancel</a>
+                                <button type="submit" class="btn btn--md btn-primary"><spring:message code="write.submit"/></button>
+                            	<a href="<c:url value='/forum/notice/listPage.do'/>" class="btn btn--md btn-light"><spring:message code="write.cancel"/></a>
                             </div>
                         </form>
                     </div><!-- ends: .question-form -->

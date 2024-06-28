@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import = "com.portfolio.www.message.MessageEnum" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
 String ctx = request.getContextPath();
 %>
@@ -54,14 +55,14 @@ String ctx = request.getContextPath();
 	                           <!--  수정하기 -->
 								<div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
 	                                <a href="<c:url value='/forum/notice/editPage.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>">
-	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">수정</button>
+	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary"><spring:message code="read.edit"/></button>
 	                                </a>
                             	</div>
                             	<!-- 수정하기 끝-->
                             	<!--  삭제하기 -->
 								<div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
 	                                <a href="<c:url value='/forum/notice/delete.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>">
-	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">삭제</button>
+	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary"><spring:message code="read.delete"/></button>
 	                                </a>
                             	</div>
                             	<!-- 삭제하기 끝-->
@@ -70,7 +71,9 @@ String ctx = request.getContextPath();
                             <!-- 첨부파일 일괄다운로드-->
                             <a href="<c:url value='/forum/downloadAllZip.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>"
 							   class="download-link ${empty attFile ? 'hidden' : ''}">
-							    <button class="btn btn--round btn--bordered btn-sm btn-secondary ${empty attFile ? 'hidden' : ''}">일괄 다운로드</button>
+							    <button class="btn btn--round btn--bordered btn-sm btn-secondary ${empty attFile ? 'hidden' : ''}">
+							    	<spring:message code="read.download"/>
+							    </button>
 							</a>
                             <br/>
                             <!-- 첨부파일 -->
@@ -89,7 +92,7 @@ String ctx = request.getContextPath();
 
                         <div class="forum--replays cardify">
                             <div class="area_title">
-                                <h4>${commentCnt} Replies</h4>
+                                <h4>${commentCnt} <spring:message code="read.cnt"/></h4>
                             </div>
                             <!-- end .area_title -->
                             <!-- 댓글 시작 -->
@@ -108,8 +111,8 @@ String ctx = request.getContextPath();
 							              <!-- end .pull-left -->
 							            <div class="button-container" style="text-align: right;">
 							            	<c:if test="${comment.memberSeq eq memberSeq}">
-											    <button class="btn btn--round btn--bordered btn-sm btn-secondary" onClick='editComment(${comment.commentSeq}, "${comment.content}")'>수정</button>
-											    <button class="btn btn--round btn--bordered btn-sm btn-secondary" onClick='deleteComment(${comment.commentSeq})'>삭제</button>
+											    <button class="btn btn--round btn--bordered btn-sm btn-secondary" onClick='editComment(${comment.commentSeq}, "${comment.content}")'><spring:message code="read.edit"/></button>
+											    <button class="btn btn--round btn--bordered btn-sm btn-secondary" onClick='deleteComment(${comment.commentSeq})'><spring:message code="read.delete"/></button>
 										    </c:if>
 										</div>
 							          </div>
@@ -124,7 +127,7 @@ String ctx = request.getContextPath();
                             <!-- end .forum_single_reply -->
 
                             <div class="comment-form-area">
-                                <h4>Leave a comment</h4>
+                                <h4><spring:message code="read.Comment"/></h4>
                                 <!-- comment reply -->
                                 <div class="media comment-form support__comment">
                                     <div class="media-left">
@@ -134,9 +137,9 @@ String ctx = request.getContextPath();
                                     </div>
                                     <div class="media-body comment-reply-form">
 	                                    <div id="trumbowyg-demo"></div>
-	                                    <button class="btn btn--sm btn--round" onClick='addComment(${board.boardSeq}, ${board.boardTypeSeq});'>Post Comment</button>
+	                                    <button class="btn btn--sm btn--round" onClick='addComment(${board.boardSeq}, ${board.boardTypeSeq});'><spring:message code="read.reply"/></button>
 	                                    <a href="<c:url value='/forum/notice/listPage.do'/>">
-		                               		<button class="btn btn--round btn--bordered btn-sm btn-secondary">목록</button>
+		                               		<button class="btn btn--round btn--bordered btn-sm btn-secondary"><spring:message code="read.list"/></button>
 		                                </a>
                                     </div>
                                 </div>

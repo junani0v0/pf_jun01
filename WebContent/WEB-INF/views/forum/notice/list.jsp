@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import = "com.portfolio.www.message.MessageEnum" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%
 String ctx = request.getContextPath();
 %>
@@ -32,17 +33,17 @@ a {
                         <div class="modules__content">
                             <div class="withdraw_module withdraw_history">
                                 <div class="withdraw_table_header">
-                                    <h3>공지사항</h3>
+                                    <h3><spring:message code="list"/></h3>
                                 </div>
                                 <div class="table-responsive">
                                     <table class="table withdraw__table">
                                         <thead>
                                             <tr>
-                                            	<th>No</th>
-                                                <th>제목</th>
+                                            	<th><spring:message code="list.no"/></th>
+                                                <th><spring:message code="list.title"/></th>
                                                 <th></th>
-                                                <th>Date</th>
-                                                <th>작성자</th>
+                                                <th><spring:message code="list.date"/></th>
+                                                <th><spring:message code="list.writer"/></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -108,7 +109,9 @@ a {
                                     </table>
                                     <div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
 		                                <a href="<c:url value='/forum/notice/writePage.do'/>">
-		                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">작성</button>
+		                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">
+		                                		<spring:message code="list.write"/>
+		                                	</button>
 		                                </a>
 		                            </div>
                                     <!-- 페이징 시작 -->
