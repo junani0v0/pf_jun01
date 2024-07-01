@@ -40,7 +40,7 @@ public class LoginController {
 	public ModelAndView recoverIdPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
-		mv.setViewName("auth/recover-pass");
+		mv.setViewName("auth/recover-id");
 		
 		return mv;
 	}
@@ -122,12 +122,21 @@ public class LoginController {
 	
 	//아이디 찾기 기능
 	@RequestMapping("/auth/recoverId.do")
-	public ModelAndView recoverId(@RequestParam HashMap<String, String> params) {
+	public ModelAndView recoverId(@RequestParam HashMap<String, String> params, RedirectAttributes redirectAttrs) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
-		
-		
-		mv.setViewName("auth/recover-id");
+		try {
+			String result =loginService.recoverId(params);
+			System.out.println("==========controller==============id=======:"+result);
+			
+			mv.addObject("recoverId", loginService.recoverId(params));
+			mv.setViewName("redirect:/auth/recoverIdPage.do");
+			
+		}catch(EmptyResultDataAccessException e) {
+			mv.setViewName("redirect:/auth/recoverIdPage.do");
+	    	redirectAttrs.addFlashAttribute("code", MessageEnum.USER_NOT_FOUND.getCode());
+	        redirectAttrs.addFlashAttribute("msg", MessageEnum.USER_NOT_FOUND.getDescription());
+		}
 		
 		return mv;
 	}

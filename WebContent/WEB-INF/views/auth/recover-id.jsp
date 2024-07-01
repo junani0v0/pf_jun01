@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%
+String ctx = request.getContextPath();
+%>
 
 <!--================================
     START BREADCRUMB AREA
@@ -38,7 +41,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 offset-lg-3" style="padding-top: 70px; padding-bottom: 120px;">
-                <form action="#" style="box-shadow: 0 0 2px 0px;">
+             <!-- Form 부분 -->
+                <c:if test="${empty recoverId}">
+                <form action="<%=ctx%>/auth/recoverId.do" style="box-shadow: 0 0 2px 0px;">
                     <div class="cardify recover_pass">
                         <div class="login--header">
                             <p>Please enter the email address for your account. A verification code will be sent to you.
@@ -63,6 +68,20 @@
                     </div>
                     <!-- end .cardify -->
                 </form>
+                </c:if>
+                <!-- 찾은 아이디 부분 -->
+                <c:if test="${not empty recoverId}">
+                    <div class="cardify recover_pass">
+                        <div class="login--form">
+                            <div class="form-group">
+                                <label for="urname">Your ID</label>
+                                ${recoverId}
+                            </div>
+                        </div>
+                        <!-- end .login--form -->
+                    </div>
+                    <!-- end .cardify -->
+                </c:if>
             </div>
             <!-- end .col-md-6 -->
         </div>

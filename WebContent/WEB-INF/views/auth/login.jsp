@@ -3,6 +3,9 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<%
+String ctx = request.getContextPath();
+%>
 
     <!--================================
             START LOGIN AREA
@@ -11,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 offset-lg-3">
-                    <form action="/pf/auth/login.do" method = "post">
+                    <form action="<%=ctx%>/auth/login.do" method = "post">
                         <div class="cardify login">
                             <div class="login--header">
                                 <h3><spring:message code="login.header"/></h3>
@@ -46,7 +49,7 @@
 
                                 <div class="login_assist">
                                     <p class="recover"><spring:message code="login.lost"/>
-                                        <a href="<c:url value='/auth/recoverPassPage.do'/>">
+                                        <a href="<c:url value='/auth/recoverIdPage.do'/>">
                                         	<spring:message code="login.id"/>
                                        	</a> 
                                        		<spring:message code="login.or"/>
