@@ -4,6 +4,9 @@
 <%
 String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
 %>
+<style>
+
+</style>
     <!-- ================================
 	    START MENU AREA
 	================================= -->
@@ -78,24 +81,6 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
 						            <!-- 로그인되지 않은 상태일 때 표시할 메뉴 -->
 						            <div class="author-area not_logged_in">
 						                <div class="pull-right join desktop-size d-md-block d-none">
-						                	
-						                    <!-- 다국어기능  start -->
-						                    <a href="#" class="dropdown-toggle btn btn--round btn--xs btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-right: 30px;">
-						                    	<spring:message code="Language"/>
-					                    	</a>
-				                    		<ul class="custom_dropdown dropdown-menu" aria-labelledby="drop3">
-					                            <li>
-					                                <a href="?lang=ko">한국어</a>
-					                            </li>
-					                            <li>
-					                                <a href="?lang=en">English</a>
-					                            </li>
-					                            <li>
-					                                <a href="?lang=ja">日本語</a>
-					                            </li>
-					                        </ul>
-					                        
-					                        <!-- 다국어기능  end -->
 						                    <a href="<c:url value='/auth/joinPage.do'/>" class="btn btn--round btn-secondary btn--xs"><spring:message code="menu.join"/></a>
 						                    <a href="<c:url value='/auth/loginPage.do'/>" class="btn btn--round btn--xs"><spring:message code="menu.login"/></a>
 						                </div>
@@ -146,12 +131,7 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
                                                     	<spring:message code="board.notice"/>
                                                     </a>
                                                 </li>
-                                                <li>
-                                                    <a href="#">Follow Feed</a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">Top Authors</a>
-                                                </li>
+                                                
                                             </ul>
                                         </div>
                                     </li>
@@ -163,6 +143,29 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
                                     </li>
                                 </ul>
                             </div>
+                            <!-- 다국어 기능 start -->
+                            <ul class="navbar-nav">
+	                            <li class="has_dropdown">
+	                                <a href="#" >
+	                                	<spring:message code="Language"/>
+	                                </a>
+	                                <div class="dropdowns dropdown--menu">
+	                                    <ul>
+	                                        <li>
+	                                <a href="?lang=ko">한국어</a>
+	                            </li>
+	                            <li>
+	                                <a href="?lang=en">English</a>
+	                            </li>
+	                            <li>
+	                                <a href="?lang=ja">日本語</a>
+	                            </li>
+	                                    </ul>
+	                                </div>
+	                            </li>
+                            </ul>
+                            <!-- 다국어 기능 end -->
+
                             <!-- /.navbar-collapse -->
                         </nav>
                     </div>
@@ -178,3 +181,7 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
     <!--================================
 	    END MENU AREA
 	=================================-->
+	
+	<script>
+	
+	</script>

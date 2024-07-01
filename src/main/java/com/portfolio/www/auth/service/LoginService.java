@@ -42,7 +42,11 @@ public class LoginService {
 	    MemberDto memberByEmail = memberRepository.getMember(email);
 
 	    // id와 email이 일치하는지 확인
-	    if (memberNm.equals(memberByEmail.getMemberNm()) && email.equals(memberByEmail.getEmail())) {
+	    if (memberNm.equals(memberByNm.getMemberNm()) && email.equals(memberByEmail.getEmail())) {
+	    	String result = memberRepository.recoverId(memberNm, email);
+	    	System.out.println("----------service-------id------------:"+ result);
+	    	
+	    	
 	        return memberRepository.recoverId(memberNm, email); // 둘 다 조건을 만족할 경우 memberByNm을 반환
 	    } else {
 	        return null; // 조건을 만족하지 않을 경우 null을 반환
