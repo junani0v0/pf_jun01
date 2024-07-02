@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 	<!--================================
         START BREADCRUMB AREA
@@ -11,15 +12,17 @@
                 <div class="col-md-12">
                     <div class="page_title">
                         <h3>Contact Us</h3>
-                        <p class="subtitle">You came to the right place</p>
+                        <p class="subtitle">언제든 연락주세요</p>
                     </div>
                     <div class="breadcrumb">
                         <ul>
                             <li>
-                                <a href="index.html">Home</a>
+                                <a href="<c:url value='/index.do'/>"><spring:message code="board.home"/></a>
                             </li>
                             <li class="active">
-                                <a href="#">Contact Us</a>
+                                <a href="<c:url value='/auth/contactPage.do'/>">
+                                	Contact Us
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -48,8 +51,7 @@
                                 <h1>How can We
                                     <span class="highlighted">Help?</span>
                                 </h1>
-                                <p>Laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats.
-                                    Lid est laborum dolo rumes fugats untras.</p>
+                                <p>문자 또는 이메일 남겨주시면 이력서를 보내드리겠습니다.</p>
                             </div>
                         </div>
                         <!-- end /.col-md-12 -->
@@ -84,7 +86,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="contact_tile">
                                 <span class="tiles__icon lnr lnr-inbox"></span>
-                                <h4 class="tiles__title">Phone Number</h4>
+                                <h4 class="tiles__title">Email Address</h4>
                                 <div class="tiles__content">
                                     <p>quf2235@naver.com</p>
                                     <p>junani0v0@naver.com</p>
@@ -94,59 +96,6 @@
                         </div>
                         <!-- end /.col-lg-4 col-md-6 -->
 
-                        <div class="col-md-12">
-                            <div class="contact_form cardify">
-                                <div class="contact_form__title">
-                                    <h3>Leave Your Messages</h3>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-8 offset-md-2">
-                                        <div class="contact_form--wrapper">
-                                            <form action="#">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Name">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Email">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Name">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input type="text" placeholder="Email">
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <textarea cols="30" rows="10" placeholder="Yout text here"></textarea>
-
-                                                <div class="sub_btn">
-                                                    <button type="button" class="btn btn--round btn--default">Send Request</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <!-- end /.col-md-8 -->
-                                </div>
-                                <!-- end /.row -->
-                            </div>
-                            <!-- end /.contact_form -->
-                        </div>
-                        <!-- end /.col-md-12 -->
                     </div>
                     <!-- end /.row -->
                 </div>

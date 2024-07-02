@@ -28,7 +28,13 @@ public class LoginFilter extends HttpFilter implements Filter {
             "/forum/notice/listPage.do", 
             "/forum/notice/writePage.do",
             "/forum/notice/readPage.do",
-            "/forum/notice/editPage.do"
+            "/forum/notice/editPage.do",
+            
+            "/profile/timelinePage.do",
+            "/profile/jobPage.do",
+            "/profile/myPage.do",
+            "/profile/selfIntroductionPage.do",
+            "/profile/careerPage.do"
     };
 
     // 로그인 페이지

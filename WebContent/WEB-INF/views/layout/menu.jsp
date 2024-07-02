@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%
-String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
-%>
-<style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-</style>
+
     <!-- ================================
 	    START MENU AREA
 	================================= -->
@@ -47,25 +44,25 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
 			
 			                            <div class="dropdowns dropdown--author">
 			                                <ul>
-			                                    <li>
+			                                    <%-- <li>
 			                                        <a href="<c:url value='/profile/myPage.do'/>">
 			                                            <span class="lnr lnr-user"></span><spring:message code="menu.profile"/></a>
-			                                    </li>
+			                                    </li> --%>
 			                                    <li>
 			                                        <a href="<c:url value='/profile/jobPage.do'/>">
-			                                            <span class="lnr lnr-cog"></span><spring:message code="menu.resume"/></a>
+			                                            <span class="lnr fa-solid fa-user"></span><spring:message code="menu.resume"/></a>
 			                                    </li>
 			                                    <li>
 			                                        <a href="<c:url value='/profile/timelinePage.do'/>">
-			                                            <span class="lnr lnr-cog"></span><spring:message code="menu.history"/></a>
+			                                            <span class="lnr fa-solid fa-graduation-cap"></span><spring:message code="menu.history"/></a>
 			                                    </li>
 			                                    <li>
 			                                        <a href="<c:url value='/profile/careerPage.do'/>">
-			                                            <span class="lnr lnr-cog"></span><spring:message code="menu.career"/></a>
+			                                            <span class="lnr fa-solid fa-ship"></span><spring:message code="menu.career"/></a>
 			                                    </li>
 			                                    <li>
 			                                        <a href="<c:url value='/profile/selfIntroductionPage.do'/>">
-			                                            <span class="lnr lnr-cog"></span><spring:message code="menu.self"/></a>
+			                                            <span class="lnr fa-solid fa-pen-nib"></span><spring:message code="menu.self"/></a>
 			                                    </li>
 			                                    <li>
 			                                        <a href="<c:url value='/auth/logout.do'/>">
@@ -119,25 +116,22 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                     <li class="has_dropdown">
-                                        <a href="<c:url value='/index.do'/>"><spring:message code="board.home" /></a>
+                                    	<a href="<c:url value='/index.do'/>">
+                                    		<span class="fa-solid fa-house"></span>
+                                        	<spring:message code="board.home"/>
+                                       	</a>
                                     </li>
                                     
                                     <li class="has_dropdown">
-                                        <a href="#"><spring:message code="board"/></a>
-                                        <div class="dropdowns dropdown--menu">
-                                            <ul>
-                                                <li>
-                                                    <a href="<c:url value='/forum/notice/listPage.do'/>">
-                                                    	<spring:message code="board.notice"/>
-                                                    </a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </div>
+                                        <a href="<c:url value='/forum/notice/listPage.do'/>">
+                                        	<span class="fa-solid fa-bullhorn"></span>
+                                        	<spring:message code="board.notice"/>
+                                        </a>
                                     </li>
                                     
                                     <li>
                                         <a href="<c:url value='/auth/contactPage.do'/>">
+                                        	<span class="fa-solid fa-comments"></span>
                                         	<spring:message code="board.contact"/>
                                        	</a>
                                     </li>
@@ -146,20 +140,21 @@ String uri = request.getRequestURI(); // 현재 요청의 URI를 가져옴
                             <!-- 다국어 기능 start -->
                             <ul class="navbar-nav">
 	                            <li class="has_dropdown">
-	                                <a href="#" >
+	                                <a href="#">
+	                                	<span class="lnr fa-solid fa-globe"></span>
 	                                	<spring:message code="Language"/>
 	                                </a>
 	                                <div class="dropdowns dropdown--menu">
 	                                    <ul>
 	                                        <li>
-	                                <a href="?lang=ko">한국어</a>
-	                            </li>
-	                            <li>
-	                                <a href="?lang=en">English</a>
-	                            </li>
-	                            <li>
-	                                <a href="?lang=ja">日本語</a>
-	                            </li>
+				                                <a href="?lang=ko">한국어</a>
+				                            </li>
+				                            <li>
+				                                <a href="?lang=en">English</a>
+				                            </li>
+				                            <li>
+				                                <a href="?lang=ja">日本語</a>
+	                           				 </li>
 	                                    </ul>
 	                                </div>
 	                            </li>

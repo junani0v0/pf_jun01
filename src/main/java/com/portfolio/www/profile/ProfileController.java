@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProfileController {
 	
-	//경력? 학습 이력?
+	//학력 및 교육 사항
 	@RequestMapping("/profile/timelinePage.do")
 	public ModelAndView timelinePage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
@@ -21,7 +21,7 @@ public class ProfileController {
 		return mv;
 	}
 	
-	//지원서 페이지
+	//이력서 페이지
 	@RequestMapping("/profile/jobPage.do")
 	public ModelAndView jobPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
