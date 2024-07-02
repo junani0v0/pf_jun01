@@ -73,25 +73,31 @@
                                 <li>
                                     <span class="fa-solid fa-bullhorn"></span>
                                     <span class="info">
-                                    	<a href="<c:url value='/forum//notice/listPage.do'/>" style="color: white;"><spring:message code="board.notice"/></a>
+                                    	<a href="<c:url value='/forum/notice/listPage.do'/>" style="color: white;"><spring:message code="board.notice"/></a>
                                     </span>
                                 </li>
                                 <li>
-                                    <span class="fa-regular fa-address-card"></span>
+                                    <span class="fa-solid fa-user"></span>
                                     <span class="info">
-                                    	<a href="#" style="color: white;"><spring:message code="menu.profile"/></a>
+                                    	<a href="<c:url value='/profile/jobPage.do'/>" style="color: white;"><spring:message code="menu.resume"/></a>
                                    	</span>
                                 </li>
                                 <li>
-                                    <span class="fa-regular fa-user"></span>
+                                    <span class="fa-solid fa-graduation-cap"></span>
                                     <span class="info">
-                                    	<a href="#" style="color: white;"><spring:message code="menu.me"/></a>
+                                    	<a href="<c:url value='/profile/timelinePage.do'/>" style="color: white;"><spring:message code="menu.history"/></a>
                                    	</span>
                                 </li>
                                 <li>
                                     <span class="fa-solid fa-ship"></span>
                                     <span class="info">
-                                    	<a href="#" style="color: white;"><spring:message code="menu.career"/></a>
+                                    	<a href="<c:url value='/profile/careerPage.do'/>" style="color: white;"><spring:message code="menu.career"/></a>
+                                   	</span>
+                                </li>
+                                <li>
+                                    <span class="fa-solid fa-pen-nib"></span>
+                                    <span class="info">
+                                    	<a href="<c:url value='/profile/selfIntroductionPage.do'/>" style="color: white;"><spring:message code="menu.self"/></a>
                                    	</span>
                                 </li>
                             </ul>
