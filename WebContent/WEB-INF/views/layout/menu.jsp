@@ -82,8 +82,8 @@
 						                    <a href="<c:url value='/auth/loginPage.do'/>" class="btn btn--round btn--xs"><spring:message code="menu.login"/></a>
 						                </div>
 						                <div class="pull-right join mobile-size d-md-none d-flex">
-						                    <a href="#" class="btn btn--round btn-secondary"><span class="lnr lnr-user"></span></a>
-						                    <a href="#" class="btn btn--round"><span class="lnr lnr-enter"></span></a>
+						                    <a href="<c:url value='/auth/joinPage.do'/>" class="btn btn--round btn-secondary"><span class="lnr lnr-user"></span></a>
+						                    <a href="<c:url value='/auth/loginPage.do'/>" class="btn btn--round"><span class="lnr lnr-enter"></span></a>
 						                </div>
 						            </div>
 						        </c:otherwise>
@@ -115,14 +115,14 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
-                                    <li class="has_dropdown">
+                                    <li>
                                     	<a href="<c:url value='/index.do'/>">
                                     		<span class="fa-solid fa-house"></span>
                                         	<spring:message code="board.home"/>
                                        	</a>
                                     </li>
                                     
-                                    <li class="has_dropdown">
+                                    <li>
                                         <a href="<c:url value='/forum/notice/listPage.do'/>">
                                         	<span class="fa-solid fa-bullhorn"></span>
                                         	<spring:message code="board.notice"/>

@@ -21,6 +21,8 @@ public enum MessageEnum {
 	NO_EMAIL_AUTHENTICATION("9004","이메일 인증이 필요합니다"),
 	ID_CHECK_FAIL("9005","이미 사용중인 아이디입니다"),
 	
+	SESSION_ERROR("9006", "에러가 발생하였습니다"),
+	
 	
 	WRITE_FAIL("9911", "게시글 작성이 실패하였습니다"),
 	EDIT_FAIL("9912", "게시글 수정이 실패하였습니다"),

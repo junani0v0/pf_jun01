@@ -12,9 +12,23 @@ String ctx = request.getContextPath();
 
 <style>
 /* 일괄 다운로드 버튼 숨기기 기능용 */
-	.hidden {
-	    display: none;
-	}
+.hidden {
+    display: none;
+}
+
+.cbutton {
+    font-size: 15px;
+    padding: 2px 12px;
+    background-color: white;
+    border: 1px solid blue;
+    color: blue;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.cbutton:hover {
+    background-color: blue;
+    color: white;
+}
 </style>
 
     <!--================================
@@ -42,7 +56,7 @@ String ctx = request.getContextPath();
                             </div>
                             <!-- 제목 끝 -->
                             <div class="suppot_query_tag">
-                                <img class="poster_avatar" src="<%=ctx%>/assest/template/images/support_avat1.png" alt="Support Avatar">${board.memberId}
+                                ${board.memberId}
                                 <!-- 날짜 포맷팅 -->
 						        <fmt:parseDate value="${board.regDtm}" var="regDate" pattern="yyyyMMddHHmmss" />
                                 <span><fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm:ss" /></span>
@@ -52,39 +66,43 @@ String ctx = request.getContextPath();
                             <br/><br/><br/><br/>
                             <!-- 기능 버튼 -->
                             <c:if test="${board.regMemberSeq eq memberSeq}">
-	                           <!--  수정하기 -->
+	                           <!--  수정, 삭제 하기 -->
 								<div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
 	                                <a href="<c:url value='/forum/notice/editPage.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>">
-	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary"><spring:message code="read.edit"/></button>
+	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">
+	                                		<spring:message code="read.edit"/>
+	                                	</button>
 	                                </a>
-                            	</div>
-                            	<!-- 수정하기 끝-->
-                            	<!--  삭제하기 -->
-								<div style="display: inline-block; margin: 0 5px; float: right; padding-right:10px;">
 	                                <a href="<c:url value='/forum/notice/delete.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>">
-	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary"><spring:message code="read.delete"/></button>
+	                                	<button class="btn btn--round btn--bordered btn-sm btn-secondary">
+	                                		<spring:message code="read.delete"/>
+	                                	</button>
 	                                </a>
                             	</div>
-                            	<!-- 삭제하기 끝-->
+                            	<!-- 수정, 삭제 하기 끝-->
                             </c:if>
-                            <br/>
+                            
                             <!-- 첨부파일 일괄다운로드-->
-                            <a href="<c:url value='/forum/downloadAllZip.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>"
+							<a href="<c:url value='/forum/downloadAllZip.do?boardSeq=${board.boardSeq}&boardTypeSeq=${board.boardTypeSeq}'/>"
 							   class="download-link ${empty attFile ? 'hidden' : ''}">
-							    <button class="btn btn--round btn--bordered btn-sm btn-secondary ${empty attFile ? 'hidden' : ''}">
-							    	<spring:message code="read.download"/>
-							    </button>
+							   <button class="btn btn--round cbutton ${empty attFile ? 'hidden' : ''}">
+							       <i class="fa-solid fa-download"></i>
+							       <spring:message code="read.download"/>
+							   </button>
 							</a>
-                            <br/>
+                            <br/><br/>
+                            
                             <!-- 첨부파일 -->
-                            <c:forEach items="${attFile}" var="attFile" varStatus="status">
-	                            <c:if test="${attFile != null}">
-		                            <i class="fa-regular fa-circle-down">
-										<a href='<%=ctx%>/forum/download.do?attachSeq=${attFile.attachSeq}' style="font-size: 16px; color:#555555;">
-											${attFile.orgFileNm} (${attFile.fileSize} byte)
-										</a>
-		                            </i><br/>
-								</c:if>
+							<c:forEach items="${attFile}" var="attFile" varStatus="status">
+							    <c:if test="${attFile != null}">
+							        <span class="fa-regular fa-circle-down"></span>
+							        <a href='<%=ctx%>/forum/download.do?attachSeq=${attFile.attachSeq}' style="font-size: 16px; color:#555555;">
+							            ${attFile.orgFileNm} 
+							            <c:set var="fileSizeKB" value="${attFile.fileSize / 1024}" />
+							            (<fmt:formatNumber value="${fileSizeKB}" type="number" maxFractionDigits="2" /> KB)
+							        </a>
+							        <br/>
+							    </c:if>
 							</c:forEach>
                         </div>
                         <!-- end .forum_issue -->
@@ -130,17 +148,9 @@ String ctx = request.getContextPath();
                                 <h4><spring:message code="read.Comment"/></h4>
                                 <!-- comment reply -->
                                 <div class="media comment-form support__comment">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object" src="<%=ctx%>/assest/template/images/m7.png" alt="Commentator Avatar">
-                                        </a>
-                                    </div>
                                     <div class="media-body comment-reply-form">
 	                                    <div id="trumbowyg-demo"></div>
 	                                    <button class="btn btn--sm btn--round" onClick='addComment(${board.boardSeq}, ${board.boardTypeSeq});'><spring:message code="read.reply"/></button>
-	                                    <a href="<c:url value='/forum/notice/listPage.do'/>">
-		                               		<button class="btn btn--round btn--bordered btn-sm btn-secondary"><spring:message code="read.list"/></button>
-		                                </a>
                                     </div>
                                 </div>
                                 <!-- comment reply -->

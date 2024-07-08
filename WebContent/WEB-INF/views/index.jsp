@@ -120,57 +120,63 @@
 	    <div class="container">
 	        <!-- start row -->
 	        <div class="row">
+	        	<!-- start search-area -->
+	            <div class="col-lg-4 col-md-6">
+	            	<a href="https://junai0v0.tistory.com/89">
+		                <div class="feature">
+		                    <div class="feature__img">
+  		                        <img src="<c:url value='/assest/template/images/slide/error_sq1.jpg'/>" alt="feature" />
+		                    </div>
+		                    <div class="feature__title">
+		                        <h3>제일 속을 썩였던 ...Jasypt</h3>
+		                    </div>
+		                    <div class="feature__desc">
+		                        <p>
+			                        보안을 위해 추가하였는데 이클립스에 환경 변수로 등록해서 local에서 사용하는 건 좋았지만, 배포 시 환경 변수로 등록하는 법을 잘 알지 못하여 고생하였습니다. </br>
+		                        </p>
+		                    </div>
+		                </div>
+	                <!-- end /.feature -->
+	            	</a>
+	            </div>
+	            <!-- end /.col-lg-4 col-md-6 -->
+	        
 	            <!-- start search-area -->
 	            <div class="col-lg-4 col-md-6">
-	                <div class="feature">
-	                    <div class="feature__img">
-	                        <img src="<c:url value='/assest/template/images/slide/error_sq1.jpg'/>" alt="feature" />
-	                    </div>
-	                    <div class="feature__title">
-	                        <h3>Best UX Research</h3>
-	                    </div>
-	                    <div class="feature__desc">
-	                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-	                            leo quam aliquet diam congue is laoreet elit metus.</p>
-	                    </div>
-	                </div>
+		            <a href="https://junai0v0.tistory.com/91">
+		                <div class="feature">
+		                    <div class="feature__img">
+		                        <img src="<c:url value='/assest/template/images/slide/error_sq3.jpg'/>" alt="feature" />
+		                    </div>
+		                    <div class="feature__title">
+		                        <h3>최근 가장 걱정거리 AWS</h3>
+		                    </div>
+		                    <div class="feature__desc">
+		                        <p>최근 메일로 사용량 경고가 와서 과금이 될까 조마조마, 분명 사용한 것도 얼마 없는데 왜 사용량을 다 채운 건지...</p>
+		                    </div>
+		                </div>
+	                </a>
 	                <!-- end /.feature -->
 	            </div>
 	            <!-- end /.col-lg-4 col-md-6 -->
 	
 	            <!-- start search-area -->
 	            <div class="col-lg-4 col-md-6">
-	                <div class="feature">
-	                    <div class="feature__img">
-	                        <img src="<c:url value='/assest/template/images/slide/error_sq2.jpg'/>" alt="feature" />
-	                    </div>
-	                    <div class="feature__title">
-	                        <h3>Fully Responsive</h3>
-	                    </div>
-	                    <div class="feature__desc">
-	                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-	                            leo quam aliquet diam congue is laoreet elit metus.</p>
-	                    </div>
-	                </div>
-	                <!-- end /.feature -->
-	            </div>
-	            <!-- end /.col-lg-4 col-md-6 -->
-	
-	            <!-- start search-area -->
-	            <div class="col-lg-4 col-md-6">
-	                <div class="feature">
-	                    <div class="feature__img">                        
-	                        <img src="<c:url value='/assest/template/images/slide/error_sq3.jpg'/>" alt="feature" />
-	                    </div>
-	                    <div class="feature__title">
-	                        <h3>Buy & Sell Easily</h3>
-	                    </div>
-	                    <div class="feature__desc">
-	                        <p>Nunc placerat mi id nisi interdum mollis. Praesent pharetra, justo ut scelerisque the mattis,
-	                            leo quam aliquet diam congue is laoreet elit metus.</p>
-	                    </div>
-	                </div>
-	                <!-- end /.feature -->
+		            <a href="https://junai0v0.tistory.com/86">
+		                <div class="feature">
+		                    <div class="feature__img">                        
+		                        <img src="<c:url value='/assest/template/images/slide/error_sq2.jpg'/>" alt="feature" />
+		                    </div>
+		                    <div class="feature__title">
+		                        <h3>IllegalArgumentException</h3>
+		                    </div>
+		                    <div class="feature__desc">
+		                        <p>원인을 찾는 데 가장 오래 걸린 Exception</br> 
+		                        생각보다 원인은 간단? 했던....</p>
+		                    </div>
+		                </div>
+		                <!-- end /.feature -->
+	                </a>
 	            </div>
 	            <!-- end /.col-lg-4 col-md-6 -->
 	        </div>
