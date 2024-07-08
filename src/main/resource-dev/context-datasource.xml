@@ -6,7 +6,7 @@
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://jun.c5okyee2oa7y.ap-northeast-2.rds.amazonaws.com:3306/forum?serverTimezone=Asia/Seoul" />
+		<property name="url" value="jdbc:mysql://jundb.c5okyee2oa7y.ap-northeast-2.rds.amazonaws.com:3306/forum?serverTimezone=Asia/Seoul" />
 		<property name="username" value="admin"/>
 		<property name="password" value="Violet260620!"/>
 	</bean>

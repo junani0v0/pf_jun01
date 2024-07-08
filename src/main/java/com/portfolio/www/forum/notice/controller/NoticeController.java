@@ -174,19 +174,24 @@ public class NoticeController {
 	public ModelAndView editPage(@RequestParam HashMap<String, String> params) {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("key", Calendar.getInstance().getTimeInMillis());
-		mv.setViewName("forum/notice/edit");
 		
-		int boardSeq = Integer.parseInt(params.get("boardSeq"));
-		int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
-		
-		if(!params.containsKey("boardSeq")) {
-			mv.addObject("code",MessageEnum.WRONG_APPROACH.getCode());
-			mv.addObject("msg", MessageEnum.WRONG_APPROACH.getDescription());
-		}
-		mv.addObject("board", service.getRead(boardSeq));
-		// 첨부파일
-		mv.addObject("attFile", service.getAttFile(boardSeq, boardTypeSeq));
-		
+		try {
+			int boardSeq = Integer.parseInt(params.get("boardSeq"));
+			int boardTypeSeq = Integer.parseInt(params.get("boardTypeSeq"));
+			mv.setViewName("forum/notice/edit");
+			
+			if(!params.containsKey("boardSeq")) {
+				mv.addObject("code",MessageEnum.WRONG_APPROACH.getCode());
+				mv.addObject("msg", MessageEnum.WRONG_APPROACH.getDescription());
+			}
+			mv.addObject("board", service.getRead(boardSeq));
+			// 첨부파일
+			mv.addObject("attFile", service.getAttFile(boardSeq, boardTypeSeq));
+		 } catch (NumberFormatException e) {
+			 mv.addObject("code", MessageEnum.WRONG_APPROACH.getCode());
+			 mv.addObject("msg", MessageEnum.WRONG_APPROACH.getDescription());
+			 return new ModelAndView("redirect:/forum/notice/listPage.do");
+		 }
 		return mv;
 	}
 	

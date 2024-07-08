@@ -39,7 +39,7 @@
                                 <li>
                                     <span class="lnr lnr-map-marker info-icon"></span>
                                     <span class="info">
-                                    	Giheung-gu, Yongin-si, Gyeonggi-do, Republic of Korea
+                                    	Yongin-si, Gyeonggi-do, Republic of Korea
                                     </span>
                                 </li>
                                 <li>

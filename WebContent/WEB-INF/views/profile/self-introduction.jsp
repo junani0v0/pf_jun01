@@ -150,25 +150,39 @@
     =================================-->
     
     <!-- 페이지 접었다 피기 -->
-    <script type="text/javascript">
-    document.addEventListener("DOMContentLoaded", function() {
-        const toggleButtons = document.querySelectorAll(".toggle-button");
 
-        toggleButtons.forEach(button => {
-            const paragraph = button.parentElement.nextElementSibling;
-            paragraph.style.display = "block"; // 기본적으로 내용 열림 상태로 설정
+	<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const terms = document.querySelectorAll(".term");
+
+        terms.forEach(term => {
+            const title = term.querySelector(".term__title");
+            const button = title.querySelector(".toggle-button");
+            const content = term.querySelector("p");
 
             button.addEventListener("click", function() {
-                if (paragraph.style.display === "none" || paragraph.style.display === "") {
-                    paragraph.style.display = "block";
-                    button.querySelector('i').classList.remove('fa-chevron-down');
-                    button.querySelector('i').classList.add('fa-chevron-up');
-                } else {
-                    paragraph.style.display = "none";
-                    button.querySelector('i').classList.remove('fa-chevron-up');
-                    button.querySelector('i').classList.add('fa-chevron-down');
-                }
+                toggleAccordion(content, button);
             });
+
+            title.addEventListener("click", function() {
+                toggleAccordion(content, button);
+            });
+
+            // 초기 상태 설정
+            content.style.display = "block"; // 기본적으로 내용 열림 상태로 설정
+            button.querySelector('i').classList.add('fa-chevron-up');
         });
+
+        function toggleAccordion(content, button) {
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                button.querySelector('i').classList.remove('fa-chevron-down');
+                button.querySelector('i').classList.add('fa-chevron-up');
+            } else {
+                content.style.display = "none";
+                button.querySelector('i').classList.remove('fa-chevron-up');
+                button.querySelector('i').classList.add('fa-chevron-down');
+            }
+        }
     });
-	</script>
+</script>
