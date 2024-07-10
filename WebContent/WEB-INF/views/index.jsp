@@ -26,8 +26,9 @@
     .swiper {
       width: 50%; /* 부모 요소의 너비에 맞춤 */
       height: 50%; /* 부모 요소의 높이에 맞춤 */
+      
     }
-
+    
     .swiper-slide {
       text-align: center;
       font-size: 18px;
@@ -35,7 +36,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-    }
+    } 
+   
+	.swiper-slide a {
+	  display: block;
+	  width: 100%;
+	  height: 100%;
+	}
+
 
     .swiper-slide img {
 	  max-width: 100%; /* 이미지의 최대 너비 설정 */
@@ -72,6 +80,7 @@
       stroke-dasharray: 125.6;
       transform: rotate(-90deg);
     }
+    
   </style>
 
 	<!--================================
@@ -83,19 +92,29 @@
 	<div class="swiper mySwiper">
 	  <div class="swiper-wrapper">
 	    <div class="swiper-slide">
-	    	<img src="<c:url value='/assest/template/images/slide/slide1.jpg'/>" alt="" class="slide">
+		    <a href="<c:url value='/profile/jobPage.do'/>">
+		    	<img src="<c:url value='/assest/template/images/slide/이력서.png'/>" alt="" class="slide">
+	    	</a>
 	    </div>
 	    <div class="swiper-slide">
-	    	<img src="<c:url value='/assest/template/images/slide/slide4.png'/>" alt="" class="slide">
+	    	<a href="<c:url value='/profile/timelinePage.do'/>">
+	    		<img src="<c:url value='/assest/template/images/slide/교육.png'/>" alt="" class="slide">
+	    	</a>
 	    </div>
 	    <div class="swiper-slide">
-	    	<img src="<c:url value='/assest/template/images/slide/slide5.png'/>" alt="" class="slide">
+		    <a href="<c:url value='/profile/selfIntroductionPage.do'/>">
+		    	<img src="<c:url value='/assest/template/images/slide/자소서.png'/>" alt="" class="slide">
+	    	</a>
 	    </div>
 	    <div class="swiper-slide">
-	    	<img src="<c:url value='/assest/template/images/slide/slide6.png'/>" alt="" class="slide">
+	    	<a href="<c:url value='/profile/careerPage.do'/>">
+	    		<img src="<c:url value='/assest/template/images/slide/경력.png'/>" alt="" class="slide">
+    		</a>
 	    </div>
 	    <div class="swiper-slide">
-	    	<img src="<c:url value='/assest/template/images/slide/slide9.png'/>" alt="" class="slide">
+		    <a href="<c:url value='/auth/contactPage.do'/>">
+		    	<img src="<c:url value='/assest/template/images/slide/연락.png'/>" alt="" class="slide">
+	    	</a>
 	    </div>
 	  </div>
 	  <div class="swiper-button-next"></div>
@@ -111,7 +130,7 @@
 	<!--================================
 	    END SLIDE AREA
 	=================================-->
-	
+	<br/> <br/> <br/> <br/> <br/> 
 	<!--================================
 	    START FEATURE AREA
 	=================================-->
@@ -125,14 +144,14 @@
 	            	<a href="https://junai0v0.tistory.com/89">
 		                <div class="feature">
 		                    <div class="feature__img">
-  		                        <img src="<c:url value='/assest/template/images/slide/error_sq1.jpg'/>" alt="feature" />
+  		                        <img src="<c:url value='/assest/template/images/slide/e1.png'/>" alt="feature" />
 		                    </div>
 		                    <div class="feature__title">
 		                        <h3>제일 속을 썩였던 ...Jasypt</h3>
 		                    </div>
 		                    <div class="feature__desc">
 		                        <p>
-			                        보안을 위해 추가하였는데 이클립스에 환경 변수로 등록해서 local에서 사용하는 건 좋았지만, 배포 시 환경 변수로 등록하는 법을 잘 알지 못하여 고생하였습니다. </br>
+			                        보안을 위해 추가하였는데 이클립스에 환경 변수로 등록해서 local에서 사용하는 건 좋았지만, 배포 시 환경 변수로 등록하는 법을 잘 알지 못하여 고생하였습니다. <br/> 
 		                        </p>
 		                    </div>
 		                </div>
@@ -146,7 +165,7 @@
 		            <a href="https://junai0v0.tistory.com/91">
 		                <div class="feature">
 		                    <div class="feature__img">
-		                        <img src="<c:url value='/assest/template/images/slide/error_sq3.jpg'/>" alt="feature" />
+		                        <img src="<c:url value='/assest/template/images/slide/e2.png'/>" alt="feature" />
 		                    </div>
 		                    <div class="feature__title">
 		                        <h3>최근 가장 걱정거리 AWS</h3>
@@ -165,13 +184,13 @@
 		            <a href="https://junai0v0.tistory.com/86">
 		                <div class="feature">
 		                    <div class="feature__img">                        
-		                        <img src="<c:url value='/assest/template/images/slide/error_sq2.jpg'/>" alt="feature" />
+		                        <img src="<c:url value='/assest/template/images/slide/e3.png'/>" alt="feature" />
 		                    </div>
 		                    <div class="feature__title">
 		                        <h3>IllegalArgumentException</h3>
 		                    </div>
 		                    <div class="feature__desc">
-		                        <p>원인을 찾는 데 가장 오래 걸린 Exception</br> 
+		                        <p>원인을 찾는 데 가장 오래 걸린 Exception<br/> 
 		                        생각보다 원인은 간단? 했던....</p>
 		                    </div>
 		                </div>
