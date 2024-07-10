@@ -66,7 +66,9 @@
 	    </property>
 	</bean>
 	<!-- 다국어 처리 현재 Locale정보를 가져와 Resolver -->
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+	    <property name="defaultLocale" value="en" /> <!-- 여기서 "en"는 영어를 기본 언어로 설정 -->
+	</bean>
 	<!-- 다국어 처리 Locale 정보를 변경해주는 클래스 lang 파라미터를 보내주면 자동으로 처리 -->
 	<mvc:interceptors>
       <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">

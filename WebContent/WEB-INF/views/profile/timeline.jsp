@@ -45,59 +45,61 @@
                         <ul class="timeline">
                             <li class="happening">
                                 <div class="happening--period">
-                                    <p>March 2009 ~ February 2012 (3 years)</p>
+                                    <p><spring:message code="timeline.1_1"/></p>
                                 </div>
                                 <div class="happening--detail">
-                                    <h4 class="title">인천해사고등학교</h4>
-                                    <p>기관과</p>
+                                    <h4 class="title"><spring:message code="timeline.1_2"/></h4>
+                                    <p><spring:message code="timeline.1_3"/></p>
                                 </div>
                             </li>
 
                             <li class="happening">
                                 <div class="happening--period">
-                                    <p>March 2012 ~ April 2016 (4 years)</p>
+                                    <p><spring:message code="timeline.2_1"/></p>
                                 </div>
                                 <div class="happening--detail">
-                                    <h4 class="title">전남대학교 입학~ 목포해양대학교 졸업</h4>
-                                    <p>전남대학교 기관시스템공학 전공 입학, 목포해양대학교 편입 </br>
-                                    기관시스템전공, 전기전자전공으로 편입 & 졸업. 학점 : 3.39/4.5</p>
-                                </div>
-                            </li>
-
-                            <li class="happening">
-                                <div class="happening--period">
-                                    <p>November 2016 ~ June 2023 (about 6 years and 3 months)</p>
-                                </div>
-                                <div class="happening--detail">
-                                    <h4 class="title">원양 상선, 예인선, 관공선 승선 근무</h4>
-                                    <p>UMS ,PMS, AMS, PID제어 시스템 관리, 선박 추진기, 발전기, 보일러, 냉동기, 에어컨, 전기패널, 소방장치 등 운용 및 유지보수.</p>
-                                </div>
-                            </li>
-
-                            <li class="happening">
-                                <div class="happening--period">
-                                    <p>October 2023 ~ March 2024 (5 months)</p>
-                                </div>
-                                <div class="happening--detail">
-                                    <h4 class="title">정석코딩 수료</h4>
+                                    <h4 class="title"><spring:message code="timeline.2_2"/></h4>
                                     <p>
-	                                    Java 웹 애플리케이션 개발자 양성 과정</br> 
-	                                    마켓컬리 클론코딩 팀프로젝트 진행</br> 
-	                                    상품상세페이지 조회, 장바구니 담기 및 주문하기 구현 
+	                                    <spring:message code="timeline.2_3"/><br/>
+	                                    <spring:message code="timeline.2_4"/>
                                     </p>
                                 </div>
                             </li>
 
                             <li class="happening">
                                 <div class="happening--period">
-                                    <p>April 2023 ~ ing </p>
+                                    <p><spring:message code="timeline.3_1"/></p>
                                 </div>
                                 <div class="happening--detail">
-                                    <h4 class="title">포토폴리오 그룹 스터디</h4>
+                                    <h4 class="title"><spring:message code="timeline.3_2"/></h4>
+                                    <p><spring:message code="timeline.3_3"/></p>
+                                </div>
+                            </li>
+
+                            <li class="happening">
+                                <div class="happening--period">
+                                    <p><spring:message code="timeline.4_1"/></p>
+                                </div>
+                                <div class="happening--detail">
+                                    <h4 class="title"><spring:message code="timeline.4_2"/></h4>
                                     <p>
-                                    	포토폴리오 제작, aws를 활용한 포토폴리오 배포</br>
-                                    	회원가입, 로그인, 로그아웃, 게시판(작성, 수정, 삭제, 조회, 페이징),</br>
-                                    	 좋아요/싫어요 기능, 댓글기능 등.. 구현
+	                                    <spring:message code="timeline.4_3"/><br/> 
+	                                    <spring:message code="timeline.4_4"/><br/>
+	                                    <spring:message code="timeline.4_5"/>
+                                    </p>
+                                </div>
+                            </li>
+
+                            <li class="happening">
+                                <div class="happening--period">
+                                    <p><spring:message code="timeline.5_1"/></p>
+                                </div>
+                                <div class="happening--detail">
+                                    <h4 class="title"><spring:message code="timeline.5_2"/></h4>
+                                    <p>
+                                    	<spring:message code="timeline.5_3"/><br/>
+                                    	<spring:message code="timeline.5_4"/><br/>
+                                    	<spring:message code="timeline.5_5"/>
                                     </p>
                                 </div>
                             </li>

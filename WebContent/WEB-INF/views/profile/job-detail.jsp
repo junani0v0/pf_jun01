@@ -102,7 +102,7 @@ a {
                                         <p>Location :</p>
                                     </div>
                                     <div class="info">
-                                        <p>경기도 용인시</p>
+                                        <p><spring:message code="job.location"/></p>
                                     </div>
                                 </li>
                                 <li>
@@ -120,7 +120,7 @@ a {
                                         <p>Birth date :</p>
                                     </div>
                                     <div class="info">
-                                        <p>1993년 04월 29일 (만 31세) </p>
+                                        <p><spring:message code="job.birth"/> </p>
                                     </div>
                                 </li>
                                 <li>
@@ -129,7 +129,7 @@ a {
                                         <p>Salary :</p>
                                     </div>
                                     <div class="info">
-                                        <p>사규에 따름</p>
+                                        <p><spring:message code="job.salary"/></p>
                                     </div>
                                 </li>
                                 <li>
@@ -138,7 +138,7 @@ a {
                                         <p>Education :</p>
                                     </div>
                                     <div class="info">
-                                        <p>4년제 학사</p>
+                                        <p><spring:message code="job.edu"/></p>
                                     </div>
                                 </li>
                                 <li>
@@ -147,7 +147,7 @@ a {
                                         <p>Experience :</p>
                                     </div>
                                     <div class="info">
-                                        <p>신입</p>
+                                        <p><spring:message code="job.exp"/></p>
                                     </div>
                                 </li>
                                 <li>
@@ -193,21 +193,21 @@ a {
                                 <li>
                                     <div class="info_title">
                                         <span class="lnr fa-solid fa-language"></span>
-                                        <p>외국어 :</p>
+                                        <p>Language :</p>
                                     </div>
                                     <div class="info">
-                                    	일본어(비지니스 회화), 영어(기초회화)
+                                    	<spring:message code="job.lan"/>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="info_title">
                                         <span class="lnr fa-regular fa-address-card"></span>
-                                        <p>자격증 :</p>
+                                        <p>Certificate :</p>
                                     </div>
                                     <div class="info">
-                                    	정보처리기사(필기), 운전면허증 1종 보통,</br>
-                                    	해기사 3급 기관사, 소방안전관리자 2급, </br>
-                                    	위험물안전관리자격증
+                                    	<spring:message code="job.cer1"/></br>
+                                    	<spring:message code="job.cer2"/></br>
+                                    	<spring:message code="job.cer3"/>
                                     </div>
                                 </li>
                             </ul>
@@ -216,140 +216,140 @@ a {
 
                     <div class="job_detail_module">
                         <h3 class="job__title">
-                        	개인 프로젝트
+                        	Personal project
                        	</h3>
                         <div class="job__content">
-                            <p>포토폴리오용 개인 프로젝트 Portfolio junani0v0 (개인 포트폴리오) | 개발기간 : 2024.05.27 ~  </p>
+                            <p><spring:message code="pro1"/></p>
                             <span class="lnr fa-brands fa-github info-icon"></span>
                             <a href="https://github.com/junani0v0/pf_jun01/">
                       	    	https://github.com/junani0v0/pf_jun01
 							</a>
 							</br></br>
-							<strong class="section-title">구현 기능</strong>
+							<strong class="section-title"><spring:message code="pro2"/></strong>
 							</br>
                             <ul>
-					            <li>1. 회원가입
+					            <li>1. <spring:message code="Fn1.1"/>
 					                <ul>
-					                    <li>- 비밀번호 암호화
+					                    <li>- <spring:message code="Fn1.2"/>
 					                        <ul>
-					                            <li>>  bcrypt 라이브러리를 활용한 DB 비밀번호 저장 암호화</li>
+					                            <li>>  <spring:message code="Fn1.3"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 이메일 인증으로 사용자 이메일 유효 여부 인증
+					                    <li>- <spring:message code="Fn1.4"/>
 					                        <ul>
-					                            <li>>  회원가입 시 인증링크 첨부 이메일 발송</li>
-					                            <li>>  Jasypt 라이브러리로 이메일 & 비밀번호 암호화</li>
-					                            <li>>  tomcat 환경변수로 Jasypt 복구화 키 등록</li>
-					                            <li>>  인증여부 DB에 반영</li>
+					                            <li>>  <spring:message code="Fn1.5"/></li>
+					                            <li>>  <spring:message code="Fn1.6"/></li>
+					                            <li>>  <spring:message code="Fn1.7"/></li>
+					                            <li>>  <spring:message code="Fn1.8"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 회원가입 제약사항(유효성 검사)
+					                    <li>- <spring:message code="Fn1.9"/>
 					                        <ul>
-					                            <li>>  Ajax를 활용하여 아이디 작성후 바로 ID 중복 체크(중복 불가)</li>
-					                            <li>>  ID 공백 또는 빈칸 불가</li>
-					                            <li>>  ID 4~20자 영어 소문자, 숫자만 가능 조건</li>
-					                            <li>>  비밀번호 8~16자 영문 대/소문자, 숫자 및 특수문자 1개 이상 포함 조건</li>
-					                            <li>>  비밀번호 확인 칸과 비밀번호칸의 비밀번호 같은지 확인</li>
-					                            <li>>  이름과 이메일 공백 또는 빈칸 불가, 이메일 형식 준수 조건</li>
-					                            <li>>  이름과 이메일 이름 최대 20자 조건</li>
-					                            <li>>  위 조건들이 모두 참이여야지만 회원가입 버튼 활성화, 아닐시 비활성화</li>
+					                            <li>>  <spring:message code="Fn1.10"/></li>
+					                            <li>>  <spring:message code="Fn1.11"/></li>
+					                            <li>>  <spring:message code="Fn1.12"/></li>
+					                            <li>>  <spring:message code="Fn1.13"/></li>
+					                            <li>>  <spring:message code="Fn1.14"/></li>
+					                            <li>>  <spring:message code="Fn1.15"/></li>
+					                            <li>>  <spring:message code="Fn1.16"/></li>
+					                            <li>>  <spring:message code="Fn1.17"/></li>
 					                        </ul>
 					                    </li>
 					                </ul>
 					            </li>
-					            <li>2. 로그인
+					            <li>2. <spring:message code="Fn2.1"/>
 					                <ul>
-					                    <li>- ID 조회
+					                    <li>- <spring:message code="Fn2.2"/>
 					                        <ul>
-					                            <li>>  사용자 입력 ID를 DB에 조회 유효성 확인</li>
+					                            <li>>  <spring:message code="Fn2.3"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 비밀번호 조회</li>
-					                    <li>- 아이디 저장(추가예정)</li>
-					                    <li>- 아이디, 비밀번호 찾기 & 비밀번호 변경(추가예정)</li>
-					                    <li>- 이메일 인증 사용자만 로그인 가능하도록 제한</li>
+					                    <li>- <spring:message code="Fn2.4"/></li>
+					                    <li>- <spring:message code="Fn2.5"/></li>
+					                    <li>- <spring:message code="Fn2.6"/></li>
+					                    <li>- <spring:message code="Fn2.7"/></li>
 					                </ul>
 					            </li>
-					            <li>3. 로그아웃
+					            <li>3. <spring:message code="Fn3.1"/>
 					                <ul>
-					                    <li>- 로그아웃시 세션 삭제</li>
+					                    <li>- <spring:message code="Fn3.2"/></li>
 					                </ul>
 					            </li>
-					            <li>4. 게시판
+					            <li>4. <spring:message code="Fn4.1"/>
 					                <ul>
-					                    <li>- filter를 활용하여 게시판 접근 제한
+					                    <li>- <spring:message code="Fn4.2"/>
 					                        <ul>
-					                            <li>>  세션으로 로그인 여부 판단</li>
-					                            <li>>  로그인 시에만 접근 가능</li>
-					                            <li>>  비로그인 시 로그인 화면으로 이동</li>
-					                            <li>>  로그인 성공 후 이전 요청으로 리다이렉트</li>
+					                            <li>>  <spring:message code="Fn4.3"/></li>
+					                            <li>>  <spring:message code="Fn4.4"/></li>
+					                            <li>>  <spring:message code="Fn4.5"/></li>
+					                            <li>>  <spring:message code="Fn4.6"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 페이징
+					                    <li>- <spring:message code="Fn4.7"/>
 					                        <ul>
-					                            <li>>  1페이지와 마지막 페이지에서 각각 이전, 다음 버튼 숨기기</li>
-					                            <li>>  한 페이지 당 출력 게시글 10개</li>
-					                            <li>>  페이징 네비게이션 바 한 페이지 당 10개씩 출력</li>
+					                            <li>>  <spring:message code="Fn4.8"/></li>
+					                            <li>>  <spring:message code="Fn4.9"/></li>
+					                            <li>>  <spring:message code="Fn4.10"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 게시글 리스트 조회
+					                    <li>- <spring:message code="Fn4.11"/>
 					                        <ul>
-					                            <li>>  게시물 번호 DB게시글 번호가 아닌 전체 개수 기준으로 변경예정</li>
-					                            <li>>  첨부파일 여부, 댓글, 좋아요 & 싫어요 개수 표시</li>
+					                            <li>>  <spring:message code="Fn4.12"/></li>
+					                            <li>>  <spring:message code="Fn4.13"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 게시글 작성(첨부파일)
+					                    <li>- <spring:message code="Fn4.14"/>
 					                        <ul>
-					                            <li>>  trumbowyg 텍스트 에디터를 이용한 게시물 내용 입력</li>
-					                            <li>>  첨부파일 등록 (최대 3개)</li>
-					                            <li>>  첨부파일 용량 제한 (10MB)</li>
+					                            <li>>  <spring:message code="Fn4.15"/></li>
+					                            <li>>  <spring:message code="Fn4.16"/></li>
+					                            <li>>  <spring:message code="Fn4.17"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 게시글 상세 조회
+					                    <li>- <spring:message code="Fn4.18"/>
 					                        <ul>
-					                            <li>>  게시글 좋아요 & 싫어요 DB 반영</li>
-					                            <li>>  게시글 작성자만 게시글 수정/삭제 버튼 보이게 & 아닐 경우 숨기기</li>
-					                            <li>>  댓글, 대댓글(예정) 기능 & 작성자가 같아야만 수정/삭제 가능</li>
-					                            <li>>  첨부파일 단일 다운로드 & zip파일로 일괄 다운로드 기능</li>
+					                            <li>>  <spring:message code="Fn4.19"/></li>
+					                            <li>>  <spring:message code="Fn4.20"/></li>
+					                            <li>>  <spring:message code="Fn4.21"/></li>
+					                            <li>>  <spring:message code="Fn4.22"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 게시글 수정
+					                    <li>- <spring:message code="Fn4.23"/>
 					                        <ul>
-					                            <li>>  ajax를 활용하여 즉각 반영 첨부파일 삭제/추가 (최대 3개 유지)</li>
+					                            <li>>  <spring:message code="Fn4.24"/></li>
 					                        </ul>
 					                    </li>
-					                    <li>- 게시글 삭제
+					                    <li>- <spring:message code="Fn4.25"/>
 					                    	<ul>
-					                            <li>>  게시글 번호 첨부파일 전체 삭제</li>
-					                            <li>>  게시글 번호 댓글 전체 삭제</li>
-					                            <li>>  게시글 번호 좋아요 전체 삭제</li>
-					                            <li>>  게시글 번호 싫어요 전체 삭제</li>
-					                            <li>>  게시글 번호 게시글 삭제</li>
+					                            <li>>  <spring:message code="Fn4.26"/></li>
+					                            <li>>  <spring:message code="Fn4.27"/></li>
+					                            <li>>  <spring:message code="Fn4.28"/></li>
+					                            <li>>  <spring:message code="Fn4.29"/></li>
+					                            <li>>  <spring:message code="Fn4.30"/></li>
 					                        </ul>
 					                    </li>
 					                </ul>
 					            </li>
-					            <li>5. 다국어 기능
+					            <li>5. <spring:message code="Fn5.1"/>
 					                <ul>
-					                    <li>- i18n을 활용하여 영어, 한국어, 일본어 다국어 기능 추가</li>
+					                    <li>- <spring:message code="Fn5.2"/></li>
 					                </ul>
 					            </li>
-					            <li>6. 배포
+					            <li>6. <spring:message code="Fn6.1"/>
 					                <ul>
-					                    <li>- aws를 활용한 배포 & 배포용 DB생성</li>
-					                    <li>- src/main/resource를 local, dev, common로 구분</li>
-					                    <li>- config.properties로 local과 배포(dev)상태에서 각각의 첨부파일 저장 경로 및 인증이메일 주소 설정</li>
+					                    <li>- <spring:message code="Fn6.2"/></li>
+					                    <li>- <spring:message code="Fn6.3"/></li>
+					                    <li>- <spring:message code="Fn6.4"/></li>
 					                </ul>
 					            </li>
-					            <li>7. 테스트 케이스
+					            <li>7. <spring:message code="Fn7.1"/>
 					                <ul>
-					                    <li>- JUnit5를 활용하여 단위테스트 진행</li>
+					                    <li>- <spring:message code="Fn7.2"/></li>
 					                </ul>
 					            </li>
 					        </ul>
                         </div>
                         
-                        <h3 class="job__title">개인 프로젝트 사용 기술</h3>
+                        <h3 class="job__title">Skills in using personal project</h3>
                         <div class="job__content">
                             <p style="text-align: center;">
 							    <img class="skill-logo" src="<c:url value='/assest/template/images/skill_icon/Java-Light.svg'/>" alt="skill logo">
@@ -390,7 +390,7 @@ a {
 	                            </ul>
                             </div>
                             <div class="content_list">
-	                           	<strong class="section-title">개발 환경</strong>
+	                           	<strong class="section-title">Development environment</strong>
 	                            <ul>
 	                                <li> Eclipse IDE 4.31.0</li>
 	                                <li> Apache Tomcat 9.0.87 </li>
@@ -398,7 +398,7 @@ a {
 	                            </ul>
                             </div>
                             <div class="content_list">
-	                           	<strong class="section-title">배포</strong>
+	                           	<strong class="section-title">Distribution</strong>
 	                            <ul>
 	                                <li> AWS EC2</li>
 	                                <li> AWS RDS</li>
@@ -421,25 +421,25 @@ a {
                         </div>
                         
 
-                        <h3 class="job__title">팀 프로젝트</h3>
+                        <h3 class="job__title">Team project</h3>
                         <div class="job__content">
-                            <p>Brokurly (마켓컬리 클론코딩 프로젝트) | 개발인원 : 7명 | 개발기간 : 2024.01.11 ~ 2024.03.15(약 2개월) </p>
+                            <p><spring:message code="t.pro1"/></p>
                             <span class="lnr fa-brands fa-github info-icon"></span>
                             <a href="https://github.com/junani0v0/brokurly/">
                       	    	https://github.com/junani0v0/brokurly
 							</a>
 
                             <ul class="content_list">
-                                <li>상품 상세 페이지 조회, 수정, Ajax를 활용한 장바구니 담기 & 찜 기능 구현.</li>
-                                <li>상품고시정보, 상품 후기 조회, 상품 문의 작성 & 조회, 수정 구현.</li>
-                                <li>장바구니 조회, 선택 상품 삭제, 수량 변경과 그에 따른 상품 금액계산.</li> 
-								<li>장바구니 선택 상품에 대한 결제예정금액 계산 DB와 연동 구현.</li>
-                                <li>장바구니 선택상품 주문, 장바구니 비우기 구현.</li>
-                                <li>카카오 주소 API를 활용한 주소지 등록, 조회, 변경 기능 구현.</li>
+                                <li><spring:message code="t.pro2"/></li>
+                                <li><spring:message code="t.pro3"/></li>
+                                <li><spring:message code="t.pro4"/></li> 
+								<li><spring:message code="t.pro5"/></li>
+                                <li><spring:message code="t.pro6"/></li>
+                                <li><spring:message code="t.pro7"/></li>
                             </ul>
                         </div>
 
-                        <h3 class="job__title">팀 프로젝트 사용 기술</h3>
+                        <h3 class="job__title">Skills in using team project</h3>
                         <div class="job__content">
                             <p style="text-align: center;">
 							    <img class="skill-logo" src="<c:url value='/assest/template/images/skill_icon/Java-Light.svg'/>" alt="skill logo">
@@ -458,27 +458,23 @@ a {
 							<div class="content_list">
 	                           	<strong class="section-title">Language</strong>
 	                            <ul>
-	                                <li>Java 17 : 자바 프로그래밍 언어를 활용한 스프링 프레임워크로 웹 개발,
-	                                	자바의 기초를 공부하고 자료구조와 알고리즘을 자바기반으로 학습, 순수 자바를 활용 단위 테스트로 안정적인 코드를 짜기 위해 노력하였습니다.</li>
-	                                <li>HTML5/CSS3 : 부트스트랩을 활용한 쇼핑몰 레이아웃 및 스타일링 작업.</li>
-	                                <li>JS ES6, JQuery3.7.1 : 여러 이벤트를 다루어 보았으며 Ajax를 활용해서 서버와 
-									비동기 통신하여 데이터를 분할하여 읽어오는 방법을 구현.</li>
+	                                <li>Java 17 : <spring:message code="t.skill1"/></li>
+	                                <li>JS ES6, JQuery3.7.1 : <spring:message code="t.skill2"/></li>
 	                            </ul>
                             </div>
                             <div class="content_list">
 	                           	<strong class="section-title">Framework</strong>
 	                            <ul>
-	                                <li>Spring 5.x : MVC패턴으로 코드 작성, Maven 사용, 페이징 처리 기능 구현
-										     RESTful 하게 URI 코드를 짜기 위해 노력하였습니다.</li>
-	                                <li>MyBatis3 : MyBatis로 DB에 접근하는 SQL로직 구현.</li>
-	                                <li>JUnit5 : JUnit을 활용하여 단위 테스트(Unit Test) 진행.</li>
+	                                <li>Spring 5.x : <spring:message code="t.skill3"/></li>
+	                                <li>MyBatis3 : <spring:message code="t.skill4"/></li>
+	                                <li>JUnit5 : <spring:message code="t.skill5"/></li>
 	                            </ul>
                             </div>
                             <div class="content_list">
 	                           	<strong class="section-title">Database</strong>
 	                            <ul>
-	                                <li>ERD CLOUD를 사용하여 쇼핑몰 고객 및 상품 관련 데이터모델링.</li>
-	                                <li>MySQL 8.0 : 효율적인 인덱스 및 조인 활용으로 상품페이지, 좋아요, 장바구니 기능 구현.</li>
+	                                <li><spring:message code="t.skill6"/></li>
+	                                <li>MySQL 8.0 : <spring:message code="t.skill7"/></li>
 	                            </ul>
                             </div>
                             <div class="content_list">
