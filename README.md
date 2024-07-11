@@ -2,7 +2,7 @@
 
 > ## 프로젝트 소개
 junani0v0의 개인 포토폴리오 프로젝트   
-배포 URI : bit.ly/4eS3BuP
+배포 URI : https://bit.ly/4eS3BuP
 
 
 
