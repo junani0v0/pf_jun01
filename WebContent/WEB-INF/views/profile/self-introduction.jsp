@@ -93,8 +93,8 @@
                             </div>
                             <p>
                             	<spring:message code="self.co2_1"/><br/><br/>
-								<spring:message code="self.co3_1"/><br/>
-								<spring:message code="self.co4_1"/>
+								<spring:message code="self.co2_2"/><br/>
+								<spring:message code="self.co2_3"/>
                             </p>
                         </div>
                         <!-- end /.term -->
